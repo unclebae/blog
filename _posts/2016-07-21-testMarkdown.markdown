@@ -1,3 +1,7 @@
+---
+title: GFM 사용 테스트
+layout: post
+---
 GFM은
 —
 다음과

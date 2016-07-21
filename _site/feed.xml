@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <title>Unclebae 블로</title>
+    <description>&quot;Yesterday is history, Tomorrow is mistery, But Today is Gift. \
+    That is why call it Present. 
+    -- KungFu Panda -- &quot;
 </description>
     <link>http://unclebae.github.io/</link>
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Jul 2016 21:28:03 +0900</pubDate>
-    <lastBuildDate>Thu, 21 Jul 2016 21:28:03 +0900</lastBuildDate>
+    <pubDate>Thu, 21 Jul 2016 21:39:33 +0900</pubDate>
+    <lastBuildDate>Thu, 21 Jul 2016 21:39:33 +0900</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -39,7 +41,7 @@
       </item>
     
       <item>
-        <title>Testmarkdown</title>
+        <title>GFM 사용 테스트</title>
         <description>&lt;p&gt;GFM은
 —
 다음과
