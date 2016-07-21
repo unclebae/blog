@@ -6,16 +6,16 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Unclebae 블로
+title: Unclebae 블로그
 email: baekido@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-    "Yesterday is history, Tomorrow is mistery, But Today is Gift. \
+    "Yesterday is history, Tomorrow is mistery, But Today is Gift. 
         That is why call it Present. 
         -- KungFu Panda -- "
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://unclebae.github.io" # the base hostname & protocol for your site
-twitter_username: unclebae
-github_username:  unclebae
+#twitter_username: unclebae
+#github_username:  unclebae
 
 # Build settings
 markdown: kramdown
