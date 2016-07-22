@@ -43,6 +43,11 @@ $on-laptop:        800px;
     }
 }
 
+// Caricature image size
+img[alt="MyCaricature"] {
+	max-width: 320px;
+	display: block;
+}
 
 
 // Import partials from `sass_dir` (defaults to `_sass`)
