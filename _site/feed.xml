@@ -8,8 +8,8 @@
 </description>
     <link>http://unclebae.github.io/</link>
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Jul 2016 23:59:06 +0900</pubDate>
-    <lastBuildDate>Thu, 21 Jul 2016 23:59:06 +0900</lastBuildDate>
+    <pubDate>Fri, 22 Jul 2016 11:09:59 +0900</pubDate>
+    <lastBuildDate>Fri, 22 Jul 2016 11:09:59 +0900</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -25,6 +25,10 @@
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 
@@ -440,13 +444,20 @@ It works in Pull Requests, too!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;You &lt;strong&gt;can&lt;/strong&gt; combine them&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
-&lt;p&gt;### Unordered
-* Item1
-* Item2
-  * Item2a
-  * Item2b&lt;/p&gt;
+&lt;p&gt;### Unordered&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Item1&lt;/li&gt;
+  &lt;li&gt;Item2
+    &lt;ul&gt;
+      &lt;li&gt;Item2a&lt;/li&gt;
+      &lt;li&gt;Item2b&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;ordered&quot;&gt;Ordered&lt;/h3&gt;
+
 &lt;ol&gt;
   &lt;li&gt;Item1&lt;/li&gt;
   &lt;li&gt;Item2&lt;/li&gt;
@@ -474,6 +485,53 @@ Format: &lt;img src=&quot;url&quot; alt=&quot;Alt Text&quot; /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;inline-code&quot;&gt;Inline code&lt;/h3&gt;
 &lt;p&gt;I think you should use an
 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;addr&amp;gt;&lt;/code&gt; element here instead.&lt;/p&gt;
+
+&lt;h1 id=&quot;github-flavored-markdown&quot;&gt;GitHub Flavored Markdown&lt;/h1&gt;
+&lt;p&gt;GitHub.com uses its own version of Markdown syntax that provides an additional set fo useful features, many of which
+make it easier to work with content on GitHub.com&lt;/p&gt;
+
+&lt;p&gt;Note that some features of GitHub Flavored Markdown are only available in the descriptions and comments
+of Issues and Pull Requests.
+this include @mentions as well as references to S/HA-1 hashes, Issues, and Pull Requests.&lt;/p&gt;
+
+&lt;p&gt;Task LIsts are also available in Gist commetns and in Gist markdown files.&lt;/p&gt;
+
+&lt;h2 id=&quot;syntax-highlighting&quot;&gt;Syntax highlighting&lt;/h2&gt;
+
+&lt;p&gt;Here’s an example of how you can use syntax highlighting with GitHub Flavored Markdown:
+```javascript
+function fancyAlert(arg) {
+	if (arg) {
+		$.facebook({div:’#foo’})
+	}
+}&lt;/p&gt;
+
+&lt;p&gt;You can also simply indent your code by four spaces;
+function fancyAlert(arg) {
+	if (arg) {
+	    $.facebox({div:’#foo’})
+	}
+}&lt;/p&gt;
+
+&lt;h2 id=&quot;task-lists&quot;&gt;Task lists&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;[x] @mentions, #refs, &lt;a href=&quot;&quot;&gt;links&lt;/a&gt;, &lt;strong&gt;formatting&lt;/strong&gt; and &lt;del&gt;tags&lt;/del&gt; supported&lt;/li&gt;
+  &lt;li&gt;[x] list syntax required (and undered of ordered list supported)&lt;/li&gt;
+  &lt;li&gt;[x] this is a complete item&lt;/li&gt;
+  &lt;li&gt;[ ] this is an imcomplete item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you include a task list in the first comment of an Issue, you will get a handy progress indicator in your issue list.
+it al works in Pull Request!&lt;/p&gt;
+
+&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+&lt;p&gt;You can create tables by accsembling a list of world and divdding them with hyphenes &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt; (for the first row), and them separating each column with a pipe |:
+First Header | Second Headler
+————  —————-
+Content from ceil 1 Content from call be
+Content in the first column |Content in the restorigin)&lt;/p&gt;
+
+&lt;p&gt;안정적인 효과가 있음&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 21 Jul 2016 00:00:00 +0900</pubDate>

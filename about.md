@@ -1,15 +1,28 @@
 ---
 layout: page
-title: About
+title: I am UncleBae
 permalink: /about/
 ---
+![My Caricature]({{site.url}}/images/KIDO.jpg)
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Hello my name is Kido. 
+My nick is Unclebae. 
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+I want to be a guru like Uncle Bob.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+My job is Computer Programmer. So. I interested in computer program.
+
+My Interest is 
+<ul>
+{% for interest in site.data.profiles.profile.interest %}
+  <li>
+    <a href="{{interest.url}}">
+      {{interest.stub}}
+	</a>
+  </li>
+{% endfor %}
+</ul>
+
+If you want to contact to me or advise me.
+Send email to [My_Email](mailTo:{{site.data.profiles.profile.contact.email}})
+My Blog [Unclebae blog]({{site.data.profiles.profile.contact.blog}})

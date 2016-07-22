@@ -35,7 +35,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/about/">About</a>
+          <a class="page-link" href="/about/">I am UncleBae</a>
           
         
           
@@ -173,13 +173,20 @@ It works in Pull Requests, too!</p>
 <p><em>You <strong>can</strong> combine them</em></p>
 
 <h2 id="lists">Lists</h2>
-<p>### Unordered
-* Item1
-* Item2
-  * Item2a
-  * Item2b</p>
+<p>### Unordered</p>
+
+<ul>
+  <li>Item1</li>
+  <li>Item2
+    <ul>
+      <li>Item2a</li>
+      <li>Item2b</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="ordered">Ordered</h3>
+
 <ol>
   <li>Item1</li>
   <li>Item2</li>
@@ -207,6 +214,53 @@ Format: <img src="url" alt="Alt Text" /></p>
 <h3 id="inline-code">Inline code</h3>
 <p>I think you should use an
 <code class="highlighter-rouge">&lt;addr&gt;</code> element here instead.</p>
+
+<h1 id="github-flavored-markdown">GitHub Flavored Markdown</h1>
+<p>GitHub.com uses its own version of Markdown syntax that provides an additional set fo useful features, many of which
+make it easier to work with content on GitHub.com</p>
+
+<p>Note that some features of GitHub Flavored Markdown are only available in the descriptions and comments
+of Issues and Pull Requests.
+this include @mentions as well as references to S/HA-1 hashes, Issues, and Pull Requests.</p>
+
+<p>Task LIsts are also available in Gist commetns and in Gist markdown files.</p>
+
+<h2 id="syntax-highlighting">Syntax highlighting</h2>
+
+<p>Here’s an example of how you can use syntax highlighting with GitHub Flavored Markdown:
+```javascript
+function fancyAlert(arg) {
+	if (arg) {
+		$.facebook({div:’#foo’})
+	}
+}</p>
+
+<p>You can also simply indent your code by four spaces;
+function fancyAlert(arg) {
+	if (arg) {
+	    $.facebox({div:’#foo’})
+	}
+}</p>
+
+<h2 id="task-lists">Task lists</h2>
+<ul>
+  <li>[x] @mentions, #refs, <a href="">links</a>, <strong>formatting</strong> and <del>tags</del> supported</li>
+  <li>[x] list syntax required (and undered of ordered list supported)</li>
+  <li>[x] this is a complete item</li>
+  <li>[ ] this is an imcomplete item</li>
+</ul>
+
+<p>If you include a task list in the first comment of an Issue, you will get a handy progress indicator in your issue list.
+it al works in Pull Request!</p>
+
+<h2 id="tables">Tables</h2>
+<p>You can create tables by accsembling a list of world and divdding them with hyphenes <code class="highlighter-rouge">-</code> (for the first row), and them separating each column with a pipe |:
+First Header | Second Headler
+————  —————-
+Content from ceil 1 Content from call be
+Content in the first column |Content in the restorigin)</p>
+
+<p>안정적인 효과가 있음</p>
 
 
   </div>

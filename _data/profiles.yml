@@ -1,0 +1,19 @@
+profile:
+  name: Bae Ki Do
+  nick: UncleBae
+  contact:
+    phone: 010-9630-0655
+    email: baekido@gmail.com
+    blog: http://uncle-bae.blogspot.kr/
+    home: http://unclebae.github.io
+  motto: Yesterday is history, Tomorrow is mistery, But Today is Gift. That is why it is call the present.
+  job: Developer
+  interest: 
+    - stub: Apache Spark
+      url: http://spark.apache.org/
+    - stub: Apache Storm
+      url: http://storm.apache.org/
+    - stub: Elastic Search
+      url: https://www.elastic.co/
+    - stub: Python
+      url: http://www.tutorialspoint.com/python3/
