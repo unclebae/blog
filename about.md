@@ -1,6 +1,6 @@
 ---
 layout: page
-title: I am UncleBae
+title: About me.
 permalink: /about/
 ---
 ![MyCaricature]({{site.url}}/images/KIDO.jpg)
