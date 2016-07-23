@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Python3 Thread</title>
+        <description>
+          python thread programming - 
+          Thread and Process 쓰레드는 서로다른 프로그램(프로세스)들이 동시에 수행하는 것과 같은 효과를 낸다. 그러나 다음과 같은 차이가 있다. 멀티 쓰레드는 동일한 데이터 공간을 공유한다. 그러므로 스레드들 간의 커뮤니케이션이 프로세스보다 수월하다. 단, 공유자원으로 인한 부작용이 없도록 관리가 필요하다. 멀티쓰레드는 경량의 프로세스라고 불린다. 이는 메모리 오버헤드가 작고, 자원들을 프로세스보다 더 작게 소비한다. 스레드의...
+        </description>
+        <pubDate>Sun, 24 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-24-python-thread/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-24-python-thread/</guid>
+      </item>
+    
+      <item>
         <title>Python3 socket programming</title>
         <description>
           Python low level socket programming - 
