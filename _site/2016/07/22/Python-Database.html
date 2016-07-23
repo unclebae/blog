@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Python with Mysql</title>
-  <meta name="description" content="파이선에서 Mysql연동하기.## PyMySQL 설치하기pip install PyMySQL">
+  <meta name="description" content="파이선에서 Mysql연동하기.## PyMySQL 설치하기# python3 versionpip3 intall pymysql">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://unclebae.github.io/2016/07/22/Python-Database.html">
@@ -65,15 +65,16 @@
     <h1 id="mysql">파이선에서 Mysql연동하기.</h1>
 <p>## PyMySQL 설치하기</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">PyMySQL</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># python3 version</span>
+<span class="n">pip3</span> <span class="n">intall</span> <span class="n">pymysql</span></code></pre></figure>
 
 <h2 id="example-">Example 작성해보기.</h2>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python3</span>
-<span class="kn">import</span> <span class="nn">PyMySQL</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
 
 <span class="c"># Open database connection</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">PyMySQL</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="s">"testuser"</span><span class="p">,</span> <span class="s">"test123"</span><span class="p">,</span> <span class="s">"TESTDB"</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="s">"testuser"</span><span class="p">,</span> <span class="s">"test123"</span><span class="p">,</span> <span class="s">"TESTDB"</span><span class="p">)</span>
 
 <span class="c"># prepare a cursor object using cursor() method</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -92,6 +93,29 @@
 <p>해당 내역을 실행하면 다음과 같은 결과를 볼 수 있다.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">Database</span> <span class="n">version</span> <span class="p">:</span> <span class="mf">5.5</span><span class="o">.</span><span class="mi">20</span><span class="o">-</span><span class="n">log</span></code></pre></figure>
+
+<h2 id="section">테이블 생성하기.</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="s">"kido"</span><span class="p">,</span> <span class="s">"1212"</span><span class="p">,</span> <span class="s">"boards"</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"DROP TABLE IF EXISTS BOARD"</span><span class="p">)</span>
+
+<span class="n">SQL</span> <span class="o">=</span> <span class="s">"""
+CREATE TABLE board (
+    id BIGINT(10) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+	content VARCHAR(4000) NULL,
+	author VARCHAR(45) NULL,
+	createAt TIMESTAMP NOT NULL DEFAULT now(),
+	modifyAt TIMESTAMP NULL,
+	PRIMARY KEY (id));
+"""</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">SQL</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
 
 
   </div>
