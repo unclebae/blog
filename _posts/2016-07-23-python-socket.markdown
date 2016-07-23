@@ -13,6 +13,7 @@ Python에서는 2가지 타입의 네트워크 접근방법을 제공한다.
 소켓은 대표적으로 TCP와 UDP 를 제공한다. 
 
 ### 소켓 용어
+
 |Term|Description|
 |domain|프로토콜 패밀리로 이는 전송 매커니즘으로 사용한다. AF_INET, PF_INET, PF_UNIX, PF_X25등이 있다.|
 |type|두 엔드포인트에서 서로 사용할 커뮤니케이션 타입이다. 연결지향의 SOCK_STREAM, 비연결지향인 SOCK_DGRAM이 있다.|
@@ -54,7 +55,7 @@ s = socket.socket(socket_family, socket_type, protocol=0)
 
 ```socket.gethostname()``` 호스트이름을 반환한다. 
 
-## 서버소켓 프로그램 
+## [서버소켓 프로그램](https://github.com/unclebae/Python3-tutorial/blob/master/19.network/simpleServer.py) 
 {% highlight python %}
 
 import socket
@@ -78,7 +79,7 @@ while True:
 
 {% endhighlight %}
 
-## 클라이언트 소켓 프로그램 
+## [클라이언트 소켓 프로그램](https://github.com/unclebae/Python3-tutorial/blob/master/19.network/simpleClient.py) 
 
 {% highlight python %}
 
