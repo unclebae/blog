@@ -167,6 +167,58 @@ CREATE TABLE board (
 <span class="n">Enter</span> <span class="n">the</span> <span class="n">Contents</span> <span class="p">(</span><span class="s">'content bla~ bla~'</span><span class="p">)</span> <span class="p">:</span><span class="s">'bla~ bla~'</span>
 <span class="n">Enter</span> <span class="n">the</span> <span class="n">author</span> <span class="p">(</span><span class="s">'john'</span><span class="p">)</span> <span class="p">:</span><span class="s">'peter'</span></code></pre></figure>
 
+<h2 id="section-4">단건 데이터 불러오기</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">boardId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Please enter board id :'</span><span class="p">))</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="s">'kido'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">,</span> <span class="s">'boards'</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM BOARD </span><span class="se">\
+</span><span class="s">	WHERE ID = '</span><span class="si">%</span><span class="s">d'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">boardId</span><span class="p">)</span>
+<span class="c">#print (sql)</span>
+<span class="k">try</span> <span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="c">#print (result)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">):</span>
+		<span class="k">print</span> <span class="p">(</span><span class="s">"Fetched Data : boardId=[</span><span class="si">%</span><span class="s">d], title=[</span><span class="si">%</span><span class="s">s], content=[</span><span class="si">%</span><span class="s">s], author=[</span><span class="si">%</span><span class="s">s], createAt=[</span><span class="si">%</span><span class="s">s], modifyAt=[</span><span class="si">%</span><span class="s">s]"</span> <span class="o">%</span> \
+				<span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s">'There is no data'</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error: unable to fetch data"</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<h2 id="section-5">전체 데이터 불러오기</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="s">'kido'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">,</span> <span class="s">'boards'</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM BOARD"</span>
+
+<span class="c">#print (sql)</span>
+<span class="k">try</span> <span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="c">#print (results)</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+		<span class="k">print</span> <span class="p">(</span><span class="s">"Fetched Data : boardId=[</span><span class="si">%</span><span class="s">d], title=[</span><span class="si">%</span><span class="s">s], content=[</span><span class="si">%</span><span class="s">s], author=[</span><span class="si">%</span><span class="s">s], createAt=[</span><span class="si">%</span><span class="s">s], modifyAt=[</span><span class="si">%</span><span class="s">s]"</span> <span class="o">%</span> \
+				<span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s">'no more datas'</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error: unable to fetch data"</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
 
   </div>
 
