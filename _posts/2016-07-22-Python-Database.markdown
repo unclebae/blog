@@ -4,6 +4,7 @@ title: Python with Mysql
 ---
 
 [샘플](https://github.com/unclebae/Python3-tutorial/tree/master)
+[myslq python](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-fetchone.html)
 
 # 파이선에서 Mysql연동하기. 
 ## PyMySQL 설치하기
