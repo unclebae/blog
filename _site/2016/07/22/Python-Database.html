@@ -117,6 +117,56 @@ CREATE TABLE board (
 
 <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
 
+<h2 id="section-1">입력하기.</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="s">"kido"</span><span class="p">,</span> <span class="s">"1212"</span><span class="p">,</span> <span class="s">"boards"</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"""
+    INSERT INTO BOARD (TITLE, CONTENT, AUTHOR) 
+	VALUES ('TEST post', 'Hello this is test post... I Like This post', 'kido')
+"""</span>
+
+<span class="k">try</span> <span class="p">:</span>
+	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<h2 id="section-2">동적 인서트 쿼리 수행하기.</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">title</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter the Title ('title') :"</span><span class="p">)</span>
+<span class="n">content</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter the Contents ('content bla~ bla~') :"</span><span class="p">)</span>
+<span class="n">author</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter the author ('john') :"</span><span class="p">)</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="s">"kido"</span><span class="p">,</span> <span class="s">"1212"</span><span class="p">,</span> <span class="s">"boards"</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"INSERT INTO BOARD (TITLE, CONTENT, AUTHOR) </span><span class="se">\
+</span><span class="s">    VALUES ('</span><span class="si">%</span><span class="s">s', '</span><span class="si">%</span><span class="s">s', '</span><span class="si">%</span><span class="s">s')"</span> <span class="o">%</span> \
+	<span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<h2 id="section-3">실행해보기</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;</span> <span class="n">py</span> <span class="n">dynamicInsertBoard</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">Title</span> <span class="p">(</span><span class="s">'title'</span><span class="p">)</span> <span class="p">:</span><span class="s">'title'</span>
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">Contents</span> <span class="p">(</span><span class="s">'content bla~ bla~'</span><span class="p">)</span> <span class="p">:</span><span class="s">'bla~ bla~'</span>
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">author</span> <span class="p">(</span><span class="s">'john'</span><span class="p">)</span> <span class="p">:</span><span class="s">'peter'</span></code></pre></figure>
+
 
   </div>
 
