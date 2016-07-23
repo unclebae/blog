@@ -219,6 +219,63 @@ CREATE TABLE board (
 
 <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
 
+<h2 id="section-6">데이터 변경하기.</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="s">'kido'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">,</span> <span class="s">'boards'</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"""
+    UPDATE BOARD SET content = '</span><span class="si">%</span><span class="s">s' WHERE id = 1 """</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="o">+</span> <span class="s">" are generaged."</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+
+<span class="n">sql2</span> <span class="o">=</span> <span class="s">"""
+    SELECT * FROM BOARD WHERE id = 1"""</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql2</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"Error select modified data"</span><span class="p">)</span>
+
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<h2 id="section-7">데이터 삭제하기…</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">boardId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'enter board id if you want if you don''t want to delete enter the -1 : '</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">boardId</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'exit'</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">()</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="s">'kido'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">,</span> <span class="s">'boards'</span><span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"""
+    DELETE FROM BOARD WHERE id = '</span><span class="si">%</span><span class="s">d'"""</span> <span class="o">%</span> <span class="n">boardId</span>
+
+<span class="k">try</span><span class="p">:</span>
+	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+	<span class="k">print</span> <span class="p">(</span><span class="s">'complete deleting board about id [</span><span class="si">%</span><span class="s">d]'</span> <span class="o">%</span> <span class="n">boardId</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+	<span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
 
   </div>
 
