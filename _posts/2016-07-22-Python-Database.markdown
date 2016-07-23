@@ -3,6 +3,8 @@ layout: post
 title: Python with Mysql
 ---
 
+[샘플](https://github.com/unclebae/Python3-tutorial/tree/master)
+
 # 파이선에서 Mysql연동하기. 
 ## PyMySQL 설치하기
 {% highlight python %}

@@ -8,13 +8,15 @@
 </description>
     <link>http://unclebae.github.io/</link>
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 23 Jul 2016 18:19:03 +0900</pubDate>
-    <lastBuildDate>Sat, 23 Jul 2016 18:19:03 +0900</lastBuildDate>
+    <pubDate>Sat, 23 Jul 2016 18:32:22 +0900</pubDate>
+    <lastBuildDate>Sat, 23 Jul 2016 18:32:22 +0900</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>Python with Mysql</title>
-        <description>&lt;h1 id=&quot;mysql&quot;&gt;파이선에서 Mysql연동하기.&lt;/h1&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/unclebae/Python3-tutorial/tree/master&quot;&gt;샘플&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mysql&quot;&gt;파이선에서 Mysql연동하기.&lt;/h1&gt;
 &lt;p&gt;## PyMySQL 설치하기&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# python3 version&lt;/span&gt;
