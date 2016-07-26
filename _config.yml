@@ -24,6 +24,7 @@ description: I will do everything I believe or I think.
 # List of links in the navigation bar
 navbar-links:
   About Me: "about"
+  GitHub: "https://github.com/unclebae"
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
