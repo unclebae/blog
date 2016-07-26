@@ -112,11 +112,11 @@ def numpysum(n) :
 	return c
 
 def pythonsum(n):
-	a = range(n)
-	b = range(n)
+	a = list(range(n))
+	b = list(range(n))
 	c = []
 
-	for i in range(n):
+	for i in list(range(n)):
 		a[i] = i ** 2
 		b[i] = i ** 3
 		c.append(a[i] + b[i])
