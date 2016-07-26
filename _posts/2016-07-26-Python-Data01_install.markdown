@@ -151,3 +151,61 @@ python vectorTest.py 1000
 
 상기 예제와 같이 numpy를 이용하는 것이 python을 이용한 단순 list처리보다 더 성능상의 이점이 있다. 
 
+## IPython 이용하기. 
+IPython shell은 과학자의 경험으로 만들어진 도구이다. 이는 MATLAB이나, Mathematica, Maple등과 같은 매우 요용한 툴과 유사하다. 
+
+### IPython shell의 기능 
+- Tab completion기능, 커맨드를 쉽게 찾을 수 있도록 해준다. 
+- 히스토리 제공
+- 인라인 에디팅 제공
+- 외부 파이선 스크립트를 ```%run``` 을 이용하여 호출 할 수 있다. 
+- 시스템 커맨드에 접근이 가능하다. 
+- pylab 스위치 기능제공  
+- 파이선 디버거와 프로파일러에 접근이 가능하다. 
+
+#### Pylab Switch 
+pylab switch는 자동적으로 Scipy와 NumPy, matplotlib 패키지를 로드하고 있다. 
+이를 이용하여 쉽게 데이터 분석을 할 수 있다. 
+
+{% highlight python %}
+$ ipython -pylab
+{% endhighlight %}
+
+#### session 저장기능 
+IPython은 세션 정보를 저장할 수 있으며 이를 이용하면, 이후에 작업했던 곳으로 다시와서 추가적으로 작업이 가능하다. 
+세션을 저장하기 위한 명령어는 다음과 같다.
+
+세션저장은 ```%logstart``` 명령어를 IPython에서 수행한다. 
+
+세션저장 종료는 ```%logoff``` 명령어를 IPython에서 수행한다. 
+
+#### Shell 커맨드 실행하기. 
+기본적으로 IPython에서 커맨드를 실행할 수 있다. 이때 ```!``` 심볼을 이용하여 수행할 수 있다. 
+날짜를 출력하려면 ```!date```를 입력하면 된다. 
+{% highlight python %}
+In [1]: !date
+In [2]: dateval = !date
+In [3]: dataval
+{% endhighlight %}
+
+#### 히스토리 보여주기. 
+커맨드 이력을 이력으로 보여준다. 이는 ```%hist``` 명령어를 수행하면 된다. 
+
+#### 메뉴얼 기능 보기 
+IPython shell에서 제공하는 명령어를 보고자 한다면 다음과 같이 하면된다. 
+
+```help ar``` 을 입력하면 ar로 시작되는 모든 명령어를 볼 수 있따. 
+
+```arange?``` 과 같이 명령어? 를 입력하면 해당 명령어의 상세 정보를 볼 수 있다. 
+
+#### 탭 자동화 기능 실행하기. 
+탭 자동화 기능을 실행하기 위해서는 다음과 같이 탭 자동화를 위한 모듈을 설치하자. 
+
+```easy_install readline```
+
+```pip install readline```
+
+상기 둘중하나를 입력하자. 
+
+
+
