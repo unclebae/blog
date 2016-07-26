@@ -10,7 +10,7 @@
         <title>Python Data Analysis 01_install</title>
         <description>
           
-          파이선에서 제공하는 데이터 분석 도구 도구 설명 NumPy 파이선의 기초가 되는 라이브러리이며, 수치 배열과 함수를 제공한다. SciPy 과학을 위한 파이선 라이브러리이며, 이는 NumPy와 중첩되는 기능을 가지고 있다. NumPy와 SciPy는 동일한 계보를 가지고 있다. 둘은 분리되어 개발 되고 있다. matplotlib NumPy를 기반으로 만들어진 플로팅 라이브러리이다. IPython 대화형 컴퓨팅을 위한 아키텍쳐를 제공한다....
+          Source 파이선에서 제공하는 데이터 분석 도구 도구 설명 NumPy 파이선의 기초가 되는 라이브러리이며, 수치 배열과 함수를 제공한다. SciPy 과학을 위한 파이선 라이브러리이며, 이는 NumPy와 중첩되는 기능을 가지고 있다. NumPy와 SciPy는 동일한 계보를 가지고 있다. 둘은 분리되어 개발 되고 있다. matplotlib NumPy를 기반으로 만들어진 플로팅 라이브러리이다. IPython 대화형 컴퓨팅을 위한 아키텍쳐를...
         </description>
         <pubDate>Tue, 26 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-26-Python-Data01_install/</link>
