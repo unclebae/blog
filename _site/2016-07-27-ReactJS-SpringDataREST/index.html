@@ -431,6 +431,44 @@ Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서�
 <h2 id="employees--">employees 링크에 접근해보기</h2>
 <p>curl localhost:8080/api/employees</p>
 
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">{</span>
+  <span class="s2">"_embedded"</span> : <span class="o">{</span>
+    <span class="s2">"employees"</span> : <span class="o">[</span> <span class="o">{</span>
+      <span class="s2">"firstName"</span> : <span class="s2">"Kido"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+      <span class="s2">"description"</span> : <span class="s2">"Computer Engineer"</span>,
+      <span class="s2">"_links"</span> : <span class="o">{</span>
+        <span class="s2">"self"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+        <span class="o">}</span>,
+        <span class="s2">"employee"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"firstName"</span> : <span class="s2">"Uncle"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+      <span class="s2">"description"</span> : <span class="s2">"Computer Scientist"</span>,
+      <span class="s2">"_links"</span> : <span class="o">{</span>
+        <span class="s2">"self"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/2"</span>
+        <span class="o">}</span>,
+        <span class="s2">"employee"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/2"</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span> <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"_links"</span> : <span class="o">{</span>
+    <span class="s2">"self"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees"</span>
+    <span class="o">}</span>,
+    <span class="s2">"profile"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/profile/employees"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
 <p>위 내용을 보면 employees로 2개의 내용이 들어 있음을 알 수 있다. 
 하나는 <code class="highlighter-rouge">http://localhost:8080/api/employees/1</code> 그리고 다른 하나는 끝이 2인 정보가 있다는 것을 알려준다.</p>
 
@@ -438,6 +476,42 @@ Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서�
 
 <h2 id="employee--">employee상세 정보 살펴보기.</h2>
 <p>curl localhost:8080/api/employees/1</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">{</span>
+  <span class="s2">"firstName"</span> : <span class="s2">"Kido"</span>,
+  <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+  <span class="s2">"description"</span> : <span class="s2">"Computer Engineer"</span>,
+  <span class="s2">"_links"</span> : <span class="o">{</span>
+    <span class="s2">"self"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+    <span class="o">}</span>,
+    <span class="s2">"employee"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="section-6">신규 데이터 입력해보기.</h2>
+
+<p>신규로 데이터를 넣고자 할때에는 다음과 같이 명령어를 입력하면 된다.</p>
+
+<p>curl -X POST localhost:8080/api/employees -d ‘{“firstName”:”Bilbo”, “lastName”:”Baggins”, “description”: “burglar”}’ -H ‘Content-Type:application/json’</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">{</span>
+  <span class="s">"firstName"</span> <span class="o">:</span> <span class="s">"Bilbo"</span><span class="o">,</span>
+  <span class="s">"lastName"</span> <span class="o">:</span> <span class="s">"Baggins"</span><span class="o">,</span>
+  <span class="s">"description"</span> <span class="o">:</span> <span class="s">"burglar"</span><span class="o">,</span>
+  <span class="s">"_links"</span> <span class="o">:</span> <span class="o">{</span>
+    <span class="s">"self"</span> <span class="o">:</span> <span class="o">{</span>
+      <span class="s">"href"</span> <span class="o">:</span> <span class="s">"http://localhost:8080/api/employees/3"</span>
+    <span class="o">},</span>
+    <span class="s">"employee"</span> <span class="o">:</span> <span class="o">{</span>
+      <span class="s">"href"</span> <span class="o">:</span> <span class="s">"http://localhost:8080/api/employees/3"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>다음 가이드를 보고 PUT, PATCH, DELETE등의 verbose를 이용할 수 있다. <a href="https://spring.io/guides/gs/accessing-data-rest/">참고 가이드</a></p>
 
 
 	    </article>
