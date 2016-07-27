@@ -18,6 +18,17 @@
       </item>
     
       <item>
+        <title>HAL - Hypertext Application Language</title>
+        <description>
+          
+          from 개요 HAL은 단순한 포맷으로 일관성있고, 쉬운 방법으로 API에서 리소스들 간의 hyperlink를 기술하도록 해준다. HAL을 채택하기 위해서는 API를 탐험할 수 있어야 하며, API그 자체를 쉽게 확인할 수 있도록 문서화 되어야한다. 이렇게 되면 당신의 API가 단순해지며, 사용하기 더 쉬워진다. 그렇게 되면 클라이언트 개발자들에게 매력적인 API를 제공할 수 있다. API 에 HAL을...
+        </description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</guid>
+      </item>
+    
+      <item>
         <title>Python Data Analysis 01_install</title>
         <description>
           
