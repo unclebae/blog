@@ -22,7 +22,7 @@ Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서�
 - Thymeleaf : View를 생성해주는 최근 스프링에서 밀어주는 View컴포넌트 
 - JPA : Java Persistance API
 - H2 : 메모리 DB, 테스트 용도로 매우 가볍고 편리한 도구
-- Lombok : boilerplate 한 코드를 자동 생성해주는 코드 
+- Lombok : boilerplate 한 코드를 자동 생성해주는 도구 
 
 ### 설치과정 with Eclipse
 신규 프로젝트 생성
