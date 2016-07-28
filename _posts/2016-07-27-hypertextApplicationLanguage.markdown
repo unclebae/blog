@@ -259,6 +259,5 @@ HAL은 간편하게 사용할 수 있는 REST API의 도큐먼트 구조를 제�
 									     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-    <script id="dsq-count-scr" src="//https-unclebae-github-io.disqus.com/count.js" async></script>
 
 {% endif %}
