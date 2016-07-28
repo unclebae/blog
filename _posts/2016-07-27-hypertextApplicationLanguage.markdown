@@ -1,6 +1,7 @@
 ---
 layout: post
 title: HAL - Hypertext Application Language
+comments: true
 ---
 
 [from](http://stateless.co/hal_specification.html)
@@ -235,3 +236,5 @@ latest-posts리소스에 대한 도큐먼트를 조회하기 위해서 클라이
 HAL은 간편하게 사용할 수 있는 REST API의 도큐먼트 구조를 제공하는 것으로 보인다. 
 거의 표준이 되지 않을까? 싶은데... ^^ 잘몰것음. 
 
+{% if page.comments %}
+{% endif %}

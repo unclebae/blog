@@ -1,0 +1,11 @@
+echo "---"
+echo "layout: post"
+echo "title: "
+echo "comments: true"
+echo "---"
+echo ""
+echo ""
+echo ""
+echo "{% if page.comments %}"
+echo "{% endif %}"
+
