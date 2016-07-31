@@ -7,14 +7,14 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+        <title>Spark2.0 Release and has been changed</title>
         <description>
           
-          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
+          Spark 2.0 주요 업데이트 2500개의 패치, 300 Contributor의 참여. - API의 사용성이 증가. - SQL2003지원 - 성능의 개선 - 구조화된 스트리밍 - R UDF 지원 - 내부처리 개선 1. API 안정성 향상. - 2.X 버젼에서는 실험적인 버젼이 없이 모두 안정화된 버젼을 제공한다. - 1.X 버젼과 대부분 동일하지만 모두 변경이 되었다....
         </description>
-        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</guid>
+        <pubDate>Sun, 31 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-31-Spark2.0/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-31-Spark2.0/</guid>
       </item>
     
       <item>
@@ -37,6 +37,17 @@
         <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</guid>
+      </item>
+    
+      <item>
+        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+        <description>
+          
+          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
+        </description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</guid>
       </item>
     
       <item>
