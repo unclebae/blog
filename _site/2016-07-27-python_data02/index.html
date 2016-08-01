@@ -854,6 +854,300 @@ ch02/rowStack2D.py</p>
        <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
        <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span></code></pre></figure>
 
+<h2 id="splitting-arrays">Splitting arrays</h2>
+<p>numpy에서 split을 위한 메소드를 제공하며, 이는 수직, 수평, 깊이우선으로 스플릿을 수행할 수 있다. 
+hsplit(), vsplit(), dsplit(), split() 함수를 제공한다.</p>
+
+<h3 id="horizontal-splitting">Horizontal splitting</h3>
+<p>수평축을 기준으로 각 부분을 분리한다.</p>
+
+<p>예제 : 
+ch02/horizontalSplit.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="c"># make 3 * 3 narray</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c"># horizontal Split</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.hsplit(a, 3) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">hsplit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> 
+
+<span class="c"># same horizontal split using split and axis</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.split(a, 3, axis=1) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'num.hsplit(a, 3) : '</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">7</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">8</span><span class="p">]])])</span>
+<span class="p">(</span><span class="s">'num.split(a, 3, axis=1) : '</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">7</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">8</span><span class="p">]])])</span></code></pre></figure>
+
+<h3 id="vertical-splitting">Vertical splitting</h3>
+<p>vsplit()함수는 수직축을 기준으로 스플릿팅 한다.</p>
+
+<p>예제 : 
+ch02/verticalSplit.sh</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c"># vertical split using vsplit</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.vsplit(a, 3) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">vsplit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c"># vertical split using split with axis=0</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.split(a , 3, axis=0) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'num.vsplit(a, 3) : '</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])])</span>
+<span class="p">(</span><span class="s">'num.split(a , 3, axis=0) : '</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]),</span> <span class="n">array</span><span class="p">([[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])])</span></code></pre></figure>
+
+<h3 id="depth-">depth우선 스프리팅</h3>
+<p>dsplit()함수는 깊이 우선으로 스플리팅한다. 
+이 테스트를 위해서 3차원 배열을 만들어서 테스트 해보자.</p>
+
+<p>예제 :<br />
+ch02/depthSplit.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding:utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="c"># make 3 * 3 * 3 array</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"num.arange(27).reshape(3, 3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c"># depth-wise splitting</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.dsplit(a, 3) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">dsplit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(27).reshape(3, 3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]],</span>
+
+       <span class="p">[[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]]))</span>
+<span class="p">(</span><span class="s">'num.dsplit(a, 3) : '</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">6</span><span class="p">]],</span>
+
+       <span class="p">[[</span> <span class="mi">9</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">12</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">15</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">18</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">21</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">24</span><span class="p">]]]),</span> <span class="n">array</span><span class="p">([[[</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">7</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">10</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">13</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">16</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">19</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">22</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">25</span><span class="p">]]]),</span> <span class="n">array</span><span class="p">([[[</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">8</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">11</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">14</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">17</span><span class="p">]],</span>
+
+       <span class="p">[[</span><span class="mi">20</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">23</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">26</span><span class="p">]]])])</span></code></pre></figure>
+
+<h2 id="numpy----">Numpy 배열 기능 더 알아보기.</h2>
+<p>Numpy배열 기능은 다음 예제를 통해서 확인해보자.</p>
+
+<p>예제: 
+ch02/moreArrayAttribute.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.arange(24).reshape(2, 12) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c"># ndim은 배열의 차수를 반환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.ndim : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+
+<span class="c"># size는 배열이 가지는 엘리먼트의 총 개수를 나타낸다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.size : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="c"># itemsize는 배열내에 각 엘리먼트가 가지는 바이트 수를 반환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.itemsize : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">itemsize</span><span class="p">)</span>
+
+<span class="c"># nbyte는 전체 배열이 필요로 하는 총 바이트수이다. 이는 size * itemsize로 계산된다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.nbytes : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"a.size * a.itemsize : "</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">itemsize</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"num.resize(6, 4) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c"># T는 transpose()함수와 동일한 결과를 반환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.T : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"a.ndim after transform T : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"a.T after transform T :"</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c"># 복소수는 numpy에서 j로 표현된다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.array([1.j + 1, 2.j + 3]) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]))</span>
+
+<span class="c"># real은 배열에서 숫자의 real파트를 반환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.real : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+<span class="c"># imag는 배열의 허수 영역을 출력한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.imag : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+
+<span class="c"># dtype은 배열이 저장하는 데이터 타입이며 복소수의 경우 complex가 반환된다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.dtype : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"a.dtype.str : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c"># flat속성은 numpy.flatiter객체를 나타낸다. flatiter 를 통해서만 flat객체에 접근할 수 있으며, 생성자로 생성할 수 없다. </span>
+<span class="c"># flat 반복자는 flat 배열의 각 엘리먼트를 반복하면서 조회가능하다. </span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.arange(4).reshape(2,2) : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">flat</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"b.flat : "</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"for it in f: print it : "</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+	<span class="k">print</span> <span class="p">(</span><span class="n">it</span><span class="p">)</span>
+
+<span class="c"># 직접적으로 flatiter 객체의 특정 인덱스에 접근하여 object를 획득할 수 있다.  </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"b.flat[2] : "</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c"># 또한 직접 엘리먼트를 조회할 수 있다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"b.flat[[1, 3]] : "</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">flat</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"b : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># flat속성은 세팅이 가능하며 다음과 같이 세팅한다. </span>
+<span class="n">b</span><span class="o">.</span><span class="n">flat</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"b.flat[[1, 3]] = 1 : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(24).reshape(2, 12) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'a.ndim : '</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'a.size : '</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'a.itemsize : '</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'a.nbytes : '</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'a.size * a.itemsize : '</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'num.resize(6, 4) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'a.T : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'a.ndim after transform T : '</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'a.T after transform T :'</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'num.array([1.j + 1, 2.j + 3]) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span> <span class="mf">1.</span><span class="o">+</span><span class="mf">1.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">3.</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'a.real : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'a.imag : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'a.dtype : '</span><span class="p">,</span> <span class="n">dtype</span><span class="p">(</span><span class="s">'int64'</span><span class="p">))</span>
+<span class="p">(</span><span class="s">'a.dtype.str : '</span><span class="p">,</span> <span class="s">'&lt;i8'</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'num.arange(4).reshape(2,2) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b.flat : '</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">numpy</span><span class="o">.</span><span class="n">flatiter</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc4cca14800</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span> <span class="k">print</span> <span class="n">it</span> <span class="p">:</span> 
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="p">(</span><span class="s">'b.flat[2] : '</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="s">'b.flat[[1, 3]] : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'b : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b.flat[[1, 3]] = 1 : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span></code></pre></figure>
+
+<h2 id="section-6">배열 변환하기.</h2>
+<p>Numpy배열을 일반 파이선 리스트로 변환이 가능하다. tolist() 함수는 이러한 변환을 처리한다.</p>
+
+<p>예제: 
+ch02/convertArray.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">1.</span> <span class="o">+</span> <span class="mf">1.</span><span class="n">j</span><span class="p">,</span> <span class="mf">3.</span> <span class="o">+</span> <span class="mf">2.</span><span class="n">j</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"num.array([ 1. + 1.j, 3. + 2.j]) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c"># tolist()함수를 이용하여 배열을 리스트로 변환한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.tolist() : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+<span class="c"># 배열을 특정 타입의 배열로 변환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.astype(int) : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+
+<span class="c"># 배열을 복소수형 타입으로 변환한다. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">"a.astype('complex') : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'complex'</span><span class="p">))</span></code></pre></figure>
+
+<p>결과:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">ch02</span><span class="o">/</span><span class="n">convertArray</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span> <span class="n">ComplexWarning</span><span class="p">:</span> <span class="n">Casting</span> <span class="nb">complex</span> <span class="n">values</span> <span class="n">to</span> <span class="n">real</span> <span class="n">discards</span> <span class="n">the</span> <span class="n">imaginary</span> <span class="n">part</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"a.astype(int) : "</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="p">(</span><span class="s">'num.array([ 1. + 1.j, 3. + 2.j]) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span> <span class="mf">1.</span><span class="o">+</span><span class="mf">1.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">3.</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'a.tolist() : '</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="n">j</span><span class="p">)])</span>
+<span class="p">(</span><span class="s">'a.astype(int) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">"a.astype('complex') : "</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span> <span class="mf">1.</span><span class="o">+</span><span class="mf">1.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">3.</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">]))</span></code></pre></figure>
+
 
 	    </article>
 	  	  
@@ -865,7 +1159,7 @@ ch02/rowStack2D.py</p>
         
         
         <li class="next">
-          <a href="/2016-07-27-reactjs-springdatarest/" data-toggle="tooltip" data-placement="top" title="React.js와 Spring Data REST 따라하기(Part1)">Next Post &rarr;</a>
+          <a href="/2016-07-31-Spark2.0/" data-toggle="tooltip" data-placement="top" title="Spark2.0 Release and has been changed">Next Post &rarr;</a>
         </li>
         
       </ul>
