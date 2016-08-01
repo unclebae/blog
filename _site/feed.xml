@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Fabric 이용하기.</title>
+        <description>
+          
+          Fabric 파일을 디플로이 하거나, 시스템 태스크를 관리를 간편화 하기 위한 툴이다. command line 기반의 처리 수행 베이스 버젼 : Python 2.5 ~ 2.7 에서 사용가능하다. 기능 : 간소화된 기능제공 SSH를 이용하여 App의 디플로이 System 관리 Task 수행 상세기능 : Local/Remote 커맨드 실행, sudo를 이용한 실행가능 파일의 update/download 기능 사용자의 입력에...
+        </description>
+        <pubDate>Mon, 01 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-08-01-Fabric/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-08-01-Fabric/</guid>
+      </item>
+    
+      <item>
         <title>Spark2.0 Release and has been changed</title>
         <description>
           
@@ -15,6 +26,17 @@
         <pubDate>Sun, 31 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-31-Spark2.0/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-07-31-Spark2.0/</guid>
+      </item>
+    
+      <item>
+        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+        <description>
+          
+          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
+        </description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</guid>
       </item>
     
       <item>
@@ -37,17 +59,6 @@
         <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</guid>
-      </item>
-    
-      <item>
-        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
-        <description>
-          
-          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
-        </description>
-        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</guid>
       </item>
     
       <item>
@@ -213,18 +224,6 @@
         <pubDate>Thu, 15 Jan 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-01-15-pirates/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-01-15-pirates/</guid>
-      </item>
-    
-      <item>
-        <title>First post!</title>
-        <description>
-          
-          This is my first post, how exciting!
-
-        </description>
-        <pubDate>Sun, 04 Jan 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-01-04-first-post/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-01-04-first-post/</guid>
       </item>
     
   </channel>

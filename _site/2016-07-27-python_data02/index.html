@@ -583,6 +583,277 @@ Flattening은 다차원 배열을 1차원 배열로 변환하는 작업을 포�
 <span class="p">(</span><span class="s">'result of b.resize( (2, 12) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
        <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]))</span></code></pre></figure>
 
+<h2 id="stack-">Stack 작업하기.</h2>
+<p>Stack은 vstack(), dstack(), hstack(), column_stack(), row_stack(), concatenate() 함수를 제공하고 있다.</p>
+
+<h3 id="horizontal-stacking-">Horizontal stacking :</h3>
+<p>horizontal stacking은 ndarrays의 튜플을 이용하여 hstack()함수를 실행한 결과를 반환한다.</p>
+
+<p>예제) 
+ch02/horizontalStack.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># Horizontal Stack</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.hstack( (a, b) ) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">))</span></code></pre></figure>
+
+<p>실행결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> 
+<span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> 
+<span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'num.hstack( (a, b) ) : '</span><span class="p">,</span> 
+<span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span></code></pre></figure>
+
+<h3 id="vertical-stacking-">Vertical stacking :</h3>
+<p>vstack() 함수를 이용하여 주어진 배열을 수직으로 붙여준다.</p>
+
+<p>예제)
+ch02/verticalStacking.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># verticla Stack</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.vstack( (a, b) ) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">))</span></code></pre></figure>
+
+<p>결과</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'num.vstack( (a, b) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span></code></pre></figure>
+
+<h3 id="concatenate">concatenate</h3>
+<p>concatenate 함수에서 axis=0으로 인자를 부여하면 vstack()와 동일한 처리가 된다.</p>
+
+<p>예제 : 
+ch02/concatenateTest.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># concatenate + axis=0 = vstack()</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"concatenate( (a, b), axisx=0) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span> <span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"concatenate( (a, b), axisx=1) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span> <span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'concatenate( (a, b), axisx=0) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'concatenate( (a, b), axisx=1) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span></code></pre></figure>
+
+<h3 id="depth-stacking">Depth stacking:</h3>
+<p>dstack()함수를 이용하면 주어진 튜플을 깊이 기준으로 스택 처리를 수행한다.</p>
+
+<p>예제 : 
+ch02/depthStack.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># depth stacking </span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"dstack( (a, b) ) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'dstack( (a, b) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]],</span>
+
+       <span class="p">[[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">6</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+
+       <span class="p">[[</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]]))</span></code></pre></figure>
+
+<h3 id="column-stacking">Column Stacking</h3>
+<p>column_stack()함수는 1차원 배열의 칼럼 기준으로 스택을 쌓는다. 
+즉 1차원배열 여러개를 칼럼 기준으로 쌓아가는 방식이다.</p>
+
+<p>예제 :
+ch02/columnStack.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">oned</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(2) : "</span><span class="p">,</span> <span class="n">oned</span><span class="p">)</span>
+
+<span class="n">twice_oned</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">oned</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"2 * num.arange(2) : "</span><span class="p">,</span> <span class="n">twice_oned</span><span class="p">)</span>
+
+<span class="n">columnStack</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">oned</span><span class="p">,</span> <span class="n">twice_oned</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.column_stack( (oned, twice_oned) ) : "</span><span class="p">,</span> <span class="n">columnStack</span><span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(2) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'2 * num.arange(2) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'num.column_stack( (oned, twice_oned) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]))</span></code></pre></figure>
+
+<p>2차원 배열의 경우에는 hstack() 함수 처리 방법으로 쌓아간다.</p>
+
+<p>예제 : 
+ch02/columnStack2D.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># column_stack </span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"column_stack of 2D : column_stack( (a, b) ) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"compare column_stack of 2D and hstack : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">num</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'column_stack of 2D : column_stack( (a, b) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'compare column_stack of 2D and hstack : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span></code></pre></figure>
+
+<h3 id="raw-stacking">Raw stacking</h3>
+<p>Numpy는 당연히 row기준의 stacking을 제공한다. row_stack()이며 1차원 배열과 2차원 배열에 대한 결과는 다음과 같다.</p>
+
+<p>1차원 배열 예제 :
+ch02/rowStack.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">oned</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(2) : "</span><span class="p">,</span> <span class="n">oned</span><span class="p">)</span>
+
+<span class="n">twice_oned</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">oned</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"2 * num.arange(2) : "</span><span class="p">,</span> <span class="n">twice_oned</span><span class="p">)</span>
+
+<span class="n">rowStack</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">row_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">oned</span><span class="p">,</span> <span class="n">twice_oned</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.row_stack( (oned, twice_oned) ) : "</span><span class="p">,</span> <span class="n">rowStack</span><span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(2) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'2 * num.arange(2) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="p">(</span><span class="s">'num.row_stack( (oned, twice_oned) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]))</span></code></pre></figure>
+
+<p>2차원 배열 예제 : 
+ch02/rowStack2D.py</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># _*_ coding: utf-8 _*_</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">num</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"num.arange(9).reshape(3, 3) : "</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"b = 2 * a : "</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c"># row_stack </span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"row_stack of 2D : row_stack( (a, b) ) : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">row_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"compare row_stack of 2D and vstack : "</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">row_stack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">num</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span></code></pre></figure>
+
+<p>결과 :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">(</span><span class="s">'num.arange(9).reshape(3, 3) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'b = 2 * a : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'row_stack of 2D : row_stack( (a, b) ) : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]))</span>
+<span class="p">(</span><span class="s">'compare row_stack of 2D and vstack : '</span><span class="p">,</span> <span class="n">array</span><span class="p">([[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">],</span>
+       <span class="p">[</span> <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">,</span>  <span class="bp">True</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span></code></pre></figure>
+
 
 	    </article>
 	  	  
@@ -594,7 +865,7 @@ Flattening은 다차원 배열을 1차원 배열로 변환하는 작업을 포�
         
         
         <li class="next">
-          <a href="/2016-07-31-Spark2.0/" data-toggle="tooltip" data-placement="top" title="Spark2.0 Release and has been changed">Next Post &rarr;</a>
+          <a href="/2016-07-27-reactjs-springdatarest/" data-toggle="tooltip" data-placement="top" title="React.js와 Spring Data REST 따라하기(Part1)">Next Post &rarr;</a>
         </li>
         
       </ul>
