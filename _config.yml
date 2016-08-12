@@ -118,6 +118,7 @@ prose:
     - _config.yml
     - /_layouts
     - /_includes
+    - /_fonts
     - /css
     - /img
     - /js

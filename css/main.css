@@ -4,19 +4,19 @@
 
 @font-face {
   font-family: Ubuntu;
-  src: url('../_fonts/Ubuntu-B.ttf'),
-    url('../_fonts/Ubuntu-BI.ttf'),
-	url('../_font/Ubuntu-C.ttf'),
-	url('../_font/Ubuntu-L.ttf'),
-	url('../_font/Ubuntu-LI.ttf'),
-	url('../_font/Ubuntu-M.ttf'),
-	url('../_font/Ubuntu-MI.ttf'),
-	url('../_font/Ubuntu-R.ttf'),
-	url('../_font/Ubuntu-RI.ttf'),
-	url('../_font/UbuntuMono-B.ttf'),
-	url('../_font/UbuntuMono-BI.ttf'),
-	url('../_font/UbuntuMono-R.ttf'),
-	url('../_font/UbuntuMono-RI.ttf');
+  src: url('/fonts/Ubuntu-B.ttf'),
+    url('/fonts/Ubuntu-BI.ttf'),
+	url('/fonts/Ubuntu-C.ttf'),
+	url('/fonts/Ubuntu-L.ttf'),
+	url('/fonts/Ubuntu-LI.ttf'),
+	url('/fonts/Ubuntu-M.ttf'),
+	url('/fonts/Ubuntu-MI.ttf'),
+	url('/fonts/Ubuntu-R.ttf'),
+	url('/fonts/Ubuntu-RI.ttf'),
+	url('/fonts/UbuntuMono-B.ttf'),
+	url('/fonts/UbuntuMono-BI.ttf'),
+	url('/fonts/UbuntuMono-R.ttf'),
+	url('/fonts/UbuntuMono-RI.ttf');
 }
 
 body {
