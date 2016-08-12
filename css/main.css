@@ -2,6 +2,23 @@
 
 /* --- General --- */
 
+@font-face {
+  font-family: Ubuntu;
+  src: url('../_fonts/Ubuntu-B.ttf'),
+    url('../_fonts/Ubuntu-BI.ttf'),
+	url('../_font/Ubuntu-C.ttf'),
+	url('../_font/Ubuntu-L.ttf'),
+	url('../_font/Ubuntu-LI.ttf'),
+	url('../_font/Ubuntu-M.ttf'),
+	url('../_font/Ubuntu-MI.ttf'),
+	url('../_font/Ubuntu-R.ttf'),
+	url('../_font/Ubuntu-RI.ttf'),
+	url('../_font/UbuntuMono-B.ttf'),
+	url('../_font/UbuntuMono-BI.ttf'),
+	url('../_font/UbuntuMono-R.ttf'),
+	url('../_font/UbuntuMono-RI.ttf');
+}
+
 body {
   font-family: 'Ubuntu','Roboto', 'arial', sans-serif;
   font-size: 18px;
