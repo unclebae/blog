@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Tomcat JDBC Connection Pool 소개</title>
+        <description>
+          
+          from: https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html 소개 org.apache.tomcat.jdbc.pool은 Apache Commons DBCP커텍션 풀의 대용으로 사용된다. 사용이유 Common DBCP 1.x 버젼은 단일 쓰레드로 동작한다. 전체 풀의 공통적인 lock에 대해서 thread safe 한 처리를 위해서 사용되며, Common DBCP 2.x에서는 달라졌다. Common DBCP 1.x 는 느리다. 논리적인 CPU의 증가와 현재 concurrent threads가 풀을 빌려오고, 반환하는 량이 증가하는 경우...
+        </description>
+        <pubDate>Thu, 11 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-08-11-tomcat-jdbc-connection-pool/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-08-11-tomcat-jdbc-connection-pool/</guid>
+      </item>
+    
+      <item>
         <title>Fabric 이용하기.</title>
         <description>
           
@@ -29,6 +40,17 @@
       </item>
     
       <item>
+        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+        <description>
+          
+          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
+        </description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</guid>
+      </item>
+    
+      <item>
         <title>Python Data Analysis 02 Numpy</title>
         <description>
           
@@ -48,17 +70,6 @@
         <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</guid>
-      </item>
-    
-      <item>
-        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
-        <description>
-          
-          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
-        </description>
-        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</guid>
       </item>
     
       <item>
@@ -213,17 +224,6 @@
         <pubDate>Mon, 19 Jan 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-01-19-soccer/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-01-19-soccer/</guid>
-      </item>
-    
-      <item>
-        <title>Pirates arrrr</title>
-        <description>
-          
-          Piracy is typically an act of robbery or criminal violence at sea. The term can include acts committed on land, in the air, or in other major bodies of water or on a shore. It does not normally include crimes committed against persons traveling on the same vessel as the...
-        </description>
-        <pubDate>Thu, 15 Jan 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-01-15-pirates/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-01-15-pirates/</guid>
       </item>
     
   </channel>

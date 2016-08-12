@@ -4,6 +4,8 @@ title: Tomcat JDBC Connection Pool 소개
 comments: true
 ---
 
+from: [https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html](https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html)
+
 ## 소개 
 ```org.apache.tomcat.jdbc.pool```은 Apache Commons DBCP커텍션 풀의 대용으로 사용된다. 
 
@@ -37,7 +39,171 @@ comments: true
 14. 커넥션은 java.sql.Driver, javax.sql.DataSource, javax.sql.XADataSource 이는 dataSource, dataSourceJNDI 속성으로 이용이 가능하다. 
 15. XA커넥션을 제공한다. 
 
-계속...
+### 예제코드 
+
+#### 데이터 소스 생성을 위한 단순 예제 소스 
+
+{% highlight java %}
+  import java.sql.Connection;
+  import java.sql.ResultSet;
+  import java.sql.Statement;
+
+  import org.apache.tomcat.jdbc.pool.DataSource;
+  import org.apache.tomcat.jdbc.pool.PoolProperties;
+
+  public class SimplePOJOExample {
+
+      public static void main(String[] args) throws Exception {
+          PoolProperties p = new PoolProperties();
+          p.setUrl("jdbc:mysql://localhost:3306/mysql");
+          p.setDriverClassName("com.mysql.jdbc.Driver");
+          p.setUsername("root");
+          p.setPassword("password");
+          p.setJmxEnabled(true);
+          p.setTestWhileIdle(false);
+          p.setTestOnBorrow(true);
+          p.setValidationQuery("SELECT 1");
+          p.setTestOnReturn(false);
+          p.setValidationInterval(30000);
+          p.setTimeBetweenEvictionRunsMillis(30000);
+          p.setMaxActive(100);
+          p.setInitialSize(10);
+          p.setMaxWait(10000);
+          p.setRemoveAbandonedTimeout(60);
+          p.setMinEvictableIdleTimeMillis(30000);
+          p.setMinIdle(10);
+          p.setLogAbandoned(true);
+          p.setRemoveAbandoned(true);
+          p.setJdbcInterceptors(
+            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
+            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+          DataSource datasource = new DataSource();
+          datasource.setPoolProperties(p);
+
+          Connection con = null;
+          try {
+            con = datasource.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from user");
+            int cnt = 1;
+            while (rs.next()) {
+                System.out.println((cnt++)+". Host:" +rs.getString("Host")+
+                  " User:"+rs.getString("User")+" Password:"+rs.getString("Password"));
+            }
+            rs.close();
+            st.close();
+          } finally {
+            if (con!=null) try {con.close();}catch (Exception ignore) {}
+          }
+      }
+  }
+{% endhighlight %}
+
+#### JNDI lookup 샘플 
+
+{% highlight java %}
+<Resource name="jdbc/TestDB"
+          auth="Container"
+          type="javax.sql.DataSource"
+          factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+          testWhileIdle="true"
+          testOnBorrow="true"
+          testOnReturn="false"
+          validationQuery="SELECT 1"
+          validationInterval="30000"
+          timeBetweenEvictionRunsMillis="30000"
+          maxActive="100"
+          minIdle="10"
+          maxWait="10000"
+          initialSize="10"
+          removeAbandonedTimeout="60"
+          removeAbandoned="true"
+          logAbandoned="true"
+          minEvictableIdleTimeMillis="30000"
+          jmxEnabled="true"
+          jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+            org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+          username="root"
+          password="password"
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/mysql"/>
+{% endhighlight %}
+
+#### 비동기 커넥션 획득 
+
+다음은 추가적인 쓰레드 풀 라이브러리 필요없이 비동기 커넥션 획득을 수행할 수 있다. 
+커넥션 획득은 Future<Connection> getConnectionAsync()를 통해서 수행이 가능하다. 
+비동기 획득을 위해서는 다음 2가지 상태가 반드시 되어야한다. 
+
+1. fairQueue설정을 true로 해두어야한다. 
+2. 데이터 소스를 org.apache.tomcat.jdbc.pool.DataSource 데이터 소스로 변경해야한다.
+
+{% highlight java %}
+Connection con = null;
+  try {
+    Future<Connection> future = datasource.getConnectionAsync();
+    while (!future.isDone()) {
+      System.out.println("Connection is not yet available. Do some background work");
+      try {
+        Thread.sleep(100); //simulate work
+      }catch (InterruptedException x) {
+        Thread.currentThread().interrupt();
+      }
+    }
+    con = future.get(); //should return instantly
+    Statement st = con.createStatement();
+    ResultSet rs = st.executeQuery("select * from user");
+{% endhighlight %}
+
+### 속성값 정리
+
+common-dbcp 에서 tomcat-dbct-pool 로 변경하는 것은 매우 단순하다. 
+대부분의 속성은 동일하며 동일한 의미를 가진다. 
+
+#### JNDI Factory and Type
+
+|Attribute|Description|
+|factory|factory는 다음과 같이 지정한다. org.apache.tomcat.jdbc.pool.DataSourceFactory|
+|type|Type은 항상 javax.sql.DataSource이거나 javax.sql.XADataSource이어야한다. org.apache.tomcat.jdbc.pool.DataSource 혹은 org.apache.tomcat.jdbc.pool.XADataSource가 생성될 것이다. |
+
+#### Common Attributes
+
+|Attribute|Description|
+|defaultAutoCommit|boolean값이며 이 풀에의해서 생성된 커넥션의 자동커밋 상태를 나타낸다. 만약 이 값이 설정되지 않으면 기본은 JDBC Driver를 따른다. 만약 설정하지 않으면 setAutoCommit 메소드는 호출되지 않을 것이다. |
+|defaultReadOnly|boolean값이며, 이 풀에 의해서 생성된 커넥션의 read-only상태를 설정한다. 만약 이 값이 설정되지 않으면 setReadyOnly메소드는 호출되지 않을 것이다. (몇몇 드라이버 infomix와 같은 것은 이를 지원하지 않는다.)|
+|defaultTransactionIsolation|(String) 이 풀에 의해서 생성된 커넥션의 트랜잭션 isolation을 설정한다. 자바에서 다음과 같은 것을 지원한다. <ul><li>None</li> <li>READ_COMMITTED</li> <li>READ_UNCOMMITTED</li> <li>REPEATABLE_READ</li> <li>SERIALIZABLE</li> </ul>만약 이것이 설정되지 않으면 기본적으로 JDBC드라이버의 isolation을 따른다. |
+|defaultCatalog|(String)값으로 이 풀에 의해서 생성된 커넥션의 기본 카탈로그를 설정한다.|
+|driverClassName|(String)fully qualified 자바 클래스로 JDBC에서 사용되어질 클래스 이름이다. 드라이버는 tomcat-jdbc.jar과 같은 동일한 클래스 로더에 의해서 접근 가능해야한다.|
+|username|(String)커넥션 설정을 위한 JDBC드라이버에 전달되는 사용자 이름이다. |
+|password|(String)커넥션 설정에서 JDBC드라이버에서 사용할 패스워드를 설정한다. |
+|maxActive|(int)동시에 풀에서 할당하고 있는 액티브 커넥션 개수를 지정한다. 기본적으로 100이다.|
+|maxIdle|(int)전체 시간동안 풀에서 유지할 커넥션의 최대 개수이다. 이값은 기본적으로 maxActive:100으로 설정이 되며, 주기적으로 체크한다. 이 주기는 minEvictableIdleTimeMillis이며 이시간보다 긴 객체는 릴리즈된다.|
+|minIdle|(int)전체 시간동안 풀에서 유지할 커넥션의 최소수를 지정한다. 커넥션 풀은 테스트 쿼리에서 실패가 나는경우 제거되면서 이 수치까지 내려간다. 기본적으로 이값은 initialSize:10으로 설정이된다.|
+|initialSize|(int)풀이 시작될때 생성되어지는 커넥션의 개수를 지정한다. 기본값은 10개이다.|
+|maxWait|(int)가용한 커넥션이 풀에 존재하지 않을때 대기하는 시간이며 이 시간이 지나가면 예외를 던진다. 기본값은 30000(30초)이다.|
+|testOnBorrow|(boolean)풀에서 커넥션을 빌려올때 validation체크를 할지 결정한다. 검증에 실패하는경우 풀에서 이 커넥션은 드랍된다. 그리고 다른 것을 빌려온다. 노트: true로 설정하게되면 validationQuery혹은 validatorClassName 파라미터가 반드시 들어가야한다. 만약 이 값이 널이면 문제가 발생된다. 기본값은 true이다.|
+|testOnConnect|(boolean) 이것은 처음 커넥션이 생성될때 검증을 수행한다. 만약 실패하는 경우 SQLException이 발생된다. true로 설정하면 validationQuery, initSQL혹은 validationClassName 파라미터가 반드시 설정되어야한다. 기본값은 false이다.|
+|testOnReturn|(boolean)풀로 커넥션을 반환할때 검사한다. 이값을 true로 설정하면 validationQuery혹은 validatorClassName파라미터가 설정이 되어야한다. 기본값은 false이다. |
+|testWhileIdle|(boolean)idle object evictor에 의해서 동작한다. 검증에서 실패하는경우 풀에서 제거된다. 이 값을 true로 설정하면 validationQuery혹은 validatorClassName이 설정이 되어야한다. 기본 값은 false이며, 이 작업이 수행되기 위ㅣ해서는 풀 cleaner/test쓰레드가 수행되도록 설정해야한다. |
+|validationQuery|(String)쿼리 문장을 입력해야하며 커넥션 풀에 대한 검증에 사용된다. 쿼리 결과 어떠한 값이 오면 성공이다. 기본값은 null이며 보통 select 1(mysql), select1 form dual(oracle), select 1 (MS sql server)|
+|validationQueryTimeout|(int)validationQuery가 실패라고 인정할때까지의 시간을 지정한다. 이는 java.sql.Statement.setQueryTimeout(seconds)를 호출한다. 풀 자체에는 쿼리 타임아웃이 존재하지 않는다. 이는 기본적으로 JDBC Driver 쿼리 타임아웃을 따른다. 만약 이 값을 0이나 음수로 두면 이값은 disable된다. 기본값은 -1이다.|
+|validatorClassName|(String) org.apache.tomcat.jdbc.pool.Validator 인터페이스를 구현한 검증 클래스를 지정한다. 기본값은 null이다.|
+|timeBetweenEvictionRunsMillis|(int)밀리세컨의 값으로 idle connection validation/cleaner 스레드의 실행 사이에 슬립 시간을 지정한다. 이 값은 1초 이하로 설정할 수 없고 얼마나 자주  idle, 버려진 커넥션을 체크할지를 설정하는 것이다. 기본값은 5000(5초이다)|
+|numTestsPerEvictionRun|(int)tomcat-jdbc-pool에서 사용되지 않는 속성|
+|minEvictableIdletimeMillis|(int)풀 내에서 idle하게 존재할 수 있는 시간을 지정한다. 기본값은 60000이며 (60초이다)|
+|accessToUnderlyingConnectionAllowed|(boolean)사용되지 않는 속성값이다. |
+|removeAbandoned|(boolean)버려진 커넥션을 제거할지 여부, removeAbandonTimeout을 초과한경우 해당 검증을 한다. 만약 이 값을 true로 설정하면 removeAbandonedTimeout보다 긴 시간은 제거된다. 기본값은 false이다.|
+|removeAbandonedTimeout|(int)버려진 커넥션이 버려지기 전까지의 시간, 기본값은 60(60초)이며 이 값은 어플리케이션상에서 가장 긴 쿼리 시간보다 길게 잡아야한다.|
+|logAbandoned|(boolean) 버려진 커넥션에 대해서 스택 트레이스를 쌓을지 설정한다. 기본값은 false이다.|
+|connectionProperties|(String)새로운 커넥션을 위해서 전달되어질 속성값이다. 형식은 반드시 [propertyName=property;]* 이어야한다. user과 password는 이미 전달된 값으로 여기에는 들어가지 않는다. 기본값은 null이다.|
+|poolPreparedStatements|(boolean)사용되지 않는다.|
+|maxOpenPreparedStatements|(int)사용되지 않는다.|
+
+#### Tomcat JDBC의 향상된 속성값
+
+-- 계속 --
+
+
 
 {% if page.comments %}
 <div id="disqus_thread"></div>
