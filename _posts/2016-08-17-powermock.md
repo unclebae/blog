@@ -13,6 +13,10 @@ powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한
 
 ## Junit 4.12버젼 충돌 해결하기. 
 
+참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다. 
+
+공식 사이트에서 해당 버젼에 맞게 파워목의 의존성 버젼을 수정해 주어야한다. 
+
 {% highlight java %}
 testCompile 'junit:junit:4.12',
             'org.powermock:powermock-core:1.6.1',
@@ -23,7 +27,9 @@ testCompile 'junit:junit:4.12',
 ## Powermock 간단 사용하기. 
 
 정적 메소드 이용해보기. 
+
 예) ```boolean result = TestStringUtils.isNumber("12345");```
+
 위와같이 들어온 글자가 숫자인지 검사한는 정적 메소드가 있어서 모킹이 어렵다면 다음과 같이 해결하자. 
 
 {% highlight java %}
