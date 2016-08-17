@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>using powermock with junit 4.12</title>
+        <description>
+          
+          Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &#39;junit:junit:4.12&#39;, &#39;org.powermock:powermock-core:1.6.1&#39;, &#39;org.powermock:powermock-module-junit4:1.6.1&#39;, &#39;org.powermock:powermock-api-mockito:1.6.1&#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예) boolean result = TestStringUtils.isNumber(&quot;12345&quot;); 위와같이 들어온 글자가 숫자인지 검사한는 정적...
+        </description>
+        <pubDate>Wed, 17 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-08-17-powermock/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-08-17-powermock/</guid>
+      </item>
+    
+      <item>
         <title>Tomcat JDBC Connection Pool 소개</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Tue, 27 Jan 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-01-27-dear-diary/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-01-27-dear-diary/</guid>
-      </item>
-    
-      <item>
-        <title>Soccer</title>
-        <description>
-          Best sport ever! - 
-          From Wikipedia: Association football, more commonly known as football or soccer,[2] is a sport played between two teams of eleven players with a spherical ball. It is played by 250 million players in over 200 countries, making it the world’s most popular sport.[3][4][5][6] The game is played on a rectangular...
-        </description>
-        <pubDate>Mon, 19 Jan 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-01-19-soccer/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-01-19-soccer/</guid>
       </item>
     
   </channel>
