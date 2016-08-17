@@ -1,6 +1,6 @@
 ---
 layout: post
-title: using powermock with junit 4.12
+title: Using powermock with junit 4.12
 comments: true
 ---
 

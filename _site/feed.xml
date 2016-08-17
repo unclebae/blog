@@ -7,7 +7,7 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>using powermock with junit 4.12</title>
+        <title>Using powermock with junit 4.12</title>
         <description>
           
           Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &#39;junit:junit:4.12&#39;, &#39;org.powermock:powermock-core:1.6.1&#39;, &#39;org.powermock:powermock-module-junit4:1.6.1&#39;, &#39;org.powermock:powermock-api-mockito:1.6.1&#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예) boolean result = TestStringUtils.isNumber(&quot;12345&quot;); 위와같이 들어온 글자가 숫자인지 검사한는 정적...
