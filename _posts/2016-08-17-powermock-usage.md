@@ -4,6 +4,8 @@ title: Powermock MockitoUsage
 comments: true
 ---
 
+from : [https://github.com/jayway/powermock/wiki/MockitoUsage](https://github.com/jayway/powermock/wiki/MockitoUsage)
+
 # powermock과 mockito를 연동하여 사용하기.
 
 
@@ -28,12 +30,13 @@ comments: true
 |1.8|1.3|
 |1.7|1.2.5|
 
+---
 
 ## 사용법 
 
 아래 예제에서는 static import를 이용하지 않는다. 여기서는 Mockito, PowerMockito를 그대로 이용하여 이해를 쉽게 할 것이다. 실제 사용할때에는 static import 메소드를 사용할 것을 권장한다. 이는 읽기를 향상 시킬 것이다. 
 
-
+---
 
 ### Mocking Static Method 이용하기. 
 
@@ -56,7 +59,7 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.
 Mockito.when(Static.firstStaticMethod(param)).thenReturn(value);
 {% endhighlight %}
 
-
+---
 
 #### behavior 검증방법
 
@@ -72,7 +75,7 @@ Static.firstStaticMethod(param); // 2
 
 - 중요 : verifyStatic()을 각 검증메소드 마다 호출해야한다. 
 
-
+---
 
 #### 아규먼트 매처를 어떻게 사용하는가?
 
@@ -83,7 +86,7 @@ PowerMockito.verifyStatic();
 Static.thirdStaticMethod(Mockito.anyInt());
 {% endhighlight %}
 
-
+---
 
 #### 어떻게 정확하게 호출 카운트를 셀 수 있을까?
 
@@ -93,7 +96,7 @@ Mockito.VerificationMode를 이용할 수 있다. (예) Mockito.times(x) 이며 
 PowerMockito.verifyStatic(Mockito.times(1));
 {% endhighlight %}
 
-
+---
 
 #### 어떻게 void static 메소드의 exception을 던지는 것을 스텁할 수 있는가?
 
@@ -113,7 +116,7 @@ private 메소드에는 PowerMockito.when 을 이용한다.
 when(tested, "methodToExpect", argument).thenReturn(myReturnValue);
 {% endhighlight %}
 
-
+---
 
 #### 전체 예제
 
@@ -153,7 +156,7 @@ public class YourTestCase {
 }
 {% endhighlight %}
 
-
+---
 
 ### 부분 모킹 
 
@@ -172,7 +175,7 @@ when(spy.get(0)).thenReturn("foo");
 doReturn("foo").when(spy).get(0);
 {% endhighlight %}
 
-
+---
 
 #### behavior 검증방법 
 
@@ -182,7 +185,7 @@ Mockito.verify()를 이용하여 검증이 가능하다.
 Mockito.verify(mockObj, times(2)).methodToMock();
 {% endhighlight %}
 
-
+---
 
 #### private behavior 검증하기. 
 
@@ -194,7 +197,7 @@ verifyPrivate(tested).invoke("privateMethodName", argument1);
 
 이것은 또한 private static methods로 동작한다. 
 
-
+---
 
 #### 새로운 객체의 생성자를 어떻게 목을 하는가?
 
@@ -222,7 +225,7 @@ public class XTest {
 }
 {% endhighlight %}
 
-
+---
 
 #### 객체 생성의 검증방법
 
@@ -231,7 +234,7 @@ PowerMockito.verifyNew를 이용한다.
 verifyNew(MyClass.class).withNoArguments();
 {% endhighlight %}
 
-
+---
 
 #### 아규먼트 매처 이용방법 
 
@@ -240,7 +243,7 @@ Mockito 매처를 PowerMock에 그대로 이용할 수 있다.
 Mockito.verify(mockObj).methodToMock(Mockito.anyInt());  
 {% endhighlight %}
 
-
+---
 
 #### spying예제 전체보기. 
 
@@ -265,7 +268,7 @@ public class YourTestCase {
 }
 {% endhighlight %}
 
-
+---
 
 #### private메소드의 부분 모킹 예제 
 
