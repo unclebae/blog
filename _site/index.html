@@ -59,7 +59,7 @@
   <meta name="twitter:site" content="@baekido" />
   <meta name="twitter:creator" content="@baekido" />
   <meta name="twitter:title" content="Kaizen Every Single day." />
-  <meta name="twitter:description" content="Using powermock with junit 4.12 Posted on August 17, 2016 Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &amp;#39;junit:junit:4.12&amp;#39;, &amp;#39;org.powermock:powermock-core:1.6.1&amp;#39;, &amp;#39;org.powermock:powermock-module-junit4:1.6.1&amp;#39;, &amp;#39;org.powermock:powermock-api-mockito:1.6.1&amp;#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예)..." />
+  <meta name="twitter:description" content="Using powermock with junit 4.12 Posted on August 17, 2016 Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. 참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다. 공식..." />
   
   <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
   
@@ -237,8 +237,26 @@
     </p>
 
     <div class="post-entry">
-      Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &#39;junit:junit:4.12&#39;, &#39;org.powermock:powermock-core:1.6.1&#39;, &#39;org.powermock:powermock-module-junit4:1.6.1&#39;, &#39;org.powermock:powermock-api-mockito:1.6.1&#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예) boolean result = TestStringUtils.isNumber(&quot;12345&quot;); 위와같이 들어온 글자가 숫자인지 검사한는 정적...
+      Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. 참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다. 공식 사이트에서 해당 버젼에 맞게 파워목의 의존성 버젼을 수정해 주어야한다. testCompile...
 	  <a href="/2016-08-17-powermock/" class="post-read-more">[Read&nbsp;More]</a>
+    </div>
+
+   </article>
+  
+  <article class="post-preview">
+    <a href="/2016-08-17-powermock-usage/">
+	  <h2 class="post-title">Powermock MockitoUsage</h2>
+
+	  
+    </a>
+
+    <p class="post-meta">
+      Posted on August 17, 2016
+    </p>
+
+    <div class="post-entry">
+      powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta - 2.0.42-beta 1.6.5+ 1.10.8...
+	  <a href="/2016-08-17-powermock-usage/" class="post-read-more">[Read&nbsp;More]</a>
     </div>
 
    </article>
@@ -293,24 +311,6 @@
     <div class="post-entry">
       Spark 2.0 주요 업데이트 2500개의 패치, 300 Contributor의 참여. - API의 사용성이 증가. - SQL2003지원 - 성능의 개선 - 구조화된 스트리밍 - R UDF 지원 - 내부처리 개선 1. API 안정성 향상. - 2.X 버젼에서는 실험적인 버젼이 없이 모두 안정화된 버젼을 제공한다. - 1.X 버젼과 대부분 동일하지만 모두 변경이 되었다....
 	  <a href="/2016-07-31-Spark2.0/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-07-27-reactjs-springdatarest/">
-	  <h2 class="post-title">React.js와 Spring Data REST 따라하기(Part1)</h2>
-
-	  
-    </a>
-
-    <p class="post-meta">
-      Posted on July 27, 2016
-    </p>
-
-    <div class="post-entry">
-      this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
-	  <a href="/2016-07-27-reactjs-springdatarest/" class="post-read-more">[Read&nbsp;More]</a>
     </div>
 
    </article>

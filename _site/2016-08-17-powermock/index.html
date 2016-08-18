@@ -57,7 +57,7 @@
   <meta name="twitter:site" content="@baekido" />
   <meta name="twitter:creator" content="@baekido" />
   <meta name="twitter:title" content="Using powermock with junit 4.12" />
-  <meta name="twitter:description" content="Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &#39;junit:junit:4.12&#39;, &#39;org.powermock:powermock-core:1.6.1&#39;, &#39;org.powermock:powermock-module-junit4:1.6.1&#39;, &#39;org.powermock:powermock-api-mockito:1.6.1&#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예) boolean result = TestStringUtils.isNumber(&quot;12345&quot;); 위와같이 들어온 글자가 숫자인지 검사한는 정적..." />
+  <meta name="twitter:description" content="Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. 참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다. 공식 사이트에서 해당 버젼에 맞게 파워목의 의존성 버젼을 수정해 주어야한다. testCompile..." />
   
   <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
   
@@ -228,6 +228,10 @@
 
 <h2 id="junit-412--">Junit 4.12버젼 충돌 해결하기.</h2>
 
+<p>참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다.</p>
+
+<p>공식 사이트에서 해당 버젼에 맞게 파워목의 의존성 버젼을 수정해 주어야한다.</p>
+
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">testCompile</span> <span class="err">'</span><span class="nl">junit:junit:</span><span class="mf">4.12</span><span class="err">'</span><span class="o">,</span>
             <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">powermock</span><span class="o">:</span><span class="n">powermock</span><span class="o">-</span><span class="nl">core:</span><span class="mf">1.6</span><span class="o">.</span><span class="mi">1</span><span class="err">'</span><span class="o">,</span>
             <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">powermock</span><span class="o">:</span><span class="n">powermock</span><span class="o">-</span><span class="n">module</span><span class="o">-</span><span class="nl">junit4:</span><span class="mf">1.6</span><span class="o">.</span><span class="mi">1</span><span class="err">'</span><span class="o">,</span>
@@ -235,9 +239,11 @@
 
 <h2 id="powermock--">Powermock 간단 사용하기.</h2>
 
-<p>정적 메소드 이용해보기. 
-예) <code class="highlighter-rouge">boolean result = TestStringUtils.isNumber("12345");</code>
-위와같이 들어온 글자가 숫자인지 검사한는 정적 메소드가 있어서 모킹이 어렵다면 다음과 같이 해결하자.</p>
+<p>정적 메소드 이용해보기.</p>
+
+<p>예) <code class="highlighter-rouge">boolean result = TestStringUtils.isNumber("12345");</code></p>
+
+<p>위와같이 들어온 글자가 숫자인지 검사한는 정적 메소드가 있어서 모킹이 어렵다면 다음과 같이 해결하자.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">PowerMockRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 <span class="nd">@PrepareForTest</span><span class="o">(</span> <span class="o">{</span> <span class="n">TestStringUtils</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
@@ -282,7 +288,7 @@
       <ul class="pager blog-pager">
         
         <li class="previous">
-          <a href="/2016-08-11-tomcat-jdbc-connection-pool/" data-toggle="tooltip" data-placement="top" title="Tomcat JDBC Connection Pool 소개">&larr; Previous Post</a>
+          <a href="/2016-08-17-powermock-usage/" data-toggle="tooltip" data-placement="top" title="Powermock MockitoUsage">&larr; Previous Post</a>
         </li>
         
         

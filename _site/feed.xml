@@ -10,11 +10,22 @@
         <title>Using powermock with junit 4.12</title>
         <description>
           
-          Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. testCompile &#39;junit:junit:4.12&#39;, &#39;org.powermock:powermock-core:1.6.1&#39;, &#39;org.powermock:powermock-module-junit4:1.6.1&#39;, &#39;org.powermock:powermock-api-mockito:1.6.1&#39; Powermock 간단 사용하기. 정적 메소드 이용해보기. 예) boolean result = TestStringUtils.isNumber(&quot;12345&quot;); 위와같이 들어온 글자가 숫자인지 검사한는 정적...
+          Powermock + Junit 4.12 powermock은 Mockito등과 같은 모업 유틸과 함께 사용되어 다양한 확장 기능을 수행할 수 있도록 하고 있다. 설정하기. 공식 사이트 : https://github.com/jayway/powermock/wiki/MockitoUsage Junit 4.12버젼 충돌 해결하기. 참고 : 아래 코드와 같이 버젼을 맞춰 주어야 정상적으로 수행이 된다. 공식 사이트에서 해당 버젼에 맞게 파워목의 의존성 버젼을 수정해 주어야한다. testCompile...
         </description>
         <pubDate>Wed, 17 Aug 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-08-17-powermock/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-08-17-powermock/</guid>
+      </item>
+    
+      <item>
+        <title>Powermock MockitoUsage</title>
+        <description>
+          
+          powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta - 2.0.42-beta 1.6.5+ 1.10.8...
+        </description>
+        <pubDate>Wed, 17 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-08-17-powermock-usage/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-08-17-powermock-usage/</guid>
       </item>
     
       <item>
@@ -213,17 +224,6 @@
         <pubDate>Fri, 13 Feb 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-02-13-hamlet-monologue/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-02-13-hamlet-monologue/</guid>
-      </item>
-    
-      <item>
-        <title>Dear diary</title>
-        <description>
-          
-          What is it with that Mary girl? Dragging me to school every day. As if I had a choice. What you don’t hear in those nursery rhymes is that she starves me if I don’t go to school with her; it’s the only way I can stay alive! I’m thinking...
-        </description>
-        <pubDate>Tue, 27 Jan 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-01-27-dear-diary/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-01-27-dear-diary/</guid>
       </item>
     
   </channel>
