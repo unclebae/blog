@@ -57,7 +57,7 @@
   <meta name="twitter:site" content="@baekido" />
   <meta name="twitter:creator" content="@baekido" />
   <meta name="twitter:title" content="Powermock MockitoUsage" />
-  <meta name="twitter:description" content="powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta - 2.0.42-beta 1.6.5+ 1.10.8..." />
+  <meta name="twitter:description" content="from : https://github.com/jayway/powermock/wiki/MockitoUsage powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta -..." />
   
   <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
   
@@ -219,7 +219,9 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-	      <h1 id="powermock-mockito--">powermock과 mockito를 연동하여 사용하기.</h1>
+	      <p>from : <a href="https://github.com/jayway/powermock/wiki/MockitoUsage">https://github.com/jayway/powermock/wiki/MockitoUsage</a></p>
+
+<h1 id="powermock-mockito--">powermock과 mockito를 연동하여 사용하기.</h1>
 
 <h2 id="section">소개</h2>
 
@@ -278,9 +280,13 @@
   </tbody>
 </table>
 
+<hr />
+
 <h2 id="section-2">사용법</h2>
 
 <p>아래 예제에서는 static import를 이용하지 않는다. 여기서는 Mockito, PowerMockito를 그대로 이용하여 이해를 쉽게 할 것이다. 실제 사용할때에는 static import 메소드를 사용할 것을 권장한다. 이는 읽기를 향상 시킬 것이다.</p>
+
+<hr />
 
 <h3 id="mocking-static-method-">Mocking Static Method 이용하기.</h3>
 
@@ -299,6 +305,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">Static</span><span class="o">.</span><span class="na">firstStaticMethod</span><span class="o">(</span><span class="n">param</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">value</span><span class="o">);</span></code></pre></figure>
 
+<hr />
+
 <h4 id="behavior-">behavior 검증방법</h4>
 
 <p>static method의 검증은 다음 2가지 스텝으로 가능하다.</p>
@@ -315,6 +323,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
   <li>중요 : verifyStatic()을 각 검증메소드 마다 호출해야한다.</li>
 </ul>
 
+<hr />
+
 <h4 id="section-3">아규먼트 매처를 어떻게 사용하는가?</h4>
 
 <p>모키토 매처는 아마도 PowerMock 목에 적용될 것이다. 예를 들어 커스텀 아규먼트 매처를 각 목된 정적 메소드에 적용할 수 있다.</p>
@@ -322,11 +332,15 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PowerMockito</span><span class="o">.</span><span class="na">verifyStatic</span><span class="o">();</span>
 <span class="n">Static</span><span class="o">.</span><span class="na">thirdStaticMethod</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">anyInt</span><span class="o">());</span></code></pre></figure>
 
+<hr />
+
 <h4 id="section-4">어떻게 정확하게 호출 카운트를 셀 수 있을까?</h4>
 
 <p>Mockito.VerificationMode를 이용할 수 있다. (예) Mockito.times(x) 이며 이는 PowerMockito.verifyStatic(Mockito.times(2))이용하게 된다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PowerMockito</span><span class="o">.</span><span class="na">verifyStatic</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span></code></pre></figure>
+
+<hr />
 
 <h4 id="void-static--exception-----">어떻게 void static 메소드의 exception을 던지는 것을 스텁할 수 있는가?</h4>
 
@@ -342,6 +356,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
 <p>private 메소드에는 PowerMockito.when 을 이용한다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">when</span><span class="o">(</span><span class="n">tested</span><span class="o">,</span> <span class="s">"methodToExpect"</span><span class="o">,</span> <span class="n">argument</span><span class="o">).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">myReturnValue</span><span class="o">);</span></code></pre></figure>
+
+<hr />
 
 <h4 id="section-5">전체 예제</h4>
 
@@ -379,6 +395,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
 
+<hr />
+
 <h3 id="section-6">부분 모킹</h3>
 
 <p>PowerMockito.spy를 이용하여 부분 모킹을 이용할 수 있다. 주의할 것은 (다음은 Mockito 문서에서 획득한 것으로 PowerMockito에 잘 적용된다.)</p>
@@ -395,11 +413,15 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
 <span class="c1">//You have to use doReturn() for stubbing</span>
 <span class="n">doReturn</span><span class="o">(</span><span class="s">"foo"</span><span class="o">).</span><span class="na">when</span><span class="o">(</span><span class="n">spy</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span></code></pre></figure>
 
+<hr />
+
 <h4 id="behavior--1">behavior 검증방법</h4>
 
 <p>Mockito.verify()를 이용하여 검증이 가능하다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">mockObj</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">2</span><span class="o">)).</span><span class="na">methodToMock</span><span class="o">();</span></code></pre></figure>
+
+<hr />
 
 <h4 id="private-behavior-">private behavior 검증하기.</h4>
 
@@ -408,6 +430,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">verifyPrivate</span><span class="o">(</span><span class="n">tested</span><span class="o">).</span><span class="na">invoke</span><span class="o">(</span><span class="s">"privateMethodName"</span><span class="o">,</span> <span class="n">argument1</span><span class="o">);</span></code></pre></figure>
 
 <p>이것은 또한 private static methods로 동작한다.</p>
+
+<hr />
 
 <h4 id="section-7">새로운 객체의 생성자를 어떻게 목을 하는가?</h4>
 
@@ -431,17 +455,23 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
         <span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
 
+<hr />
+
 <h4 id="section-8">객체 생성의 검증방법</h4>
 
 <p>PowerMockito.verifyNew를 이용한다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">verifyNew</span><span class="o">(</span><span class="n">MyClass</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">withNoArguments</span><span class="o">();</span></code></pre></figure>
 
+<hr />
+
 <h4 id="section-9">아규먼트 매처 이용방법</h4>
 
 <p>Mockito 매처를 PowerMock에 그대로 이용할 수 있다.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">mockObj</span><span class="o">).</span><span class="na">methodToMock</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">anyInt</span><span class="o">());</span>  </code></pre></figure>
+
+<hr />
 
 <h4 id="spying-">spying예제 전체보기.</h4>
 
@@ -463,6 +493,8 @@ Mockito.when() 을 이용하여 필요한 기대값을 지정한다.</p>
         <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">mockObj</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">2</span><span class="o">)).</span><span class="na">methodToMock</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
+
+<hr />
 
 <h4 id="private---">private메소드의 부분 모킹 예제</h4>
 

@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>부족 리더쉽</title>
+        <description>
+          
+          Tribal Leadership Leveraging Natural Groups to Build a Triving Organization 이책은 5가지 부족 단계를 구별하고, 이들의 특징과 4 ~ 5단계의 궁극적인 부족으로 거듭나기 위한 길잡이가 되어주는 책이다. 사용하는 언어가 조직 문화의 단계를 결정한다는 기본 전제를 바탕으로, 조직과 리더쉽에 대한 새로운 관점으로 바라보게 해주는 점에서 매우 흥미롭고 훌륭한 책이라고 생각이 든다....
+        </description>
+        <pubDate>Mon, 22 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-08-22-Tribal_Leadership/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-08-22-Tribal_Leadership/</guid>
+      </item>
+    
+      <item>
         <title>Using powermock with junit 4.12</title>
         <description>
           
@@ -21,7 +32,7 @@
         <title>Powermock MockitoUsage</title>
         <description>
           
-          powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta - 2.0.42-beta 1.6.5+ 1.10.8...
+          from : https://github.com/jayway/powermock/wiki/MockitoUsage powermock과 mockito를 연동하여 사용하기. 소개 기본적으로 PowerMock은 “PowerMockito” 라고 불리는 클래스를 제공하며 이는 mock/object/class를 생성하는 작업과 초기화, 검증, 기대에 대한 작업을 수행할 수 있으며 이는 그대로 Mockito를 이용하여 이러한 작업을 할 수 있다. 모든 사용에는 @RunWith(PowerMockRunner.class)와 @PrepareForTest 어노테이션을 클래스 레벨에서 필요로 한다. 지원버젼 Mockito PowerMock 2.0.0-beta -...
         </description>
         <pubDate>Wed, 17 Aug 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-08-17-powermock-usage/</link>
@@ -213,17 +224,6 @@
         <pubDate>Fri, 20 Feb 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-02-20-test-markdown/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-02-20-test-markdown/</guid>
-      </item>
-    
-      <item>
-        <title>To be</title>
-        <description>
-          ... or not to be? - 
-          To be, or not to be–that is the question: Whether ‘tis nobler in the mind to suffer The slings and arrows of outrageous fortune Or to take arms against a sea of troubles And by opposing end them. To die, to sleep– No more–and by a sleep to say we...
-        </description>
-        <pubDate>Fri, 13 Feb 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-02-13-hamlet-monologue/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-02-13-hamlet-monologue/</guid>
       </item>
     
   </channel>
