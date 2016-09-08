@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>부족 리더쉽</title>
+  <title>StaticFactory Methods of Collectors Class in Java</title>
 
   <meta name="author" content="Bae Ki Do" />
   
@@ -43,10 +43,10 @@
   
 
   <!-- Facebook OpenGraph tags -->
-  <meta property="og:title" content="부족 리더쉽" />
+  <meta property="og:title" content="StaticFactory Methods of Collectors Class in Java" />
   <meta property="og:type" content="website" />
   
-  <meta property="og:url" content="http://unclebae.github.io/2016-08-22-Tribal_Leadership//" />
+  <meta property="og:url" content="http://unclebae.github.io/2016-09-08-javaStaticFactoryMethodOfCollectorsClass//" />
   
   
   <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
@@ -56,8 +56,8 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@baekido" />
   <meta name="twitter:creator" content="@baekido" />
-  <meta name="twitter:title" content="부족 리더쉽" />
-  <meta name="twitter:description" content="Tribal Leadership Leveraging Natural Groups to Build a Triving Organization 이책은 5가지 부족 단계를 구별하고, 이들의 특징과 4 ~ 5단계의 궁극적인 부족으로 거듭나기 위한 길잡이가 되어주는 책이다. 사용하는 언어가 조직 문화의 단계를 결정한다는 기본 전제를 바탕으로, 조직과 리더쉽에 대한 새로운 관점으로 바라보게 해주는 점에서 매우 흥미롭고 훌륭한 책이라고 생각이 든다...." />
+  <meta name="twitter:title" content="StaticFactory Methods of Collectors Class in Java" />
+  <meta name="twitter:description" content="자바 컬렉션 클래스의 정적 Factory메소드 알아보기. Factory method Returned Type Used to toList List 스트림의 아이템을 list로 반환한다. ex   List dishes = menuStream.collect(toList()); toSet Set 스트림의 아이템을 set으로 반환한다. 중복은 제거된다. ex   Set dishes = menuStream.collect(toSet()); toCollection Collection 스트림의 아이템을 컬렉션으로 넣는다. 이는 제공된 supplier에 의해서 생성된다. ex..." />
   
   <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
   
@@ -199,11 +199,11 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="post-heading">
-          <h1>부족 리더쉽</h1>
+          <h1>StaticFactory Methods of Collectors Class in Java</h1>
 		  
 		  
 		  
-		  <span class="post-meta">Posted on August 22, 2016</span>
+		  <span class="post-meta">Posted on September 8, 2016</span>
 		  
         </div>
       </div>
@@ -219,76 +219,157 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-	      <h1 id="tribal-leadership">Tribal Leadership</h1>
-<p>Leveraging Natural Groups to Build a Triving Organization</p>
-
-<p><img src="/img/tribal_leadership.jpg" alt="이미지" /></p>
-
-<p>이책은 5가지 부족 단계를 구별하고, 이들의 특징과 4 ~ 5단계의 궁극적인 부족으로 거듭나기 위한 길잡이가 되어주는 책이다.</p>
-
-<p>사용하는 언어가 조직 문화의 단계를 결정한다는 기본 전제를 바탕으로, 조직과 리더쉽에 대한 새로운 관점으로 바라보게 해주는 점에서 매우 흥미롭고 훌륭한 책이라고 생각이 든다.</p>
-
-<p>이 책을 읽으면서 좋은 리더쉽은 무엇일까? 라는 물음에 대한 나만의 생각은 좋은 Attitude 였다. 
-사람을 대하는태도, 그리고 말을 하는 태도, 목표를 바라보는 태도 이것이 4 ~ 5단계로 이끌어가는 리더쉽의 중요한 키 포인트라고 생각한다.</p>
+	      <h2 id="factory-">자바 컬렉션 클래스의 정적 Factory메소드 알아보기.</h2>
 
 <table>
   <tbody>
     <tr>
-      <td>부족단계</td>
-      <td>관계유형</td>
-      <td>자주사용하는말</td>
-      <td>관계구조</td>
+      <td>Factory method</td>
+      <td>Returned Type</td>
+      <td>Used to</td>
     </tr>
     <tr>
-      <td>5단계</td>
-      <td>팀</td>
-      <td>“인생은 위대해”</td>
-      <td>지속적인 네트워크</td>
+      <td>toList</td>
+      <td>List<T></T></td>
+      <td>스트림의 아이템을 list로 반환한다.</td>
     </tr>
     <tr>
-      <td>4단계</td>
-      <td>파트너 쉽</td>
-      <td>“우리는 대단해”</td>
-      <td>3자관계</td>
+      <td>ex</td>
+      <td> </td>
+      <td>List<Dish> dishes = menuStream.collect(toList());</Dish></td>
     </tr>
     <tr>
-      <td>3단계</td>
-      <td>개인</td>
-      <td>“나는 대단해”</td>
-      <td>양자관계</td>
+      <td>toSet</td>
+      <td>Set<T></T></td>
+      <td>스트림의 아이템을 set으로 반환한다. 중복은 제거된다.</td>
     </tr>
     <tr>
-      <td>2단계</td>
-      <td>격리</td>
-      <td>“내 인생 꼬이네”</td>
-      <td>격리</td>
+      <td>ex</td>
+      <td> </td>
+      <td>Set<Dish> dishes = menuStream.collect(toSet());</Dish></td>
     </tr>
     <tr>
-      <td>1단계</td>
-      <td>소외</td>
-      <td>“인생 꼬이네”</td>
-      <td>소외</td>
+      <td>toCollection</td>
+      <td>Collection<T></T></td>
+      <td>스트림의 아이템을 컬렉션으로 넣는다. 이는 제공된 supplier에 의해서 생성된다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>Collection<Dish> dishes = menuStream.collect(toCollection(), ArrayList::new);</Dish></td>
+    </tr>
+    <tr>
+      <td>counting</td>
+      <td>Long</td>
+      <td>스트림의 아이템을 센다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>long howManyDishes = menuStream.collect(counting());</td>
+    </tr>
+    <tr>
+      <td>summingInt</td>
+      <td>Integer</td>
+      <td>스트림의 아이템의 정수 프로피터의 총 값을 계산한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>int totalCalories = menuStream.collect(summingInt(Dish::getCalories));</td>
+    </tr>
+    <tr>
+      <td>averagingInt</td>
+      <td>Double</td>
+      <td>스트림의 아이템의 정수 프로퍼티의 평균값을 계산한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>double avgCalories = menuStream.collect(averagingInt(Dish::getCalories));</td>
+    </tr>
+    <tr>
+      <td>summarizingInt</td>
+      <td>IntSummary-Statistics</td>
+      <td>스트림의 아이템들의 통계값을 계산한다. maximum, minimum, total, average</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>IntSummaryStatistics menuStatistics = menuStream.collect(summarizingInt(Dish::getCalories));</td>
+    </tr>
+    <tr>
+      <td>joining</td>
+      <td>String</td>
+      <td>스트림의 각 아이템에서 toString의 호출 결과들을 연결한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>String shortMenu = menuStream.map(Dish::getName).collect(joining(“,”));</td>
+    </tr>
+    <tr>
+      <td>maxBy</td>
+      <td>Optional<T></T></td>
+      <td>주어진 comparator에 의해서 최대 엘리먼트를 구하여 Optional로 감싼값을 반환하거나 빈 Optional값을 반환한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>Optional<Dish> fattest = menuStream.collect(maxBy(comparingInt(Dish::getCalories)));</Dish></td>
+    </tr>
+    <tr>
+      <td>minBy</td>
+      <td>Optional<T></T></td>
+      <td>주어진 comparator에 의해서 최소 엘리먼트를 구하여 Optional로 감싼값을 반환하거나 빈 Optional값을 반환한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>Optional<Dish> lightest = menuStream.collect(minBy(comparingInt(Dish::getCalories)));</Dish></td>
+    </tr>
+    <tr>
+      <td>reducing</td>
+      <td>reducing오퍼레이션으로 생성된 타입</td>
+      <td>Binary오퍼레이터를 이용하여 누적값이나 반복적으로 연결된 값을 반환하며, 초기값에서 부터 이러한 연산을 한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>int totalCalories = menuStream.collect(reducing(0, Dish::getCalories, Integer::sum));</td>
+    </tr>
+    <tr>
+      <td>collectingAndthen</td>
+      <td>변환함수의 결과 타입을 반환한다.</td>
+      <td>다른 컬렉터와 변환 함수 처리된 결과를 반환한다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>int howManyDishes = menuStream.collect(collectingAndThen(toList(), List:size));</td>
+    </tr>
+    <tr>
+      <td>groupBy</td>
+      <td>Map&lt;K, List<T>&gt;</T></td>
+      <td>스트림의 아이템들을 그루핑한다. 이는 프로퍼티중의 하나를 기준으로 그루핑되며, 결과 맵에 해당 값이 들어간다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>Map&lt;Dish.Type, List<Dish>&gt; dishesByType = menuStream.collect(groupingBy(Dish::getType));</Dish></td>
+    </tr>
+    <tr>
+      <td>partitioningBy</td>
+      <td>Map&lt;Boolean, List<T>&gt;</T></td>
+      <td>스트림의 아이템의 파티션을 반환한다. 이는 각각의 predicate에 따라 파티션된다.</td>
+    </tr>
+    <tr>
+      <td>ex</td>
+      <td> </td>
+      <td>Map&lt;Boolean, List<Dish>&gt; vegetarianDishes = menuStream.collect(partitioningBy(Dish::isVegetarian));</Dish></td>
     </tr>
   </tbody>
 </table>
-
-<p>우리는 1 ~ 5단계의 마음을 모두 갖고 있다고 생각한다. 그 중에서 가장 많이 쓰는 말로 그 사람의 중심 Attitude가 형성되어 있다고 생각한다. 가끔은 3단계에서 2단계로 이동하기도 하며, 4단계로 가기도 한다.</p>
-
-<p>우리는 3단계인 조직장의 지나친 행동에 자연적으로 2단계 사람이 되어 버리기도 하며, 지나가다 던지 누군가의 말한마디에 2단계에서 3단계로 발전하기도 한다.</p>
-
-<p>이런 변화 가능성과 그 방법을 제시하는 점에서 이 책이 참 마음에 든다.</p>
-
-<p>개인적인 마음으로 이 책에서 강조하는 4단계의 회사에서 정말 멋지게 일해보고 싶다. 하지만 현실은 그렇지 않은것 같다. 하지만 그렇지 않음에 불만을 갖기보다, 그리고 내가 리더가 아니라 이건 단지 이론에 불과하다는 불만을 갖기보다, 나의 Attitude를 언제든지 4단계로 갈 수 있도록 그리고는 결국 5단계로 쉽게 이동할 수 있도록 레벨업을 하는 것은 언제나 훌륭한 선택이라는 insight를 내게 주는 책인듯 하다.</p>
-
-<p>조직의 미래는 문화에 달려 있다라는 책의 슬로건은 우리가 잘 알고 있는 중국의 역사에서 여실히 보여주고 있는듯 하다. 원나라가 중국을 지배하였지만, 한족의 문화까지 지배하지 못한것처럼 튼튼한 조직 문화가 조직의 미래를 보장하는 것은 어쩌면 역사적 사실로 증명된 것이라 볼 수 있다.</p>
-
-<p>마지막으로 이책에서 거론하지 않았지만 문득 떠오르는 공자의 말이 생각난다.</p>
-
-<p><code class="highlighter-rouge">군군신신부부자자(君君臣臣父父子子)</code> 이 말속에 이 책의 내용이 모두 담겨 있는듯 하다.</p>
-
-<p>공동의 목표에 부합하며 (왜 이 일을 해야하는가? 에 대한 공동의 목표) 모두가 자신의 자리에서 그 목표를 항해 자신의 일을 해나가면, 결국 좋은 부족이 되지 않을까? 생각이 든다.</p>
-
-<p>그리고 이러한 우리가 지향하는 공동의 목표를 제시하고, 부족원들을 자신이 속한 높은 단계로 이끌어 함께 목표를 달성해 나갈 수 있도록 문화를 함께 만들어 갈 수 있는 리더쉽을 가진 사람이 될 수 있도록 Attitude를 가져보자.</p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -320,13 +401,9 @@
       <ul class="pager blog-pager">
         
         <li class="previous">
-          <a href="/2016-08-17-powermock/" data-toggle="tooltip" data-placement="top" title="Using powermock with junit 4.12">&larr; Previous Post</a>
+          <a href="/2016-08-22-Tribal_Leadership/" data-toggle="tooltip" data-placement="top" title="부족 리더쉽">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="next">
-          <a href="/2016-09-08-javaStaticFactoryMethodOfCollectorsClass/" data-toggle="tooltip" data-placement="top" title="StaticFactory Methods of Collectors Class in Java">Next Post &rarr;</a>
-        </li>
         
       </ul>
       

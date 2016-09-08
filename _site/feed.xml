@@ -7,6 +7,17 @@
     <atom:link href="http://unclebae.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>StaticFactory Methods of Collectors Class in Java</title>
+        <description>
+          
+          자바 컬렉션 클래스의 정적 Factory메소드 알아보기. Factory method Returned Type Used to toList List 스트림의 아이템을 list로 반환한다. ex   List dishes = menuStream.collect(toList()); toSet Set 스트림의 아이템을 set으로 반환한다. 중복은 제거된다. ex   Set dishes = menuStream.collect(toSet()); toCollection Collection 스트림의 아이템을 컬렉션으로 넣는다. 이는 제공된 supplier에 의해서 생성된다. ex...
+        </description>
+        <pubDate>Thu, 08 Sep 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-09-08-javaStaticFactoryMethodOfCollectorsClass/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-09-08-javaStaticFactoryMethodOfCollectorsClass/</guid>
+      </item>
+    
+      <item>
         <title>부족 리더쉽</title>
         <description>
           
@@ -73,17 +84,6 @@
       </item>
     
       <item>
-        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
-        <description>
-          
-          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
-        </description>
-        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-reactjs-springdatarest/</guid>
-      </item>
-    
-      <item>
         <title>Python Data Analysis 02 Numpy</title>
         <description>
           
@@ -103,6 +103,17 @@
         <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-hypertextApplicationLanguage/</guid>
+      </item>
+    
+      <item>
+        <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+        <description>
+          
+          this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를...
+        </description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</link>
+        <guid isPermaLink="true">http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST/</guid>
       </item>
     
       <item>
@@ -213,17 +224,6 @@
         <pubDate>Thu, 26 Feb 2015 00:00:00 +0900</pubDate>
         <link>http://unclebae.github.io/2015-02-26-flake-it-till-you-make-it/</link>
         <guid isPermaLink="true">http://unclebae.github.io/2015-02-26-flake-it-till-you-make-it/</guid>
-      </item>
-    
-      <item>
-        <title>Test markdown</title>
-        <description>
-          Each post also has a subtitle - 
-          You can write regular markdown here and Jekyll will automatically convert it to a nice webpage. I strongly encourage you to take 5 minutes to learn how to write in markdown - it’ll teach you how to transform regular text into bold/italics/headings/tables/etc. Here is some bold text Here is a...
-        </description>
-        <pubDate>Fri, 20 Feb 2015 00:00:00 +0900</pubDate>
-        <link>http://unclebae.github.io/2015-02-20-test-markdown/</link>
-        <guid isPermaLink="true">http://unclebae.github.io/2015-02-20-test-markdown/</guid>
       </item>
     
   </channel>
