@@ -36,40 +36,40 @@ ZonedDateTime  (LocalDate + LocalTime + ZoneId)
 LocalDateTest.java
 
 {% highlight java %}
-        //  LocalDate생성
-        LocalDate date = LocalDate.of(2016, 9, 12);
+//  LocalDate생성
+LocalDate date = LocalDate.of(2016, 9, 12);
 
-        //  현재 날짜를 생성한다
-        date = LocalDate.now();
+//  현재 날짜를 생성한다
+date = LocalDate.now();
 
-        System.out.println("-------------[ LocalDate Methods ]--------------");
-        int year = date.getYear();
-        System.out.println(String.format("int year = date.getYearI();  : [%s]", year));
+System.out.println("-------------[ LocalDate Methods ]--------------");
+int year = date.getYear();
+System.out.println(String.format("int year = date.getYearI();  : [%s]", year));
 
-        Month month = date.getMonth();
-        System.out.println(String.format("Month month = date.getMonth();  : [%s]", month));
+Month month = date.getMonth();
+System.out.println(String.format("Month month = date.getMonth();  : [%s]", month));
 
-        int day = date.getDayOfMonth();
-        System.out.println(String.format("int day = date.getDayOfMonth(); : [%s]", day));
+int day = date.getDayOfMonth();
+System.out.println(String.format("int day = date.getDayOfMonth(); : [%s]", day));
 
-        DayOfWeek dow = date.getDayOfWeek();
-        System.out.println(String.format("DayOfWeek dow = date.getDayOfWeek(); : [%s]", dow));
+DayOfWeek dow = date.getDayOfWeek();
+System.out.println(String.format("DayOfWeek dow = date.getDayOfWeek(); : [%s]", dow));
 
-        int len = date.lengthOfMonth();
-        System.out.println(String.format("int len = date.lengthOfMonth(); : [%s]", len));
+int len = date.lengthOfMonth();
+System.out.println(String.format("int len = date.lengthOfMonth(); : [%s]", len));
 
-        boolean leap = date.isLeapYear();
-        System.out.println(String.format("boolean leap = date.isLeapYear();: [%s]", leap));
+boolean leap = date.isLeapYear();
+System.out.println(String.format("boolean leap = date.isLeapYear();: [%s]", leap));
 
-        System.out.println("-------------[ Using Temporal Fields ]--------------");
-        int yearByField = date.get(ChronoField.YEAR);
-        System.out.println(String.format("int yearByField = date.get(ChronoField.YEAR); : [%s]", yearByField));
+System.out.println("-------------[ Using Temporal Fields ]--------------");
+int yearByField = date.get(ChronoField.YEAR);
+System.out.println(String.format("int yearByField = date.get(ChronoField.YEAR); : [%s]", yearByField));
 
-        int monthByField = date.get(ChronoField.MONTH_OF_YEAR);
-        System.out.println(String.format("int monthByField = date.get(ChronoField.MONTH_OF_YEAR); : [%s]", monthByField));
+int monthByField = date.get(ChronoField.MONTH_OF_YEAR);
+System.out.println(String.format("int monthByField = date.get(ChronoField.MONTH_OF_YEAR); : [%s]", monthByField));
 
-        int dayByField = date.get(ChronoField.DAY_OF_MONTH);
-        System.out.println(String.format("int dayByField = date.get(ChronoField.DAY_OF_MONTH); : [%s]", dayByField));
+int dayByField = date.get(ChronoField.DAY_OF_MONTH);
+System.out.println(String.format("int dayByField = date.get(ChronoField.DAY_OF_MONTH); : [%s]", dayByField));
 {% endhighlight %} 
 
 {% highlight java %}
@@ -77,7 +77,7 @@ LocalDateTest.java
 int year = date.getYearI();  : [2016]
 Month month = date.getMonth();  : [SEPTEMBER]
 int day = date.getDayOfMonth(); : [12]
-Disconnected from the target VM, address: '127.0.0.1:61475', transport: 'socket'
+
 DayOfWeek dow = date.getDayOfWeek(); : [MONDAY]
 int len = date.lengthOfMonth(); : [30]
 boolean leap = date.isLeapYear();: [true]
@@ -91,16 +91,16 @@ int dayByField = date.get(ChronoField.DAY_OF_MONTH); : [12]
 LocalTime.java
 
 {% highlight java %}
-        LocalTime time = LocalTime.of(20, 30, 01);
+LocalTime time = LocalTime.of(20, 30, 01);
 
-        int hour = time.getHour();
-        System.out.println(String.format("int hour = time.getHour(); : [%s]", hour));
+int hour = time.getHour();
+System.out.println(String.format("int hour = time.getHour(); : [%s]", hour));
 
-        int minute = time.getMinute();
-        System.out.println(String.format("int minute = time.getMinute(); : [%s]", minute));
+int minute = time.getMinute();
+System.out.println(String.format("int minute = time.getMinute(); : [%s]", minute));
 
-        int second = time.getSecond();
-        System.out.println(String.format("int second = time.getSecond(); : [%s]", second));
+int second = time.getSecond();
+System.out.println(String.format("int second = time.getSecond(); : [%s]", second));
 {% endhighlight %}
 
 {% highlight java %}
@@ -112,21 +112,21 @@ int second = time.getSecond(); : [1]
 LocalDateTimeTest.java
 
 {% highlight java %}
-        LocalDateTime dateTime1 = LocalDateTime.of(2014, Month.SEPTEMBER, 12, 20, 30, 01);
+LocalDateTime dateTime1 = LocalDateTime.of(2014, Month.SEPTEMBER, 12, 20, 30, 01);
 
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
-        LocalDateTime dateTime2 = LocalDateTime.of(date, time);
+LocalDate date = LocalDate.now();
+LocalTime time = LocalTime.now();
+LocalDateTime dateTime2 = LocalDateTime.of(date, time);
 
-        LocalDateTime dateTime3 = date.atTime(20, 35, 30);
+LocalDateTime dateTime3 = date.atTime(20, 35, 30);
 
-        LocalDateTime dateTime4 = date.atTime(time);
+LocalDateTime dateTime4 = date.atTime(time);
 
-        LocalDate localDate = dateTime1.toLocalDate();
-        System.out.println(String.format("LocalDate localDate = dateTime1.toLocalDate(); : [%s]", localDate));
+LocalDate localDate = dateTime1.toLocalDate();
+System.out.println(String.format("LocalDate localDate = dateTime1.toLocalDate(); : [%s]", localDate));
 
-        LocalTime localTime = dateTime1.toLocalTime();
-        System.out.println(String.format("LocalTime localTime = dateTime1.toLocalTime(); : [%s]", localTime));
+LocalTime localTime = dateTime1.toLocalTime();
+System.out.println(String.format("LocalTime localTime = dateTime1.toLocalTime(); : [%s]", localTime));
 {% endhighlight %}
 
 {% highlight java %}
@@ -152,21 +152,21 @@ Duration durationByInstant = Duration.between(instant1, instant2);
 Period tenDays = Period.between(LocalDate.of(2016, 09, 02), LocalDate.of(2016.09.12));
 
 {% highlight java %}
-        Duration threeMinutes = Duration.ofMinutes(3);
-        System.out.println(String.format("Duration threeMinutes = Duration.ofMinutes(3); : [%s]", threeMinutes));
+Duration threeMinutes = Duration.ofMinutes(3);
+System.out.println(String.format("Duration threeMinutes = Duration.ofMinutes(3); : [%s]", threeMinutes));
 
 
-        Duration fourMinutes = Duration.of(4, ChronoUnit.MINUTES);
-        System.out.println(String.format("Duration fourMinutes = Duration.of(4, ChronoUnit.MINUTES); : [%s]", fourMinutes));
+Duration fourMinutes = Duration.of(4, ChronoUnit.MINUTES);
+System.out.println(String.format("Duration fourMinutes = Duration.of(4, ChronoUnit.MINUTES); : [%s]", fourMinutes));
 
-        Period tenDays = Period.ofDays(10);
-        System.out.println(String.format("Period tenDays = Period.ofDays(10); : [%s]", tenDays));
+Period tenDays = Period.ofDays(10);
+System.out.println(String.format("Period tenDays = Period.ofDays(10); : [%s]", tenDays));
 
-        Period threeWeeks = Period.ofWeeks(3);
-        System.out.println(String.format("Period threeWeeks = Period.ofWeeks(3); : [%s]", threeWeeks));
+Period threeWeeks = Period.ofWeeks(3);
+System.out.println(String.format("Period threeWeeks = Period.ofWeeks(3); : [%s]", threeWeeks));
 
-        Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
-        System.out.println(String.format("Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1); : [%s]", twoYearsSixMonthsOneDay));
+Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
+System.out.println(String.format("Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1); : [%s]", twoYearsSixMonthsOneDay));
 {% endhighlight %}
 
 {% highlight java %}
