@@ -12,6 +12,7 @@ comments: true
 그럼 Java 8이전과 이후의 Date, Time관련 유틸리티가 어떻게 바뀌었는지 한번 살펴보자. 
 
 ### 기존 Java Date 유틸리티의 문제. 
+
 과거 Java Date유틸리느는 비 일관성, 설계적인 결함 을 가지고 있었다.
 
 1. Object 내용 자체가 변경이 된다. 
@@ -233,8 +234,7 @@ public class EstimateDeliverableDay implements TemporalAdjuster {
         int duration = 1;
 
         if (dayOfWeek == DayOfWeek.FRIDAY) duration = 3; // 월요일
-        else if (dayOfWeek == DayOfWeek.SATURDAY
-            || dayOfWeek == DayOfWeek.SUNDAY) duration = 2; // 화요일
+        else if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) duration = 2; // 화요일
 
         return temporal.plus(duration, ChronoUnit.DAYS);
     }
