@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Python3 Thread</title>
+
+  <meta name="author" content="Bae Ki Do" />
+  
+  
+  <meta name="description" content="python thread programming">
+  
+
+  <link rel="alternate" type="application/rss+xml" title="UncleBae Story - I will do everything I believe or I think." href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Python3 Thread" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://unclebae.github.io/2016-07-24-python-thread//" />
+  
+  
+  <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@baekido" />
+  <meta name="twitter:creator" content="@baekido" />
+  <meta name="twitter:title" content="Python3 Thread" />
+  <meta name="twitter:description" content="Thread and Process 쓰레드는 서로다른 프로그램(프로세스)들이 동시에 수행하는 것과 같은 효과를 낸다. 그러나 다음과 같은 차이가 있다. 멀티 쓰레드는 동일한 데이터 공간을 공유한다. 그러므로 스레드들 간의 커뮤니케이션이 프로세스보다 수월하다. 단, 공유자원으로 인한 부작용이 없도록 관리가 필요하다. 멀티쓰레드는 경량의 프로세스라고 불린다. 이는 메모리 오버헤드가 작고, 자원들을 프로세스보다 더 작게 소비한다. 스레드의..." />
+  
+  <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://unclebae.github.io">UncleBae Story</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="https://github.com/unclebae">GitHub</a>
+
+          </li>
+        
+        
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://www.markdowntutorial.com/">Learn markdown</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="https://pages.github.com/">GitHub Pages</a>
+
+                
+              
+            </div>
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://uncle-bae.blogspot.kr/">BLOG</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://unclebae.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Python3 Thread</h1>
+		  
+		    
+			<h2 class="post-subheading">python thread programming</h2>
+			
+		  
+		  
+		  
+		  <span class="post-meta">Posted on July 24, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+	      <h2 id="thread-and-process">Thread and Process</h2>
+<p>쓰레드는 서로다른 프로그램(프로세스)들이 동시에 수행하는 것과 같은 효과를 낸다. 
+그러나 다음과 같은 차이가 있다.</p>
+
+<p>멀티 쓰레드는 동일한 데이터 공간을 공유한다. 그러므로 스레드들 간의 커뮤니케이션이 프로세스보다 수월하다.
+단, 공유자원으로 인한 부작용이 없도록 관리가 필요하다.</p>
+
+<p>멀티쓰레드는 경량의 프로세스라고 불린다. 이는 메모리 오버헤드가 작고, 자원들을 프로세스보다 더 작게 소비한다.</p>
+
+<h2 id="section">스레드의 종류</h2>
+<p><code class="highlighter-rouge">커널 스레드</code>는 오퍼레이팅 시스템의 영역이다. 
+<code class="highlighter-rouge">유저 스레드</code>는 사용자 영역이며, 커널 영역에 구현되지 않는다.</p>
+
+<h2 id="section-1">신규 스레드 생성하기.</h2>
+
+<h3 id="section-2">형식</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">function</span><span class="p">,</span> <span class="n">args</span><span class="p">[,</span> <span class="n">kwargs</span><span class="p">]</span> <span class="p">)</span></code></pre></figure>
+
+<p>위 코드는 새로운 스레드를 생성한다. 이 메소드를 호출하는 즉시 자식 스레드를 생성하고, 시작한다. 그리고 이 스레드 메소드에 아규먼트를 전달하게 된다. 
+함수는 스레드가 종료될때 반환하게 된다.</p>
+
+<p><code class="highlighter-rouge">args</code>는 아규먼트의 튜플이며 아규먼트가 없다면 빈 튜플이 수행된다. 
+<code class="highlighter-rouge">kwargs</code>는 선택적인 딕셔너리 자료형이다.</p>
+
+<h2 id="section-3">예제</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">_thread</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">print_time</span><span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span> <span class="p">))</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s">"Thread-1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s">"Thread-2"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error: unable to start thread"</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">pass</span></code></pre></figure>
+
+<p>thread 를 저수준으로 사용하면 매우 효과적이긴 하다. 그러나 새로운 스레드 모듈들과 비교등 다양한 제약점이 있다.</p>
+
+<h2 id="threading-module">Threading Module</h2>
+<p>파이선 2.4부터 새로운 스레드 모듈들을 제공해 주고 있다. 이는 매우 강력하며, 고수준의 스레드를 지원해준다.</p>
+
+<p>threading 모듈은 스레드 모듈의 모든 메소드를 노출하며, 추가적인 기능도 제공한다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>기능</td>
+      <td>설명</td>
+    </tr>
+    <tr>
+      <td>threading.activeCount()</td>
+      <td>현재 active한 스레드 객체의 개수를 노출한다.</td>
+    </tr>
+    <tr>
+      <td>threading.currentThread()</td>
+      <td>현재 콜러에 의한 컨트롤 내에 있는 스레드 객체의 개수를 반환한다.</td>
+    </tr>
+    <tr>
+      <td>threading.enumerate()</td>
+      <td>현재 active한 모든 스레드 객체를 나열한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>추가적인 메소드로 threading 에 구현된 Thread의 클래스의 기능도 제공한다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>기능</td>
+      <td>설명</td>
+    </tr>
+    <tr>
+      <td>run()</td>
+      <td>스레드의 엔트리포인트이다.</td>
+    </tr>
+    <tr>
+      <td>start()</td>
+      <td>run메소드에 의해서 수행되는 메소드이다.</td>
+    </tr>
+    <tr>
+      <td>join([time])</td>
+      <td>스레드가 종료될때까지 대기한다.</td>
+    </tr>
+    <tr>
+      <td>isAlive()</td>
+      <td>스레드가 여전히 수행되고 있는지 검사한다.</td>
+    </tr>
+    <tr>
+      <td>getName()</td>
+      <td>스레드의 이름을 반환한다.</td>
+    </tr>
+    <tr>
+      <td>setName()</td>
+      <td>스레드의 이름을 지정한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="threading----">Threading 모듈을 이용하여 스레드 생성하가.</h2>
+<ul>
+  <li>스레드 클래스의 하위 클래스를 정의한다.</li>
+  <li><strong>init</strong>(self [,args]) 메소드를 추가한다.</li>
+  <li>run(self [, args])를 구현한다.</li>
+</ul>
+
+<p>일단 Thread의 서브 클래스를 생성하면 run()메소드를 호출함으로 해서 start()메소드를 수행할 수 있다.</p>
+
+<h3 id="section-4">예제</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">exitFlag</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">myThread</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threadID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadID</span> <span class="o">=</span> <span class="n">threadID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span>
+	
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Starting "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s">"Exiting "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_time</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">while</span> <span class="n">counter</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">exitFlag</span><span class="p">:</span>
+            <span class="n">threadName</span><span class="o">.</span><span class="nb">exit</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span> <span class="p">)</span>
+        <span class="n">counter</span> <span class="o">-=</span><span class="mi">1</span>
+
+<span class="n">thread1</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Thread-1"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"Thread-2"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Exiting Main Thread"</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="synchronizing-threads">Synchronizing Threads</h2>
+<p>threading모듈은 단순한 라킹 메커니즘을 제공하고 있다. 이는 스레드를 synchronize 하도록 하여 구현한다.</p>
+
+<p>Lock()메소드를 호출하면 락이 생성된다. 이는 새로운 락을 반환한다.</p>
+
+<p>acquire(blocking)메소드는 스레드를 synchronously하게 수행할 수 있도록 해준다. 선택적인 블로킹 파라미터는 스레드가 락을 얻기 위해서 대기해야할지 지정한다.</p>
+
+<p>만약 blocking이 0으로 세팅되된다. 만약 락을 얻지 못하면 스레드는 즉시 0의 값을 반환한다. 만약 blocking이 1로 설정이 되면, 스레드는 블록되며, 락이 해제될때까지 대기한다.</p>
+
+<h3 id="section-5">예제</h3>
+
+<figure class="highlight"><pre><code class="language-pythom" data-lang="pythom">import threading
+import time
+
+class myThread(threading.Thread):
+    def __init__(self, threadID, name, counter):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.counter = counter
+
+    def run(self) :
+        print("Starting " + self.name)
+        threadLock.acquire()
+        print_time(self.name, self.counter, 3)
+        threadLock.release()
+
+def print_time(threadName, delay, counter) :
+    while counter:
+        time.sleep(delay)
+        print("%s: %s" % (threadName, time.ctime(time.time())) )
+        counter -= 1
+
+threadLock = threading.Lock()
+threads=[]
+
+thread1 = myThread(1, "Thread-1", 1)
+thread2 = myThread(2, "Thread-2", 2)
+
+thread1.start()
+thread2.start()
+
+threads.append(thread1)
+threads.append(thread2)
+
+for t in threads:
+	t.join()
+print("Exitig Main Thread")</code></pre></figure>
+
+<h2 id="section-6">멀티스레드된 우선순위 큐</h2>
+<p>뮤 모듈은 새로운 큐 객체를 생성하고, 아이템의 특정 개수만큼 저장이 가능하다. 여기에는 다음 메소드들을 제공하여 큐를 컨트롤 할 수 있게 한다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>기능</td>
+      <td>설명</td>
+    </tr>
+    <tr>
+      <td>get()</td>
+      <td>큐로부터 아이템을 제거하고, 아이템을 반납한다.</td>
+    </tr>
+    <tr>
+      <td>put()</td>
+      <td>큐로부터 아이템을 입력한다.</td>
+    </tr>
+    <tr>
+      <td>qzise()</td>
+      <td>qzise()는 현재 큐내에서 실제하는 개수의 qzize()를 바환한다.</td>
+    </tr>
+    <tr>
+      <td>empty()</td>
+      <td>결과가 True이면 비어있다는 의미, False이면 비어있지 않음</td>
+    </tr>
+    <tr>
+      <td>full()</td>
+      <td>True를 반환하면 큐가 차있다는 으미이고, False를 반환하면 그렇지 않은것이다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-7">예제</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">exitFlag</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">myThread</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threadID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadID</span> <span class="o">=</span> <span class="n">threadID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Starting "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">process_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Existing "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+	
+<span class="n">threadList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Thread-1"</span><span class="p">,</span> <span class="s">"Thread-2"</span><span class="p">,</span> <span class="s">"Thread-3"</span><span class="p">]</span>
+<span class="n">nameList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"One"</span><span class="p">,</span> <span class="s">"Two"</span><span class="p">,</span> <span class="s">"Three"</span><span class="p">,</span> <span class="s">"Four"</span><span class="p">,</span> <span class="s">"Five"</span><span class="p">]</span>
+<span class="n">queueLock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<span class="n">workQueue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+	
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">exitFlag</span><span class="p">:</span>
+        <span class="n">queueLock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">workQueue</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span> <span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">queueLock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s processing </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">queueLock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">threadID</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">tName</span> <span class="ow">in</span> <span class="n">threadList</span><span class="p">:</span>
+    <span class="n">thread</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="n">threadID</span><span class="p">,</span> <span class="n">tName</span><span class="p">,</span> <span class="n">workQueue</span><span class="p">)</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+    <span class="n">threadID</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">queueLock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">nameList</span><span class="p">:</span>
+	<span class="n">workQueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<span class="n">queueLock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">workQueue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="n">exitFlag</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+	<span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Exiting Main Trhead"</span><span class="p">)</span></code></pre></figure>
+
+
+	    </article>
+	  	  
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-07-23-python-socket/" data-toggle="tooltip" data-placement="top" title="Python3 socket programming">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2016-07-25-Linux-sort/" data-toggle="tooltip" data-placement="top" title="Linux Sort 명령어">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+	    
+        <div class="disqus-comments">
+	        
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/baekido" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/unclebae" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:baekido@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  		  
+        </ul>
+        <p class="copyright text-muted">
+		  Bae Ki Do
+		  &nbsp;&bull;&nbsp;
+		  2016
+		  
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://unclebae.github.io">unclebae.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

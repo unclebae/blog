@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Java8 New Date and Time API</title>
+
+  <meta name="author" content="Bae Ki Do" />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="UncleBae Story - I will do everything I believe or I think." href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Java8 New Date and Time API" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://unclebae.github.io/2016-09-12-java8-date-util//" />
+  
+  
+  <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@baekido" />
+  <meta name="twitter:creator" content="@baekido" />
+  <meta name="twitter:title" content="Java8 New Date and Time API" />
+  <meta name="twitter:description" content="변경사항 자바 8에서는 신규 Date와 Time에 관한 API가 소개 되었다. 과거 java.util.Date 와 java.util.Calendar 유틸은 정말 형편없었다. 그럼 Java 8이전과 이후의 Date, Time관련 유틸리티가 어떻게 바뀌었는지 한번 살펴보자. 기존 Java Date 유틸리티의 문제. 과거 Java Date유틸리느는 비 일관성, 설계적인 결함 을 가지고 있었다. Object 내용 자체가 변경이 된다. 이름규칙 Date..." />
+  
+  <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://unclebae.github.io">UncleBae Story</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="https://github.com/unclebae">GitHub</a>
+
+          </li>
+        
+        
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://www.markdowntutorial.com/">Learn markdown</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="https://pages.github.com/">GitHub Pages</a>
+
+                
+              
+            </div>
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://uncle-bae.blogspot.kr/">BLOG</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://unclebae.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Java8 New Date and Time API</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on September 12, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+	      <h2 id="section">변경사항</h2>
+
+<p>자바 8에서는 신규 Date와 Time에 관한 API가 소개 되었다. 
+과거 java.util.Date 와 java.util.Calendar 유틸은 정말 형편없었다.</p>
+
+<p>그럼 Java 8이전과 이후의 Date, Time관련 유틸리티가 어떻게 바뀌었는지 한번 살펴보자.</p>
+
+<h3 id="java-date--">기존 Java Date 유틸리티의 문제.</h3>
+
+<p>과거 Java Date유틸리느는 비 일관성, 설계적인 결함 을 가지고 있었다.</p>
+
+<ol>
+  <li>Object 내용 자체가 변경이 된다.</li>
+  <li>이름규칙 Date 클래스이면서 시간까지 모두 커버</li>
+  <li>1월은 데이트 객체 생성시 0에 해당한다.</li>
+  <li>Date객체를 생성할때 년도 = 현재년도 - 1900 에 해당하는 오프셋을 .. (흠 매번 계산을 해야하다니)</li>
+  <li>thread unsafe한 DateTime Format</li>
+</ol>
+
+<h3 id="section-1">새롭게 바뀐점.</h3>
+
+<ol>
+  <li>날짜 구조 
+LocalDate + LocalTime + ZoneId
+LocateDateTime (LocalDate + LocalTime)
+ZonedDateTime  (LocalDate + LocalTime + ZoneId)</li>
+  <li>사람을 위한 유틸리티와, 머신을 위한 유틸리티의 구분</li>
+  <li>immutable 한 객체 (메소드를 실행하면 새로운 객체가 생성되는 방식) = ThreadSafe한 구조</li>
+  <li>TemporalAdjuster를 이용하면 날짜에 대한 커스텀 기능을 이용할 수 있다.</li>
+  <li>Thread Safe한 DateTimeFormat지원</li>
+  <li>TimeZone을 지원하여 Daylight Saving Time을 지원한다.</li>
+</ol>
+
+<h2 id="section-2">사용방법</h2>
+
+<p>LocalDateTest.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//  LocalDate생성</span>
+<span class="n">LocalDate</span> <span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+
+<span class="c1">//  현재 날짜를 생성한다</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-------------[ LocalDate Methods ]--------------"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getYear</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int year = date.getYearI();  : [%s]"</span><span class="o">,</span> <span class="n">year</span><span class="o">));</span>
+
+<span class="n">Month</span> <span class="n">month</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getMonth</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Month month = date.getMonth();  : [%s]"</span><span class="o">,</span> <span class="n">month</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int day = date.getDayOfMonth(); : [%s]"</span><span class="o">,</span> <span class="n">day</span><span class="o">));</span>
+
+<span class="n">DayOfWeek</span> <span class="n">dow</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getDayOfWeek</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"DayOfWeek dow = date.getDayOfWeek(); : [%s]"</span><span class="o">,</span> <span class="n">dow</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">lengthOfMonth</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int len = date.lengthOfMonth(); : [%s]"</span><span class="o">,</span> <span class="n">len</span><span class="o">));</span>
+
+<span class="kt">boolean</span> <span class="n">leap</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">isLeapYear</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"boolean leap = date.isLeapYear();: [%s]"</span><span class="o">,</span> <span class="n">leap</span><span class="o">));</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-------------[ Using Temporal Fields ]--------------"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">yearByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int yearByField = date.get(ChronoField.YEAR); : [%s]"</span><span class="o">,</span> <span class="n">yearByField</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">monthByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int monthByField = date.get(ChronoField.MONTH_OF_YEAR); : [%s]"</span><span class="o">,</span> <span class="n">monthByField</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">dayByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int dayByField = date.get(ChronoField.DAY_OF_MONTH); : [%s]"</span><span class="o">,</span> <span class="n">dayByField</span><span class="o">));</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-------------[</span> <span class="n">LocalDate</span> <span class="n">Methods</span> <span class="o">]--------------</span>
+<span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getYearI</span><span class="o">();</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">2016</span><span class="o">]</span>
+<span class="n">Month</span> <span class="n">month</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getMonth</span><span class="o">();</span>  <span class="o">:</span> <span class="o">[</span><span class="n">SEPTEMBER</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">12</span><span class="o">]</span>
+
+<span class="n">DayOfWeek</span> <span class="n">dow</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getDayOfWeek</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="n">MONDAY</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">lengthOfMonth</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">30</span><span class="o">]</span>
+<span class="kt">boolean</span> <span class="n">leap</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">isLeapYear</span><span class="o">();:</span> <span class="o">[</span><span class="kc">true</span><span class="o">]</span>
+
+<span class="o">-------------[</span> <span class="n">Using</span> <span class="n">Temporal</span> <span class="n">Fields</span> <span class="o">]--------------</span>
+<span class="kt">int</span> <span class="n">yearByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="mi">2016</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">monthByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="mi">9</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">dayByField</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="mi">12</span><span class="o">]</span></code></pre></figure>
+
+<p>LocalTime.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalTime</span> <span class="n">time</span> <span class="o">=</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">01</span><span class="o">);</span>
+
+<span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getHour</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int hour = time.getHour(); : [%s]"</span><span class="o">,</span> <span class="n">hour</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">minute</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getMinute</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int minute = time.getMinute(); : [%s]"</span><span class="o">,</span> <span class="n">minute</span><span class="o">));</span>
+
+<span class="kt">int</span> <span class="n">second</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getSecond</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"int second = time.getSecond(); : [%s]"</span><span class="o">,</span> <span class="n">second</span><span class="o">));</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getHour</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">20</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">minute</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getMinute</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">30</span><span class="o">]</span>
+<span class="kt">int</span> <span class="n">second</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="na">getSecond</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">1</span><span class="o">]</span></code></pre></figure>
+
+<p>LocalDateTimeTest.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalDateTime</span> <span class="n">dateTime1</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2014</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">SEPTEMBER</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">01</span><span class="o">);</span>
+
+<span class="n">LocalDate</span> <span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+<span class="n">LocalTime</span> <span class="n">time</span> <span class="o">=</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+<span class="n">LocalDateTime</span> <span class="n">dateTime2</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">date</span><span class="o">,</span> <span class="n">time</span><span class="o">);</span>
+
+<span class="n">LocalDateTime</span> <span class="n">dateTime3</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">atTime</span><span class="o">(</span><span class="mi">20</span><span class="o">,</span> <span class="mi">35</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+
+<span class="n">LocalDateTime</span> <span class="n">dateTime4</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">atTime</span><span class="o">(</span><span class="n">time</span><span class="o">);</span>
+
+<span class="n">LocalDate</span> <span class="n">localDate</span> <span class="o">=</span> <span class="n">dateTime1</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"LocalDate localDate = dateTime1.toLocalDate(); : [%s]"</span><span class="o">,</span> <span class="n">localDate</span><span class="o">));</span>
+
+<span class="n">LocalTime</span> <span class="n">localTime</span> <span class="o">=</span> <span class="n">dateTime1</span><span class="o">.</span><span class="na">toLocalTime</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"LocalTime localTime = dateTime1.toLocalTime(); : [%s]"</span><span class="o">,</span> <span class="n">localTime</span><span class="o">));</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalDate</span> <span class="n">localDate</span> <span class="o">=</span> <span class="n">dateTime1</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="o">]</span>
+<span class="n">LocalTime</span> <span class="n">localTime</span> <span class="o">=</span> <span class="n">dateTime1</span><span class="o">.</span><span class="na">toLocalTime</span><span class="o">();</span> <span class="o">:</span> <span class="o">[</span><span class="mi">20</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mi">01</span><span class="o">]</span></code></pre></figure>
+
+<p>머신을 위한 시간 처리방법</p>
+
+<p>Instant.ofEpochSecond(3);
+Instant.ofEpochSecond(3, 0);
+Instant.ofEpochSecond(2, 1_000_000_000);
+Instant.ofEpochSecond(4, -1_000_000_000);</p>
+
+<p>경과시간 알아내기</p>
+
+<p>Duration durationByTime = Duration.between(time1, time2);
+Duration durationByDateTime = Duration.between(dateTime1, dateTime2);
+Duration durationByInstant = Duration.between(instant1, instant2);</p>
+
+<p>경과 날짜 및 월, 년 알아내기</p>
+
+<p>Period tenDays = Period.between(LocalDate.of(2016, 09, 02), LocalDate.of(2016.09.12));</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Duration</span> <span class="n">threeMinutes</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Duration threeMinutes = Duration.ofMinutes(3); : [%s]"</span><span class="o">,</span> <span class="n">threeMinutes</span><span class="o">));</span>
+
+
+<span class="n">Duration</span> <span class="n">fourMinutes</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Duration fourMinutes = Duration.of(4, ChronoUnit.MINUTES); : [%s]"</span><span class="o">,</span> <span class="n">fourMinutes</span><span class="o">));</span>
+
+<span class="n">Period</span> <span class="n">tenDays</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">ofDays</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Period tenDays = Period.ofDays(10); : [%s]"</span><span class="o">,</span> <span class="n">tenDays</span><span class="o">));</span>
+
+<span class="n">Period</span> <span class="n">threeWeeks</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">ofWeeks</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Period threeWeeks = Period.ofWeeks(3); : [%s]"</span><span class="o">,</span> <span class="n">threeWeeks</span><span class="o">));</span>
+
+<span class="n">Period</span> <span class="n">twoYearsSixMonthsOneDay</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1); : [%s]"</span><span class="o">,</span> <span class="n">twoYearsSixMonthsOneDay</span><span class="o">));</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Duration</span> <span class="n">threeMinutes</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="n">PT3M</span><span class="o">]</span>
+<span class="n">Duration</span> <span class="n">fourMinutes</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="n">PT4M</span><span class="o">]</span>
+<span class="n">Period</span> <span class="n">tenDays</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">ofDays</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="n">P10D</span><span class="o">]</span>
+<span class="n">Period</span> <span class="n">threeWeeks</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">ofWeeks</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="n">P21D</span><span class="o">]</span>
+<span class="n">Period</span> <span class="n">twoYearsSixMonthsOneDay</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> <span class="o">:</span> <span class="o">[</span><span class="n">P2Y6M1D</span><span class="o">]</span></code></pre></figure>
+
+<p>날짜 변경</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalDate</span> <span class="n">date01</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2006</span><span class="o">,</span> <span class="mi">06</span><span class="o">,</span> <span class="mi">01</span><span class="o">);</span>
+<span class="mi">2006</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">01</span>
+
+<span class="n">LocalDate</span> <span class="n">date02</span> <span class="o">=</span> <span class="n">date01</span><span class="o">.</span><span class="na">withYear</span><span class="o">(</span><span class="mi">2016</span><span class="o">);</span> 
+<span class="mi">2016</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">01</span>
+
+<span class="n">LocalDate</span> <span class="n">date03</span> <span class="o">=</span> <span class="n">date02</span><span class="o">.</span><span class="na">withDayOfMonth</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">12</span>
+
+<span class="n">LocalDate</span> <span class="n">date04</span> <span class="o">=</span> <span class="n">date03</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">,</span> <span class="mi">09</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span></code></pre></figure>
+
+<p>날짜 연산</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalDate</span> <span class="n">date01</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2006</span><span class="o">,</span> <span class="mi">06</span><span class="o">,</span> <span class="mi">01</span><span class="o">);</span>
+<span class="mi">2006</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">01</span>
+
+<span class="n">LocalDate</span> <span class="n">date02</span> <span class="o">=</span> <span class="n">date01</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">01</span>
+
+<span class="n">LocalDate</span> <span class="n">date03</span> <span class="o">=</span> <span class="n">date02</span><span class="o">.</span><span class="na">plusMonth</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span>
+
+<span class="n">LocalDate</span> <span class="n">date04</span> <span class="o">=</span> <span class="n">date03</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span></code></pre></figure>
+
+<p>TemporalAdjuster interface</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TemporalAdjuster</span> <span class="o">{</span>
+    <span class="n">Temporal</span> <span class="nf">adjustInto</span><span class="o">(</span><span class="n">Temporal</span> <span class="n">temporal</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Temporal 객체를 새로운 Temporal객체로 변경하는 작업을 하도록 하는 인터페이스이다. 
+이를 통해서 복잡한 날자 연산 처리를 구현할 수 있다.</p>
+
+<p>주말 배송을 하지 않을경우 배송일 처리용 TemporalAdjuster 구현체</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EstimateDeliverableDay</span> <span class="kd">implements</span> <span class="n">TemporalAdjuster</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Temporal</span> <span class="nf">adjustInto</span><span class="o">(</span><span class="n">Temporal</span> <span class="n">temporal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">DayOfWeek</span> <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">DayOfWeek</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">temporal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_WEEK</span><span class="o">));</span>
+
+        <span class="kt">int</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="n">DayOfWeek</span><span class="o">.</span><span class="na">FRIDAY</span><span class="o">)</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// 월요일</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="n">DayOfWeek</span><span class="o">.</span><span class="na">SATURDAY</span> <span class="o">||</span> <span class="n">dayOfWeek</span> <span class="o">==</span> <span class="n">DayOfWeek</span><span class="o">.</span><span class="na">SUNDAY</span><span class="o">)</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// 화요일</span>
+
+        <span class="k">return</span> <span class="n">temporal</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="n">duration</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>사용</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">EstimateDeliverableDay</span> <span class="n">estmateDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EstimateDeliverableDay</span><span class="o">();</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">estmateDay</span><span class="o">);</span></code></pre></figure>
+
+<p>날짜 포매팅하기.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LocalDate</span> <span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+
+<span class="n">String</span> <span class="n">isoDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">DateTimeFormatter</span><span class="o">.</span><span class="na">BASIC_ISO_DATE</span><span class="o">);</span>
+<span class="mi">20160912</span>
+
+<span class="n">String</span> <span class="n">isoLocalDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">DateTimeFormatter</span><span class="o">.</span><span class="na">ISO_LOCAL_ATE</span><span class="o">);</span>
+<span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span>
+
+<span class="n">DateTimeFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">DateTimeFormatter</span><span class="o">.</span><span class="na">ofPattern</span><span class="o">(</span><span class="s">"yyyy MM dd"</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">formattedString</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">formatter</span><span class="o">);</span>
+<span class="n">LocalDate</span> <span class="n">parsedDate</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">formattedString</span><span class="o">,</span> <span class="n">formatter</span><span class="o">);</span>
+<span class="mi">2016</span> <span class="mi">09</span> <span class="mi">12</span>
+
+<span class="n">DateTimeFormatter</span> <span class="n">koreanFormatter</span> <span class="o">=</span> <span class="n">DateTimeFormatter</span><span class="o">.</span><span class="na">ofPattern</span><span class="o">(</span><span class="s">"yyyy-MM-dd"</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">KOREAN</span><span class="o">);</span>
+<span class="n">LodalDate</span> <span class="n">date02</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span><span class="mi">12</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">formattedDateString</span> <span class="o">=</span> <span class="n">date02</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">koreanFormatter</span><span class="o">);</span>
+<span class="n">LocaleDate</span> <span class="n">parsedDate02</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">formattedDateString</span><span class="o">,</span> <span class="n">koreanFormatter</span><span class="o">);</span></code></pre></figure>
+
+<p>날짜 포매팅 빌더 이용하기.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DateTimeFormatter</span> <span class="n">koreanFormatter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="s">"."</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="s">" "</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">parseCaseInsensitive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">toFormatter</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">KOREAN</span><span class="o">);</span>
+
+<span class="n">LocalDate</span> <span class="n">date1</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Formatted Date : "</span> <span class="o">+</span> <span class="n">date1</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">koreanFormatter</span><span class="o">));</span>
+
+<span class="n">DateTimeFormatter</span> <span class="n">koreanFormatter2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="s">"-"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">parseCaseInsensitive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">toFormatter</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">KOREAN</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Formatted Date2 : "</span> <span class="o">+</span> <span class="n">date1</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">koreanFormatter2</span><span class="o">));</span>
+
+<span class="n">Formatted</span> <span class="n">Date</span> <span class="o">:</span> <span class="mf">12.9</span><span class="err">월</span> <span class="mi">2016</span>
+<span class="n">Formatted</span> <span class="n">Date2</span> <span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">9</span><span class="err">월</span><span class="o">/</span><span class="mi">12</span></code></pre></figure>
+
+<p>타임존 이용하기.</p>
+
+<p>타임존은 DST(Daylight Saving Time)을 적용한 지역 시간을 위해 사용한다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ZoneId</span> <span class="n">koreanZone</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Asia/Seoul"</span><span class="o">);</span>
+<span class="n">ZoneId</span> <span class="n">defaultZone</span> <span class="o">=</span> <span class="n">TimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">toZoneId</span><span class="o">();</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"KoreanZone : "</span> <span class="o">+</span> <span class="n">koreanZone</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"defaultZone : "</span> <span class="o">+</span> <span class="n">defaultZone</span><span class="o">);</span>
+
+<span class="n">LocalDate</span> <span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span>  <span class="n">Month</span><span class="o">.</span><span class="na">SEPTEMBER</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">zoneTime</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">atStartOfDay</span><span class="o">(</span><span class="n">koreanZone</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"LocalDate date = LocalDate.of(2016,  Month.SEPTEMBER, 12); [%s]"</span><span class="o">,</span> <span class="n">zoneTime</span><span class="o">));</span>
+
+<span class="n">LocalDateTime</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">SEPTEMBER</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">24</span><span class="o">);</span>
+<span class="n">ZonedDateTime</span> <span class="n">zoneTime2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">koreanZone</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"LocalDateTime datetime = LocalDateTime.of(2016, Month.SEPTEMBER, 12, 23, 24); [%s]"</span><span class="o">,</span> <span class="n">zoneTime2</span><span class="o">));</span>
+
+<span class="n">Instant</span> <span class="n">instant</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+<span class="n">ZonedDateTime</span> <span class="n">zoneTime3</span> <span class="o">=</span> <span class="n">instant</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">koreanZone</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Instant instant = Instant.now(); [%s]"</span><span class="o">,</span> <span class="n">zoneTime3</span><span class="o">));</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KoreanZone</span> <span class="o">:</span> <span class="n">Asia</span><span class="o">/</span><span class="n">Seoul</span>
+<span class="n">defaultZone</span> <span class="o">:</span> <span class="n">Asia</span><span class="o">/</span><span class="n">Seoul</span>
+<span class="n">LocalDate</span> <span class="n">date</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span>  <span class="n">Month</span><span class="o">.</span><span class="na">SEPTEMBER</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span> <span class="o">[</span><span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="nl">T00:</span><span class="mi">00</span><span class="o">+</span><span class="mi">09</span><span class="o">:</span><span class="mi">00</span><span class="o">[</span><span class="n">Asia</span><span class="o">/</span><span class="n">Seoul</span><span class="o">]]</span>
+<span class="n">LocalDateTime</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2016</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">SEPTEMBER</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">24</span><span class="o">);</span> <span class="o">[</span><span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="nl">T23:</span><span class="mi">24</span><span class="o">+</span><span class="mi">09</span><span class="o">:</span><span class="mi">00</span><span class="o">[</span><span class="n">Asia</span><span class="o">/</span><span class="n">Seoul</span><span class="o">]]</span>
+<span class="n">Instant</span> <span class="n">instant</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span> <span class="o">[</span><span class="mi">2016</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="nl">T23:</span><span class="mi">17</span><span class="o">:</span><span class="mf">43.652</span><span class="o">+</span><span class="mi">09</span><span class="o">:</span><span class="mi">00</span><span class="o">[</span><span class="n">Asia</span><span class="o">/</span><span class="n">Seoul</span><span class="o">]]</span></code></pre></figure>
+
+<div id="disqus_thread"></div>
+<script>
+   /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        s = d.createElement('script'); 
+        s.src = '//https-unclebae-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+	    </article>
+	  	  
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-09-08-javaStaticFactoryMethodOfCollectorsClass/" data-toggle="tooltip" data-placement="top" title="StaticFactory Methods of Collectors Class in Java">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+	    
+        <div class="disqus-comments">
+	        
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/baekido" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/unclebae" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:baekido@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  		  
+        </ul>
+        <p class="copyright text-muted">
+		  Bae Ki Do
+		  &nbsp;&bull;&nbsp;
+		  2016
+		  
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://unclebae.github.io">unclebae.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

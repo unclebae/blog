@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>React.js와 Spring Data REST 따라하기(Part1)</title>
+
+  <meta name="author" content="Bae Ki Do" />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="UncleBae Story - I will do everything I believe or I think." href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="React.js와 Spring Data REST 따라하기(Part1)" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://unclebae.github.io/2016-07-27-ReactJS-SpringDataREST//" />
+  
+  
+  <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@baekido" />
+  <meta name="twitter:creator" content="@baekido" />
+  <meta name="twitter:title" content="React.js와 Spring Data REST 따라하기(Part1)" />
+  <meta name="twitter:description" content="this article from spring.io 기본적인 사항 Spring Data REST : 빠르게 리포지토리의 내용을 REST방식으로 지원해준다. React : Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다. 준비물 spring starter http://start.spring.io 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자. Rest Repository : Spring Data REST를 지원 Thymeleaf : View를..." />
+  
+  <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://unclebae.github.io">UncleBae Story</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="https://github.com/unclebae">GitHub</a>
+
+          </li>
+        
+        
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://www.markdowntutorial.com/">Learn markdown</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="https://pages.github.com/">GitHub Pages</a>
+
+                
+              
+            </div>
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://uncle-bae.blogspot.kr/">BLOG</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://unclebae.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>React.js와 Spring Data REST 따라하기(Part1)</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on July 27, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+	      <p>this article from <a href="https://spring.io/guides/tutorials/react-and-spring-data-rest/">spring.io</a></p>
+
+<h2 id="section">기본적인 사항</h2>
+<p><a href="https://www.youtube.com/watch?v=TgCr7v9tdKM">Spring Data REST</a> : 
+빠르게 리포지토리의 내용을 REST방식으로 지원해준다.</p>
+
+<p><a href="http://facebook.github.io/react/index.html">React</a> :
+Facebook에서 개발한 자바스크립트 컴포넌트로 효과적이면서도, 빠르고 쉽게 사용할 수 있는 뷰 컴포넌트이다.</p>
+
+<h2 id="section-1">준비물</h2>
+
+<h3 id="spring-starter">spring starter</h3>
+
+<p><a href="http://start.spring.io">http://start.spring.io</a> 에서 다음 항목을 선택하고 프로젝트 스텁을 만들자.</p>
+
+<ul>
+  <li>Rest Repository : Spring Data REST를 지원</li>
+  <li>Thymeleaf : View를 생성해주는 최근 스프링에서 밀어주는 View컴포넌트</li>
+  <li>JPA : Java Persistance API</li>
+  <li>H2 : 메모리 DB, 테스트 용도로 매우 가볍고 편리한 도구</li>
+  <li>Lombok : boilerplate 한 코드를 자동 생성해주는 도구</li>
+</ul>
+
+<h3 id="with-eclipse">설치과정 with Eclipse</h3>
+<p>신규 프로젝트 생성</p>
+
+<p><img src="/img/react_spring/react_spring01.png" alt="react_spring01" /></p>
+
+<p>프로젝트 설정</p>
+
+<p><img src="/img/react_spring/react_spring02.png" alt="react_spring02" /></p>
+
+<p>프로젝트 의존성 설정</p>
+
+<p><img src="/img/react_spring/react_spring03.png" alt="react_spring03" /></p>
+
+<h3 id="section-2">기타 개발환경</h3>
+<ul>
+  <li>Java 8</li>
+  <li>Maven Project</li>
+  <li>최신 release의 Spring Boot</li>
+  <li>React.js</li>
+</ul>
+
+<h2 id="rest--">스프링 데이터 REST를 왜 사용하나?</h2>
+<p>초기 데이터가 있으며, 사용자는 다양한 방법으로 이 데이터에 접근하길 원한다. 시간이 흐르고 사람들은 많은 수의 MVC 컨트롤러를 
+생산해내었고, 스프링에서 제공하는 강력한 REST를 지원했다. 그러나 점점 시간이 갈수록 유지보수 비용이 증가한다.</p>
+
+<p>Spring Data REST는 이러한 문제를 다음과 같은 방법으로 해결한다.</p>
+
+<ul>
+  <li>개발자는 Spring Data를 이용하여 리포지토리 모델을 제공한다.</li>
+  <li>HTTP verbs (GET, POST, DELETE, PUT등을 말한다.) 와 표준 미디어 타입들 그리고 IANA-approved 한 링크 이름을 이용하여 표준화를 제공한다.</li>
+</ul>
+
+<h2 id="section-3">도메인 선언하기.</h2>
+<p>Spring Data REST 기반의 어플리케이션에서 중요한 부분은 domain object이다. 
+다음은 Employee 라는 도메인 객체를 생성하는 코드이다.</p>
+
+<p>src/main/java/com/unclebae/study/entity/Employee.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">unclebae</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="nd">@Id</span> <span class="nd">@GeneratedValue</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">firstName</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">lastName</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
+	
+	<span class="kd">private</span> <span class="nf">Employee</span><span class="o">()</span> <span class="o">{}</span>
+	
+	<span class="kd">public</span> <span class="nf">Employee</span><span class="o">(</span><span class="n">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="n">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">String</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">firstName</span> <span class="o">=</span> <span class="n">firstName</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">lastName</span> <span class="o">=</span> <span class="n">lastName</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">@Entity</code>는 JPA 어노테이션으로 관련된 테이블에 저장되어야할 클래스를 의미한다. 
+<code class="highlighter-rouge">@Id</code>와 <code class="highlighter-rouge">@GeneratedValue</code>는 기본키를 의미하며, 필요한경우 자동적으로 생성되는 의미의 JPA어노테이션이다. 
+<code class="highlighter-rouge">@Data</code>는 Lombok 어노테이션이며 getter, setter, constructors, toString, hash, equals, 기타 boilerplate한 코드를 생성해준다.</p>
+
+<p>이 엔터티는 employee의 정보를 담는데 사용한다. 이 케이스에서는 이름과 job 설명을 담게 된다.</p>
+
+<ul>
+  <li>Spring Data REST는 JPA만 한정되어 사용되지 않는다. 다양한 NoSQL 데이터 저장소 역시 사용할 수 있으며, 인터페이스의 변경 없이 그대로 사용이 가능하다.</li>
+</ul>
+
+<h2 id="repository-">Repository 정의하기.</h2>
+<p>Spring Data REST어플리케이션에서 주요 부분중에 하나는 repository 정의 부분이다.</p>
+
+<p>src/main/java/com/unclebae/study/repository/EmployeeRepository.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">unclebae</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.unclebae.study.entity.Employee</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EmployeeRepository</span> <span class="kd">extends</span> <span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>repository는 Spring Data 공통으로 CrudRepository를 상속받는다. 그리고 도메인 객체의 타입과 primary key필드의 타입을 지정한다.</li>
+</ul>
+
+<h2 id="demo---">Demo 데이터 미리 로드하기.</h2>
+<p>어플리케이션이 실행이 될때, 몇개의 데이터를 미리 로드해보자.</p>
+
+<p>src/main/java/com/unclebae/study/loader/DatabaseLoader.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">unclebae</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">loader</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.CommandLineRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.unclebae.study.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.unclebae.study.repository.EmployeeRepository</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DatabaseLoader</span> <span class="kd">implements</span> <span class="n">CommandLineRunner</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">EmployeeRepository</span> <span class="n">repository</span><span class="o">;</span>
+	
+	<span class="nd">@Autowired</span>
+	<span class="kd">public</span> <span class="nf">DatabaseLoader</span><span class="o">(</span><span class="n">EmployeeRepository</span> <span class="n">repository</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">repository</span> <span class="o">=</span> <span class="n">repository</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">arg0</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">"Kido"</span><span class="o">,</span> <span class="s">"Bae"</span><span class="o">,</span> <span class="s">"Computer Engineer"</span><span class="o">));</span>
+		<span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">"Uncle"</span><span class="o">,</span> <span class="s">"Bae"</span><span class="o">,</span> <span class="s">"Computer Scientist"</span><span class="o">));</span>
+	<span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>이 클래스에서는 <code class="highlighter-rouge">@Component</code>어노테이션을 기술하고 있으며 이는 <code class="highlighter-rouge">@SpringBootApplication</code>에서 자동으로 찾도록한다.</li>
+  <li>스프링 부트에서 제공해주는 <code class="highlighter-rouge">CommandLineRunner</code>를 구현하였으며, 이는 모든 Bean들이 생성되고, 등록된후에 실행이 된다.</li>
+  <li><code class="highlighter-rouge">EmployeeRepository</code> 객체는 생성자를 이용하여 DI된다.</li>
+  <li><code class="highlighter-rouge">run()</code>메소드는 커맨드라인이 실행될때 호출되는 메소드이며, 여기에서 기초 데이터를 저장하고 있다.</li>
+</ul>
+
+<p>Spring Data에서 가장 강력한 기능중에 하나는 JPA쿼리를 생성해준다는 것이다. 이것은 개발 시간을 줄여줄 뿐만 아니라. 버그와 에러를 줄여주는
+역할을 한다. Spring Data는 리포지토리 클래스에서 <a href="http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details">메소드 이름에 의한 쿼리 생성</a>을 지원하며 필요한 saving, deleting, finding 등의 기능을 제공한다.</p>
+
+<h3 id="root-uri-">root URI 변경하기.</h3>
+<p>기본적으로 Spring Data REST의 호스트는 / 를 root로 하고 있다. 이 root URI는 주로 UI를 위해 사용하므로 api를 위해서 다음과 같이 변경하자.</p>
+
+<p>src/main/resources/application.properties</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">spring.data.rest.base-path<span class="o">=</span>/api</code></pre></figure>
+
+<h3 id="section-4">어플리케이션 런칭하기.</h3>
+<p>마지막 스텝으로 어플리케션이 REST의 API의 오퍼레이션을 fully하게 지원하기 위해서 다음과 같이 코드를 작성한다.</p>
+
+<p>src/main/java/com/unclebae/study/ReactSpringDataRestApplication.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">unclebae</span><span class="o">.</span><span class="na">study</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReactSpringDataRestApplication</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ReactSpringDataRestApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>해당 어플리케이션을 실행해보자. <code class="highlighter-rouge">./mvnw spring-boot:run</code>으로 수행하거나 이클립스에서 수행하자.</p>
+
+<p>글에서 추천하는 스프링 부트 강의 <a href="https://www.youtube.com/watch?v=sbPSjI4tt10">Josh Long</a></p>
+
+<h2 id="section-5">테스트 해보기.</h2>
+<p>어플리케이션이 올라오면 <a href="http://curl.haxx.se/">cURL</a>을 이용하여 테스트를 해보자.</p>
+
+<p>curl localhost:8080/api</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">{</span>
+  <span class="s2">"_links"</span> : <span class="o">{</span>
+    <span class="s2">"employees"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees"</span>
+    <span class="o">}</span>,
+    <span class="s2">"profile"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/profile"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>root노드로 요청을 던지면 위와 같은 결과가 <a href="http://stateless.co/hal_specification.html">HAL-formatted JSON docuemnt</a>로 감싸져서 반환된다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">_links</code>는 가능한 링크의 컬렉션들을 반환한다.</li>
+  <li><code class="highlighter-rouge">employees</code> 는 EmployeeRepository인터페이스에 의해서 정의된 객체를 위한 aggregate root를 나타낸다.</li>
+  <li><code class="highlighter-rouge">profile</code> 는 IANA-standard 와 연관된 내용이며 이는 전체 서비스의 메타데이터를 발견하도록 표시한다.</li>
+</ul>
+
+<h2 id="employees--">employees 링크에 접근해보기</h2>
+<p>curl localhost:8080/api/employees</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">{</span>
+  <span class="s2">"_embedded"</span> : <span class="o">{</span>
+    <span class="s2">"employees"</span> : <span class="o">[</span> <span class="o">{</span>
+      <span class="s2">"firstName"</span> : <span class="s2">"Kido"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+      <span class="s2">"description"</span> : <span class="s2">"Computer Engineer"</span>,
+      <span class="s2">"_links"</span> : <span class="o">{</span>
+        <span class="s2">"self"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+        <span class="o">}</span>,
+        <span class="s2">"employee"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"firstName"</span> : <span class="s2">"Uncle"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+      <span class="s2">"description"</span> : <span class="s2">"Computer Scientist"</span>,
+      <span class="s2">"_links"</span> : <span class="o">{</span>
+        <span class="s2">"self"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/2"</span>
+        <span class="o">}</span>,
+        <span class="s2">"employee"</span> : <span class="o">{</span>
+          <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/2"</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span> <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"_links"</span> : <span class="o">{</span>
+    <span class="s2">"self"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees"</span>
+    <span class="o">}</span>,
+    <span class="s2">"profile"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/profile/employees"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위 내용을 보면 employees로 2개의 내용이 들어 있음을 알 수 있다. 
+하나는 <code class="highlighter-rouge">http://localhost:8080/api/employees/1</code> 그리고 다른 하나는 끝이 2인 정보가 있다는 것을 알려준다.</p>
+
+<p>맨 아래 내용은 현재 URL의 정보와 profile정보를 보여주고 있다.</p>
+
+<h2 id="employee--">employee상세 정보 살펴보기.</h2>
+<p>curl localhost:8080/api/employees/1</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">{</span>
+  <span class="s2">"firstName"</span> : <span class="s2">"Kido"</span>,
+  <span class="s2">"lastName"</span> : <span class="s2">"Bae"</span>,
+  <span class="s2">"description"</span> : <span class="s2">"Computer Engineer"</span>,
+  <span class="s2">"_links"</span> : <span class="o">{</span>
+    <span class="s2">"self"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+    <span class="o">}</span>,
+    <span class="s2">"employee"</span> : <span class="o">{</span>
+      <span class="s2">"href"</span> : <span class="s2">"http://localhost:8080/api/employees/1"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="section-6">신규 데이터 입력해보기.</h2>
+
+<p>신규로 데이터를 넣고자 할때에는 다음과 같이 명령어를 입력하면 된다.</p>
+
+<p>curl -X POST localhost:8080/api/employees -d ‘{“firstName”:”Bilbo”, “lastName”:”Baggins”, “description”: “burglar”}’ -H ‘Content-Type:application/json’</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">{</span>
+  <span class="s">"firstName"</span> <span class="o">:</span> <span class="s">"Bilbo"</span><span class="o">,</span>
+  <span class="s">"lastName"</span> <span class="o">:</span> <span class="s">"Baggins"</span><span class="o">,</span>
+  <span class="s">"description"</span> <span class="o">:</span> <span class="s">"burglar"</span><span class="o">,</span>
+  <span class="s">"_links"</span> <span class="o">:</span> <span class="o">{</span>
+    <span class="s">"self"</span> <span class="o">:</span> <span class="o">{</span>
+      <span class="s">"href"</span> <span class="o">:</span> <span class="s">"http://localhost:8080/api/employees/3"</span>
+    <span class="o">},</span>
+    <span class="s">"employee"</span> <span class="o">:</span> <span class="o">{</span>
+      <span class="s">"href"</span> <span class="o">:</span> <span class="s">"http://localhost:8080/api/employees/3"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>다음 가이드를 보고 PUT, PATCH, DELETE등의 verbose를 이용할 수 있다. <a href="https://spring.io/guides/gs/accessing-data-rest/">참고 가이드</a></p>
+
+
+	    </article>
+	  	  
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-07-26-Python-Data01_install/" data-toggle="tooltip" data-placement="top" title="Python Data Analysis 01_install">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2016-07-27-hypertextApplicationLanguage/" data-toggle="tooltip" data-placement="top" title="HAL - Hypertext Application Language">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+	    
+        <div class="disqus-comments">
+	        
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/baekido" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/unclebae" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:baekido@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  		  
+        </ul>
+        <p class="copyright text-muted">
+		  Bae Ki Do
+		  &nbsp;&bull;&nbsp;
+		  2016
+		  
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://unclebae.github.io">unclebae.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

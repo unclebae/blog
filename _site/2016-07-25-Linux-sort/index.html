@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Linux Sort 명령어</title>
+
+  <meta name="author" content="Bae Ki Do" />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="UncleBae Story - I will do everything I believe or I think." href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Linux Sort 명령어" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://unclebae.github.io/2016-07-25-Linux-sort//" />
+  
+  
+  <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@baekido" />
+  <meta name="twitter:creator" content="@baekido" />
+  <meta name="twitter:title" content="Linux Sort 명령어" />
+  <meta name="twitter:description" content="Linux Sort 명령어 man page 이름 sort - sort lines of text files 개요 sort [OPTION]... [FILE]... 설명 모든 FILE(s)의 통합된 결과를 소트하여 표준 출력으로 출력한다. 긴 옵션들의 필수 아규먼트는 짧은 인수에서도 필수이다. 옵션들은 다음과 같다. -b, --ignore-leading-blanks leading blank를 제거한다. -d, --dictionary-order 오직 공백과 알파뉴메릭 문자만 고려한다. -f, --ignore-case..." />
+  
+  <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://unclebae.github.io">UncleBae Story</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="https://github.com/unclebae">GitHub</a>
+
+          </li>
+        
+        
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://www.markdowntutorial.com/">Learn markdown</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="https://pages.github.com/">GitHub Pages</a>
+
+                
+              
+            </div>
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://uncle-bae.blogspot.kr/">BLOG</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://unclebae.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Linux Sort 명령어</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on July 25, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+	      <h2 id="linux-sort--man-page">Linux Sort 명령어 man page</h2>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">이름
+       sort - sort lines of text files
+
+개요
+       sort <span class="o">[</span>OPTION]... <span class="o">[</span>FILE]...
+
+설명
+    모든 FILE<span class="o">(</span>s<span class="o">)</span>의 통합된 결과를 소트하여 표준 출력으로 출력한다. 
+
+    긴 옵션들의 필수 아규먼트는 짧은 인수에서도 필수이다. 
+	옵션들은 다음과 같다. 
+       -b, --ignore-leading-blanks
+	      leading blank를 제거한다. 
+
+       -d, --dictionary-order
+	      오직 공백과 알파뉴메릭 문자만 고려한다. 
+
+       -f, --ignore-case
+             lower case를 대문자 케이스로 변환하여 검색한다. 즉, 대소문자를 고려하지 않는다. 
+
+       -g, --general-numeric-sort
+             일반적인 숫자 값에 따라 비교를 수행한다. 
+
+       -i, --ignore-nonprinting
+
+             오직 프린트 가능한 문자만을 비교하여 소트한다. 
+
+       -M, --month-sort  
+	      compare <span class="o">(</span>unknown<span class="o">)</span> &lt; <span class="sb">`</span>JAN<span class="s1">' &lt; ... &lt; `DEC'</span>
+
+       -n, --numeric-sort
+             스트링의 숫자 값들만을 비교한다. 
+
+       -r, --reverse
+             역순으로 소트한다. 
+
+       기타 옵션들:
+
+       -c, --check
+             input이 소트 되었는지 체크한다.; 소트는 하지 않는다. 
+
+       -k, --key<span class="o">=</span>POS1[,POS2]
+             특정 POS1의 기준으로 시작하여 POS2에 끝낸다. <span class="o">(</span>즉, 소트할 필드를 지정한다.<span class="o">)</span>
+
+       -m, --merge
+             이밎 소트된 파일들을 머지한다.; 이후 소트는 하지 않는다. 
+
+       -o, --output<span class="o">=</span>FILE
+             표준 출력 대신에 파일로 소트 결과를 반환한다. 
+
+       -s, --stable
+             가장 최근의 소트를 이용하는 기능을 정지하고, 안전하게 소트한다. 
+
+       -S, --buffer-size<span class="o">=</span>SIZE
+             메인 메모리 버퍼를 위한 사이즈를 이용한다. 
+
+       -t, --field-separator<span class="o">=</span>SEP
+             non-blank를 blank로 전이하는 것 대신에 SEP를 이용한다. 
+
+       -T, --temporary-directory<span class="o">=</span>DIR
+             임시적으로 DIR를 이용한다. 이는 <span class="nv">$TMPDIR</span>혹은 /tmp를 이용하지 않는다. 복수개의 옵션들로 복수개의 디렉토리를 지정한다. 
+
+       -u, --unique
+             -c 옵션과 함께 제한된 정렬을 체크한다. -c가 없으면 오직 처음으로 같은 것만 출력한다.
+
+       -z, --zero-terminated
+             마지막 라인은 0바이트로 처리한다. 뉴라인이 아닌. 
+
+       --help 
+             도움말을 출력한다.
+
+       --version
+             버젼을 출력한다. 
+
+       POS는 F[,C][OPTS], F는 필드 번호를 의마하고, C는 필드 내에 문자 위치를 의미한다. OPT는 하나 혹은 여러개의 단일문자로 정렬 옵션이다. 
+       이것은 키를 위한 글로벌 정렬 옵션을 상속 받는다. 키가 주어지지 않은경우 키로 전체 라인이 사용된다. 
+
+       SIZE는 
+
+       SIZE  may be followed by the following multiplicative suffixes: % 1% of
+       memory, b 1, K 1024 <span class="o">(</span>default<span class="o">)</span>, and so on <span class="k">for </span>M, G, T, P, E, Z, Y.
+
+       FILE가 없거나 혹은 FILE가 -인경우 표준 입력을 받는다. 
+
+       <span class="k">***</span> 주의 <span class="k">***</span> 로컬로 지정한 환경변수는 소트 정렬에 영향을 준다. <span class="nv">LC_ALL</span><span class="o">=</span>C는 전통적으로 소트를 위해서 native byte 값으로 정렬을 한다. 
+
+AUTHOR
+       Written by Mike Haertel and Paul Eggert.
+
+이하생략 : </code></pre></figure>
+
+<h2 id="section">샘플 예제 :</h2>
+<p>### 기초데이터 : 
+testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">9 nine 아홉
+3 three 세엣
+2 two 두울
+3 three 세엣
+4 four 네엣
+6 six 여섯
+5 five 다섯
+1 one 하나
+7 seven 일곱
+4 four 네엣
+10 ten 열
+5 five 다섯
+8 eight 여덟
+1 one 하나</code></pre></figure>
+
+<h3 id="section-1">기본정렬하기.</h3>
+<p>sort testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">1 one 하나
+1 one 하나
+10 ten 열
+2 two 두울
+3 three 세엣
+3 three 세엣
+4 four 네엣
+4 four 네엣
+5 five 다섯
+5 five 다섯
+6 six 여섯
+7 seven 일곱
+8 eight 여덟
+9 nine 아홉</code></pre></figure>
+
+<h3 id="section-2">숫자 올바르게 정렬하기.</h3>
+<p>sort -n testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">1 one 하나
+1 one 하나
+2 two 두울
+3 three 세엣
+3 three 세엣
+4 four 네엣
+4 four 네엣
+5 five 다섯
+5 five 다섯
+6 six 여섯
+7 seven 일곱
+8 eight 여덟
+9 nine 아홉
+10 ten 열</code></pre></figure>
+
+<h3 id="section-3">역순 정렬하기.</h3>
+<p>sort -rn testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">10 ten 열
+9 nine 아홉
+8 eight 여덟
+7 seven 일곱
+6 six 여섯
+5 five 다섯
+5 five 다섯
+4 four 네엣
+4 four 네엣
+3 three 세엣
+3 three 세엣
+2 two 두울
+1 one 하나
+1 one 하나</code></pre></figure>
+
+<h3 id="section-4">2번째 칼럼 정렬하기.</h3>
+<p>sort -k 2 testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">8 eight 여덟
+5 five 다섯
+5 five 다섯
+4 four 네엣
+4 four 네엣
+9 nine 아홉
+1 one 하나
+1 one 하나
+7 seven 일곱
+6 six 여섯
+10 ten 열
+3 three 세엣
+3 three 세엣
+2 two 두울</code></pre></figure>
+
+<h3 id="section-5">2번째 칼럼 역순 정렬하기.</h3>
+<p>sort -r -k 2  testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">2 two 두울
+3 three 세엣
+3 three 세엣
+10 ten 열
+6 six 여섯
+7 seven 일곱
+1 one 하나
+1 one 하나
+9 nine 아홉
+4 four 네엣
+4 four 네엣
+5 five 다섯
+5 five 다섯
+8 eight 여덟</code></pre></figure>
+
+<h3 id="section-6">중복제거하여 정렬하기.</h3>
+<p>sort -u -n testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">1 one 하나
+2 two 두울
+3 three 세엣
+4 four 네엣
+5 five 다섯
+6 six 여섯
+7 seven 일곱
+8 eight 여덟
+9 nine 아홉
+10 ten 열</code></pre></figure>
+
+<h3 id="section-7">중복 제거하여 2번째 칼럼 역순 정렬하기.</h3>
+<p>sort -u -k 2 testFile</p>
+
+<figure class="highlight"><pre><code class="language-linux" data-lang="linux">8 eight 여덟
+5 five 다섯
+4 four 네엣
+9 nine 아홉
+1 one 하나
+7 seven 일곱
+6 six 여섯
+10 ten 열
+3 three 세엣
+2 two 두울</code></pre></figure>
+
+
+	    </article>
+	  	  
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-07-24-python-thread/" data-toggle="tooltip" data-placement="top" title="Python3 Thread">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2016-07-26-Python-Data01_install/" data-toggle="tooltip" data-placement="top" title="Python Data Analysis 01_install">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+	    
+        <div class="disqus-comments">
+	        
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/baekido" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/unclebae" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:baekido@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  		  
+        </ul>
+        <p class="copyright text-muted">
+		  Bae Ki Do
+		  &nbsp;&bull;&nbsp;
+		  2016
+		  
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://unclebae.github.io">unclebae.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
