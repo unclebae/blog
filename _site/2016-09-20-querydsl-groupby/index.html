@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>QueryDSL Group By 처리하기.</title>
+
+  <meta name="author" content="Bae Ki Do" />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="UncleBae Story - I will do everything I believe or I think." href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="QueryDSL Group By 처리하기." />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://unclebae.github.io/2016-09-20-querydsl-groupby//" />
+  
+  
+  <meta property="og:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@baekido" />
+  <meta name="twitter:creator" content="@baekido" />
+  <meta name="twitter:title" content="QueryDSL Group By 처리하기." />
+  <meta name="twitter:description" content="Query DSL로 Group By 처리를 수행하여 집계 연산 결과를 받아오는 테스트를 수행해보자. 아래 예제는 여러건의 집계 결과를 리스트로 받아오는 테스트이다. 우선 StatusSummary라는 결과를 담아올 객체를 생성한다. StatusSummary.java @Data @AllArgsConstructor(access = AccessLevel.PUBLIC) public class StatusSummary { @NotNull private Long id; @NotNull private Long statusCode; @NotNull private Integer counts; } 결과를 받아오는..." />
+  
+  <meta name="twitter:image" content="http://unclebae.github.io/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://unclebae.github.io">UncleBae Story</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="https://github.com/unclebae">GitHub</a>
+
+          </li>
+        
+        
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="http://www.markdowntutorial.com/">Learn markdown</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="https://pages.github.com/">GitHub Pages</a>
+
+                
+              
+            </div>
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://uncle-bae.blogspot.kr/">BLOG</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://unclebae.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>QueryDSL Group By 처리하기.</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on September 20, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+	      <p>Query DSL로 Group By 처리를 수행하여 집계 연산 결과를 받아오는 테스트를 수행해보자.</p>
+
+<p>아래 예제는 여러건의 집계 결과를 리스트로 받아오는 테스트이다.</p>
+
+<p>우선 StatusSummary라는 결과를 담아올 객체를 생성한다.</p>
+
+<p>StatusSummary.java</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Data</span>
+<span class="nd">@AllArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PUBLIC</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StatusSummary</span> <span class="o">{</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">statusCode</span><span class="o">;</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">counts</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>결과를 받아오는 쿼리 DSL구문</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">QUserStatus</span> <span class="n">table</span> <span class="o">=</span> <span class="n">QUserStatus</span><span class="o">.</span><span class="na">userStatus</span><span class="o">;</span>
+
+<span class="n">JPAQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPAQuery</span><span class="o">(</span><span class="n">entityManager</span><span class="o">);</span>
+
+<span class="c1">// 뽑은 결과를 StatusSummay에 담을 것이기 때문에 표현식을 생성한다. </span>
+<span class="n">ConstructorExpression</span><span class="o">&lt;</span><span class="n">StatusSummary</span><span class="o">&gt;</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">Projections</span><span class="o">.</span><span class="na">constructor</span><span class="o">(</span><span class="n">StatusSummary</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">table</span><span class="o">.</span><span class="na">id</span><span class="o">,</span> <span class="n">table</span><span class="o">.</span><span class="na">statusCode</span><span class="o">,</span> <span class="n">Wildcard</span><span class="o">.</span><span class="na">countAsInt</span><span class="o">);</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">CSReturnStatusSummary</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">table</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="n">table</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">in</span><span class="o">(</span><span class="n">ids</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">table</span><span class="o">.</span><span class="na">status</span><span class="o">.</span><span class="na">in</span><span class="o">(</span><span class="s">"AAA"</span><span class="o">,</span> <span class="s">"BBB"</span><span class="o">)))</span>
+        <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="n">table</span><span class="o">.</span><span class="na">id</span><span class="o">,</span> <span class="n">table</span><span class="o">.</span><span class="na">status</span><span class="o">)</span>  <span class="c1">// groupBy를 수행할 필드 나열</span>
+        <span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">constructor</span><span class="o">);</span></code></pre></figure>
+
+<p>그룹 키를 이용하여 Map 형태로 받아오기. 
+transform을 이용하면 다양한 형태의 자료구조로 변환이 가능하다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">querydsl</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">group</span><span class="o">.</span><span class="na">GroupBy</span><span class="o">.*;</span>
+
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Comment</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">post</span><span class="o">,</span> <span class="n">comment</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="n">comment</span><span class="o">.</span><span class="na">post</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">id</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">groupBy</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">id</span><span class="o">).</span><span class="na">as</span><span class="o">(</span><span class="n">list</span><span class="o">(</span><span class="n">comment</span><span class="o">)));</span></code></pre></figure>
+
+<p>복수개의 칼럼이 존대한다면 다음과 같이 Group로 담아낸다. 
+이를 이용하여 postID를 키로하고, 값은 Group가 되며 내부에는 post.name과 comment.id의 셋으로 접근이 가능하다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Group</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">post</span><span class="o">,</span> <span class="n">comment</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="n">comment</span><span class="o">.</span><span class="na">post</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">id</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">groupBy</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">id</span><span class="o">).</span><span class="na">as</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">set</span><span class="o">(</span><span class="n">comment</span><span class="o">.</span><span class="na">id</span><span class="o">)));</span></code></pre></figure>
+
+<div id="disqus_thread"></div>
+<script>
+   /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        s = d.createElement('script'); 
+        s.src = '//https-unclebae-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+	    </article>
+	  	  
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-09-12-java8-date-util/" data-toggle="tooltip" data-placement="top" title="Java8 New Date and Time API">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+	    
+        <div class="disqus-comments">
+	        
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/baekido" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/unclebae" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:baekido@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  		  
+        </ul>
+        <p class="copyright text-muted">
+		  Bae Ki Do
+		  &nbsp;&bull;&nbsp;
+		  2016
+		  
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://unclebae.github.io">unclebae.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
