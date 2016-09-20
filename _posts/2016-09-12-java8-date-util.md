@@ -12,7 +12,9 @@ comments: true
 그럼 Java 8이전과 이후의 Date, Time관련 유틸리티가 어떻게 바뀌었는지 한번 살펴보자. 
 
 ### 기존 Java Date 유틸리티의 문제. 
-과거 Java Date유틸리느는 비 일관성, 설계적인 결함 을 가지고 있었따. 
+
+과거 Java Date유틸리느는 비 일관성, 설계적인 결함 을 가지고 있었다.
+
 1. Object 내용 자체가 변경이 된다. 
 2. 이름규칙 Date 클래스이면서 시간까지 모두 커버
 3. 1월은 데이트 객체 생성시 0에 해당한다. 
@@ -177,7 +179,160 @@ Period threeWeeks = Period.ofWeeks(3); : [P21D]
 Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1); : [P2Y6M1D]
 {% endhighlight %}
 
+날짜 변경 
 
+{% highlight java %}
+LocalDate date01 = LocalDate.of(2006, 06, 01);
+2006-06-01
+
+LocalDate date02 = date01.withYear(2016); 
+2016-06-01
+
+LocalDate date03 = date02.withDayOfMonth(12);
+2016-06-12
+
+LocalDate date04 = date03.with(ChronoField.MONTH_OF_YEAR, 09);
+2016-09-12
+{% endhighlight %}
+
+날짜 연산 
+
+{% highlight java %}
+LocalDate date01 = LocalDate.of(2006, 06, 01);
+2006-06-01
+
+LocalDate date02 = date01.plusYears(10);
+2016-06-01
+
+LocalDate date03 = date02.plusMonth(3);
+2016-09-01
+
+LocalDate date04 = date03.plus(11, ChronoUnit.DAYS);
+2016-09-12
+{% endhighlight %}
+
+TemporalAdjuster interface
+
+{% highlight java %}
+@FunctionalInterface
+public interface TemporalAdjuster {
+    Temporal adjustInto(Temporal temporal);
+}
+{% endhighlight %}
+
+Temporal 객체를 새로운 Temporal객체로 변경하는 작업을 하도록 하는 인터페이스이다. 
+이를 통해서 복잡한 날자 연산 처리를 구현할 수 있다. 
+
+주말 배송을 하지 않을경우 배송일 처리용 TemporalAdjuster 구현체
+
+{% highlight java %}
+public class EstimateDeliverableDay implements TemporalAdjuster {
+    @Override
+    public Temporal adjustInto(Temporal temporal) {
+        DayOfWeek dayOfWeek = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
+
+        int duration = 1;
+
+        if (dayOfWeek == DayOfWeek.FRIDAY) duration = 3; // 월요일
+        else if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) duration = 2; // 화요일
+
+        return temporal.plus(duration, ChronoUnit.DAYS);
+    }
+}
+{% endhighlight %}
+
+사용 
+
+{% highlight java %}
+EstimateDeliverableDay estmateDay = new EstimateDeliverableDay();
+date = date.with(estmateDay);
+{% endhighlight %}
+
+날짜 포매팅하기. 
+
+{% highlight java %}
+LocalDate date = LocalDate.of(2016, 9, 12);
+
+String isoDate = date.format(DateTimeFormatter.BASIC_ISO_DATE);
+20160912
+
+String isoLocalDate = date.format(DateTimeFormatter.ISO_LOCAL_ATE);
+2016-09-12
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+String formattedString = date.format(formatter);
+LocalDate parsedDate = LocalDate.parse(formattedString, formatter);
+2016 09 12
+
+DateTimeFormatter koreanFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.KOREAN);
+LodalDate date02 = LocalDate.of(2016,9,12);
+String formattedDateString = date02.format(koreanFormatter);
+LocaleDate parsedDate02 = LocalDate.parse(formattedDateString, koreanFormatter);
+
+{% endhighlight %}
+
+날짜 포매팅 빌더 이용하기. 
+
+{% highlight java %}
+DateTimeFormatter koreanFormatter = new DateTimeFormatterBuilder()
+        .appendText(ChronoField.DAY_OF_MONTH)
+        .appendLiteral(".")
+        .appendText(ChronoField.MONTH_OF_YEAR)
+        .appendLiteral(" ")
+        .appendText(ChronoField.YEAR)
+        .parseCaseInsensitive()
+        .toFormatter(Locale.KOREAN);
+
+LocalDate date1 = LocalDate.of(2016, 9, 12);
+System.out.println("Formatted Date : " + date1.format(koreanFormatter));
+
+DateTimeFormatter koreanFormatter2 = new DateTimeFormatterBuilder()
+        .appendText(ChronoField.YEAR)
+        .appendLiteral("-")
+        .appendText(ChronoField.MONTH_OF_YEAR)
+        .appendLiteral("/")
+        .appendText(ChronoField.DAY_OF_MONTH)
+        .parseCaseInsensitive()
+        .toFormatter(Locale.KOREAN);
+System.out.println("Formatted Date2 : " + date1.format(koreanFormatter2));
+
+Formatted Date : 12.9월 2016
+Formatted Date2 : 2016-9월/12
+
+{% endhighlight %}
+
+타임존 이용하기. 
+
+타임존은 DST(Daylight Saving Time)을 적용한 지역 시간을 위해 사용한다. 
+
+{% highlight java %}
+ZoneId koreanZone = ZoneId.of("Asia/Seoul");
+ZoneId defaultZone = TimeZone.getDefault().toZoneId();
+
+System.out.println("KoreanZone : " + koreanZone);
+System.out.println("defaultZone : " + defaultZone);
+
+LocalDate date = LocalDate.of(2016,  Month.SEPTEMBER, 12);
+ZonedDateTime zoneTime = date.atStartOfDay(koreanZone);
+System.out.println(String.format("LocalDate date = LocalDate.of(2016,  Month.SEPTEMBER, 12); [%s]", zoneTime));
+
+LocalDateTime datetime = LocalDateTime.of(2016, Month.SEPTEMBER, 12, 23, 24);
+ZonedDateTime zoneTime2 = datetime.atZone(koreanZone);
+System.out.println(String.format("LocalDateTime datetime = LocalDateTime.of(2016, Month.SEPTEMBER, 12, 23, 24); [%s]", zoneTime2));
+
+Instant instant = Instant.now();
+ZonedDateTime zoneTime3 = instant.atZone(koreanZone);
+System.out.println(String.format("Instant instant = Instant.now(); [%s]", zoneTime3));
+{% endhighlight %}
+
+{% highlight java %}
+KoreanZone : Asia/Seoul
+defaultZone : Asia/Seoul
+LocalDate date = LocalDate.of(2016,  Month.SEPTEMBER, 12); [2016-09-12T00:00+09:00[Asia/Seoul]]
+LocalDateTime datetime = LocalDateTime.of(2016, Month.SEPTEMBER, 12, 23, 24); [2016-09-12T23:24+09:00[Asia/Seoul]]
+Instant instant = Instant.now(); [2016-09-12T23:17:43.652+09:00[Asia/Seoul]]
+
+{% endhighlight %}
 
 {% if page.comments %}
 <div id="disqus_thread"></div>
