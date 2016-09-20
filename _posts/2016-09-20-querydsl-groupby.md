@@ -46,6 +46,7 @@ List<CSReturnStatusSummary> list = query.from(table)
 {% endhighlight %}
 
 그룹 키를 이용하여 Map 형태로 받아오기. 
+
 transform을 이용하면 다양한 형태의 자료구조로 변환이 가능하다. 
 
 {% highlight java %}
@@ -57,6 +58,7 @@ Map<Integer, List<Comment>> results = query.from(post, comment)
 {% endhighlight %}
 
 복수개의 칼럼이 존대한다면 다음과 같이 Group로 담아낸다. 
+
 이를 이용하여 postID를 키로하고, 값은 Group가 되며 내부에는 post.name과 comment.id의 셋으로 접근이 가능하다. 
 
 {% highlight java %}
