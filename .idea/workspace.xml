@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78892be2-3490-4f0e-8384-dbef81e85139" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2018-08-23-Study-Spring-Microservice-In-Action-00.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2018-08-23-Study-Spring-Microservice-In-Action-00.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2018-08-23-Study-Spring-Microservice-In-Action-00.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -48,12 +47,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="3605" />
+          <entry key="md" value="3645" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="3605" />
+          <entry key="Markdown" value="3645" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -79,8 +78,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2018-08-23-Study-Spring-Microservice-In-Action-00.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="612">
-                <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+              <first_editor relative-caret-position="34">
+                <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               </first_editor>
               <second_editor />
             </state>
@@ -448,18 +447,18 @@
       <option name="presentableId" value="Default" />
       <updated>1534812384236</updated>
       <workItem from="1534812387851" duration="3386000" />
-      <workItem from="1534980680957" duration="1470000" />
+      <workItem from="1534980680957" duration="1660000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4856000" />
+    <option name="totallyTimeSpent" value="5046000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-315" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23322684" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23322684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -476,7 +475,7 @@
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.26595744" />
       <window_info anchor="bottom" id="SBT Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.328934" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.328934" />
       <window_info anchor="bottom" id="Sequence" order="11" />
       <window_info anchor="bottom" id="CheckStyle" order="12" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -515,8 +514,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-08-23-Study-Spring-Microservice-In-Action-00.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="612">
-            <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <first_editor relative-caret-position="34">
+            <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           </first_editor>
           <second_editor />
         </state>
