@@ -1,6 +1,6 @@
 ---
 layout: post
-title: \[Interview\] Top 10 Java Interview Question That I Recently Faced
+title: Java Interview : Top 10 Java Interview Question That I Recently Faced
 comments: true
 ---
 # Top 10 Java Interview Question That I Recently Faced
