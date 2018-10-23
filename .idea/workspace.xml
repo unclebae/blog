@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78892be2-3490-4f0e-8384-dbef81e85139" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -55,12 +55,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="21580" />
+          <entry key="md" value="21652" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="21580" />
+          <entry key="Markdown" value="21652" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -123,8 +123,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="383">
-                <caret line="96" selection-start-line="96" selection-end-line="96" />
+              <first_editor relative-caret-position="438">
+                <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
               </first_editor>
               <second_editor />
             </state>
@@ -421,6 +421,13 @@
               <item name="img" type="462c0819:PsiDirectoryNode" />
               <item name="201810" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="github.io" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="201810" type="462c0819:PsiDirectoryNode" />
+              <item name="spring-kafak" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -431,7 +438,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540270520321" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540270604549" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
@@ -444,6 +451,7 @@
       <recent name="$PROJECT_DIR$/_posts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/img/201810/spring-kafak" />
       <recent name="$PROJECT_DIR$/img/201808" />
     </key>
   </component>
@@ -519,17 +527,18 @@
       <workItem from="1535075707583" duration="13009000" />
       <workItem from="1535326335167" duration="13000" />
       <workItem from="1535501412341" duration="7094000" />
-      <workItem from="1540259337866" duration="4855000" />
+      <workItem from="1540259337866" duration="5279000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30835000" />
+    <option name="totallyTimeSpent" value="31259000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1874106" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1874106" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -546,7 +555,7 @@
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.26595744" />
       <window_info anchor="bottom" id="SBT Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2795031" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2795031" />
       <window_info anchor="bottom" id="Sequence" order="11" />
       <window_info anchor="bottom" id="CheckStyle" order="12" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -615,8 +624,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="383">
-            <caret line="96" selection-start-line="96" selection-end-line="96" />
+          <first_editor relative-caret-position="438">
+            <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
           </first_editor>
           <second_editor />
         </state>
