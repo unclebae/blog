@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78892be2-3490-4f0e-8384-dbef81e85139" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_posts/2018-10-24-Introduction-to-Natural-Language-Processing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.3.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.3.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.3.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.3.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -33,34 +35,35 @@
     <session id="1772046794">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.10" value="2" />
-          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="md" value="5" />
+          <entry key="md" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Markdown" value="5" />
+          <entry key="Markdown" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="24338" />
+          <entry key="md" value="29622" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="24338" />
+          <entry key="JAVA" value="2" />
+          <entry key="Markdown" value="29620" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -111,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2018-08-29-Top-10-Java-Interview-Question.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="38">
+              <first_editor relative-caret-position="2040">
                 <caret line="120" selection-start-line="120" selection-end-line="120" />
               </first_editor>
               <second_editor />
@@ -119,36 +122,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="495">
-                <caret line="707" lean-forward="true" selection-start-line="707" selection-end-line="707" />
-                <folding>
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="e#1667#1668#0" expanded="true" />
-                  <element signature="e#1728#1729#0" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="e#406#407#0" expanded="true" />
-                  <element signature="e#460#461#0" expanded="true" />
-                  <element signature="e#670#671#0" expanded="true" />
-                  <element signature="e#732#733#0" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="e#619#620#0" expanded="true" />
-                  <element signature="e#682#683#0" expanded="true" />
-                  <element signature="imports" expanded="true" />
-                  <element signature="e#702#703#0" expanded="true" />
-                  <element signature="e#765#766#0" expanded="true" />
-                  <element signature="e#874#875#0" expanded="true" />
-                  <element signature="e#934#935#0" expanded="true" />
-                </folding>
+              <first_editor relative-caret-position="12971">
+                <caret line="763" selection-start-line="763" selection-end-line="763" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2018-10-24-Introduction-to-Natural-Language-Processing.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="629">
+                <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
               </first_editor>
               <second_editor />
             </state>
@@ -402,6 +393,7 @@
         <option value="$PROJECT_DIR$/_posts/2018-08-24-Welcome-to-the-cloud-spring.md" />
         <option value="$PROJECT_DIR$/_posts/2018-08-29-Top-10-Java-Interview-Question.md" />
         <option value="$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md" />
+        <option value="$PROJECT_DIR$/_posts/2018-10-24-Introduction-to-Natural-Language-Processing.md" />
       </list>
     </option>
   </component>
@@ -411,9 +403,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="850" />
+    <option name="width" value="830" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -421,7 +414,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -457,12 +449,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540296605377" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540297064945" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
@@ -471,12 +464,12 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/_posts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/img/201810/spring-kafak" />
       <recent name="$PROJECT_DIR$/img/201808" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -551,18 +544,20 @@
       <workItem from="1535075707583" duration="13009000" />
       <workItem from="1535326335167" duration="13000" />
       <workItem from="1535501412341" duration="7094000" />
-      <workItem from="1540259337866" duration="8353000" />
+      <workItem from="1540259337866" duration="9065000" />
+      <workItem from="1540350963670" duration="4271000" />
+      <workItem from="1540357427217" duration="1333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34333000" />
+    <option name="totallyTimeSpent" value="40649000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="769" y="0" width="911" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1874106" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3362944" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -579,7 +574,7 @@
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.26595744" />
       <window_info anchor="bottom" id="SBT Console" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2795031" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2356021" />
       <window_info anchor="bottom" id="Sequence" order="11" />
       <window_info anchor="bottom" id="CheckStyle" order="12" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -603,6 +598,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_posts/2018-08-21-The-Reactive-Manifesto.md">
@@ -638,7 +637,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-08-29-Top-10-Java-Interview-Question.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="38">
+          <first_editor relative-caret-position="2040">
             <caret line="120" selection-start-line="120" selection-end-line="120" />
           </first_editor>
           <second_editor />
@@ -648,32 +647,18 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-10-23-Spring-Kafka-Integration.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="495">
-            <caret line="707" lean-forward="true" selection-start-line="707" selection-end-line="707" />
-            <folding>
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="e#1667#1668#0" expanded="true" />
-              <element signature="e#1728#1729#0" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="e#406#407#0" expanded="true" />
-              <element signature="e#460#461#0" expanded="true" />
-              <element signature="e#670#671#0" expanded="true" />
-              <element signature="e#732#733#0" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="e#619#620#0" expanded="true" />
-              <element signature="e#682#683#0" expanded="true" />
-              <element signature="imports" expanded="true" />
-              <element signature="e#702#703#0" expanded="true" />
-              <element signature="e#765#766#0" expanded="true" />
-              <element signature="e#874#875#0" expanded="true" />
-              <element signature="e#934#935#0" expanded="true" />
-            </folding>
+          <first_editor relative-caret-position="12971">
+            <caret line="763" selection-start-line="763" selection-end-line="763" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-10-24-Introduction-to-Natural-Language-Processing.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="629">
+            <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
           </first_editor>
           <second_editor />
         </state>
