@@ -16,11 +16,15 @@
 	url('/fonts/UbuntuMono-B.ttf'),
 	url('/fonts/UbuntuMono-BI.ttf'),
 	url('/fonts/UbuntuMono-R.ttf'),
-	url('/fonts/UbuntuMono-RI.ttf');
+  url('/fonts/UbuntuMono-RI.ttf');
+  
+  font-family: 'Nanum Gothic Coding', monospace;
+  src: url(/fonts/NanumGothicCoding-Regular.ttf),
+    url(/fonts/NanumGothicCoding-Bold.ttf);
 }
 
 body {
-  font-family: 'Ubuntu','Roboto', 'arial', sans-serif;
+  font-family: 'Nanum Gothic Coding', monospace;
   font-size: 18px;
   color: #404040;
   position: relative;
