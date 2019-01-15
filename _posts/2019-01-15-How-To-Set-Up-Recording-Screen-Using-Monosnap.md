@@ -14,13 +14,13 @@ comments: true
 [Monosnap](https://monosnap.com/welcome) 에서 최신판 Monosnap 을 다운로드 받습니다. \
 설치를 해보면 아래 이미지와 같은 아이콘이 나타납니다.\
 
-![Monosnap Icon](/imgs/201901/Monosnap.png)
+![Monosnap Icon]({{site.url}}/imgs/201901/Monosnap.png)
 
 이제 더블클릭 해보자. 
 
 상단 메뉴바에 다음과 같은 메뉴를 확인할 수 있다. 
 
-![Monosnap Menu](/imgs/201901/Monosnap02.png)
+![Monosnap Menu]({{site.url}}/imgs/201901/Monosnap02.png)
 
 ## 이용방법 
 
@@ -30,7 +30,7 @@ comments: true
 
 우리는 여기서 Record Video 를 클릭할 것입니다.
 
-![Monosnap Record](/imgs/201901/Monosnap03.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Monosnap03.png)
 
 가운데 붉은 바탕의 Record 버튼을 클릭하면 실제 톡화가 진행이 됩니다.
 
@@ -38,7 +38,7 @@ comments: true
 
 녹화 버튼을 한번더 클릭하면 녹화가 종료되고 아래와 같이 리플레이를 할 수 있습니다. 
 
-![Monosnap Record](/imgs/201901/Monosnap04.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Monosnap04.png)
 
 그런데 무언가 이상하다. !!!
 
@@ -54,11 +54,11 @@ comments: true
 
 에 가서 Soundflower-2.0b2.dmg 를 다운로드 받고 실행합니다.
 
-![Monosnap Record](/imgs/201901/Sunflower01.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower01.png)
 
 가 나오면 Soundflower.pkg 를 더블클릭해서 설치해줍니다. 
 
-![Monosnap Record](/imgs/201901/Sunflower02.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower02.png)
 
 무언가 안됩니다. 실패가 되었다고 나옵니다. 
 
@@ -67,7 +67,7 @@ comments: true
 
 안되는 이유는 Mojave 에서 권한때문에 안됩니다. 
 
-![Monosnap Record](/imgs/201901/Sunflower03.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower03.png)
 
 "시스템환경설정" 을 선택하고 "보안 및 개인 정보 보호" 를 선택하고 
 
@@ -79,15 +79,15 @@ comments: true
 
 ### 오디오 MIDI 설정해주기 
 
-![Monosnap Record](/imgs/201901/Sunflower04.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower04.png)
 
 를 열어줍니다. 
 
-![Monosnap Record](/imgs/201901/Sunflower05.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower05.png)
 
-![Monosnap Record](/imgs/201901/Sunflower06.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower06.png)
 
-![Monosnap Record](/imgs/201901/Sunflower07.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower07.png)
 
 위 순서대로 오디오 사용을 설정해줍니다. 
 
@@ -95,7 +95,7 @@ comments: true
 
 다시 Monosnap 를 열고, Record Video 를 클릭합니다. 
 
-![Monosnap Record](/imgs/201901/Sunflower08.png)
+![Monosnap Record]({{site.url}}/imgs/201901/Sunflower08.png)
 
 좌측상단의 "Setting" 버튼을 선택하고, Audio-Inputs 를 화면과 같이 설정해줍니다. 
 
