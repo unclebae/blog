@@ -21,6 +21,9 @@
   font-family: 'Nanum Gothic Coding', monospace;
   src: url(/fonts/NanumGothicCoding-Regular.ttf),
     url(/fonts/NanumGothicCoding-Bold.ttf);
+
+  font-family: 'Bevan', cursive;
+  src: url(/fonts/Bevan-Regular.ttf);
 }
 
 body {
@@ -40,6 +43,10 @@ p a {
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Ubuntu', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+h1, h2 {
+  font-family: 'Bevan', cursive;
   font-weight: 800;
 }
 a {
