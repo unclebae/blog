@@ -3,7 +3,7 @@ layout: page
 title: About me.
 permalink: /about/
 ---
-![MyCaricature]({{site.url}}/images/KIDO.jpg)
+![MyCaricature]({{site.url}}/img/KIDO.jpg)
 
 Hello my name is Kido. 
 My nick is Unclebae. 

@@ -129,7 +129,7 @@ _You **can** combine them_
   * Item3b
 
 ### Images
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/img/logo.png)
 Format: ![Alt Text](url)
 
 ### Links
