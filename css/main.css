@@ -19,11 +19,15 @@
   url('/fonts/UbuntuMono-RI.ttf');
   
   font-family: 'Nanum Gothic Coding', monospace;
-  src: url(/fonts/NanumGothicCoding-Regular.ttf),
-    url(/fonts/NanumGothicCoding-Bold.ttf);
+  src: url('/fonts/NanumGothicCoding-Regular.ttf'),
+    url('/fonts/NanumGothicCoding-Bold.ttf');
 
   font-family: 'Bevan', cursive;
-  src: url(/fonts/Bevan-Regular.ttf);
+  src: url('/fonts/Bevan-Regular.ttf');
+
+  font-family: 'Alfa Slab One', cursive;
+  src: url('/fonts/AlfaSlabOne-Regular.ttf');
+
 }
 
 body {
@@ -46,7 +50,7 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 800;
 }
 h1, h2 {
-  font-family: 'Bevan', cursive;
+  font-family: 'Alfa Slab One', cursive;
   font-weight: 800;
 }
 a {
