@@ -45,11 +45,11 @@ p a {
   /* text-decoration: underline */
   color: #008AFF;
 }
-h1,h2,h3,h4,h5,h6 {
+h3,h4,h5,h6 {
   font-family: 'Ubuntu', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
-h1, h2 {
+h1,h2 {
   font-family: 'Alfa Slab One', cursive;
   font-weight: 800;
 }
