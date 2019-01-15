@@ -27,7 +27,6 @@
 
   font-family: 'Alfa Slab One', cursive;
   src: url('/fonts/AlfaSlabOne-Regular.ttf');
-
 }
 
 body {
@@ -50,7 +49,7 @@ h3,h4,h5,h6 {
   font-weight: 800;
 }
 h1,h2 {
-  font-family: 'Alfa Slab One', cursive;
+  font-family: 'Ubuntu', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }   
 a {
