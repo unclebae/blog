@@ -49,7 +49,7 @@ Fluentd 는 가능하면 JSON 형식의 구조화된 데이터로 변환을 시�
 Fluentd 는 C 언어와 Ruby 조합으로 개발되었으며 매우 작은 리소스를 사용한다. \
 vanilla instance 는 30 ~ 40MB 정도 사용하며, 초당 13,000 건의 이벤트를 처리한다. 
 
-## 내장돤 신뢰성 
+## 내장된 신뢰성 
 
 ![Fluentd Reliable]({{site.url}}/img/201903/reliable.png)
 
